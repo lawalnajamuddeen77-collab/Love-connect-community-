@@ -1,1175 +1,695 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Love Connect Community</title>
 
 <style>
 *{
-  box-sizing:border-box;
-}
-
-:root{
-  --primary:#6c4cff;
-  --primary2:#9b6cff;
-  --bg:#f5f7fb;
-  --card:#ffffff;
-  --text:#1f2330;
-  --muted:#737987;
-  --border:#e7e9ef;
-  --success:#16a36a;
-  --danger:#e5484d;
-  --warning:#f59e0b;
-  --shadow:0 10px 30px rgba(30,30,60,.08);
+    box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  transition:.25s;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    color:#222;
 }
 
 body.dark{
-  --bg:#0e1016;
-  --card:#181b24;
-  --text:#f5f6fa;
-  --muted:#a8adbb;
-  --border:#2b303c;
-  --shadow:0 10px 30px rgba(0,0,0,.25);
+    background:#121212;
+    color:#eee;
 }
 
-button,
-input,
-textarea,
-select{
-  font:inherit;
+header{
+    background:#075e54;
+    color:white;
+    padding:16px;
+    text-align:center;
 }
 
-button{
-  cursor:pointer;
-}
-
-.app-header{
-  background:
-    radial-gradient(circle at top left,rgba(255,255,255,.18),transparent 35%),
-    linear-gradient(135deg,#6246ea,#9b63ff);
-  color:white;
-  padding:26px 18px;
-  text-align:center;
-}
-
-.app-header h1{
-  margin:0;
-  font-size:28px;
-}
-
-.app-header p{
-  margin:7px 0 0;
-  opacity:.9;
+header h1{
+    margin:0;
+    font-size:22px;
 }
 
 .container{
-  width:min(1100px,94%);
-  margin:22px auto;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:15px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:20px;
-  margin-bottom:17px;
-  box-shadow:var(--shadow);
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.auth-card{
-  max-width:480px;
-  margin:35px auto;
+.dark .card{
+    background:#1e1e1e;
 }
 
 input,
 textarea,
-select{
-  width:100%;
-  padding:13px 14px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  background:var(--card);
-  color:var(--text);
-  outline:none;
-  margin:6px 0 11px;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(108,76,255,.12);
+button{
+    width:100%;
+    padding:12px;
+    margin:7px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:15px;
 }
 
 textarea{
-  min-height:100px;
-  resize:vertical;
+    resize:none;
 }
 
-.btn{
-  border:0;
-  background:var(--primary);
-  color:white;
-  padding:11px 16px;
-  border-radius:12px;
-  margin:4px 2px;
-  transition:.2s;
+button{
+    background:#075e54;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.btn:hover{
-  transform:translateY(-1px);
-  opacity:.92;
+button:hover{
+    opacity:.9;
 }
 
-.btn.secondary{
-  background:#69707f;
+.secondary{
+    background:#777;
 }
 
-.btn.success{
-  background:var(--success);
+.danger{
+    background:#c62828;
 }
 
-.btn.danger{
-  background:var(--danger);
+.link{
+    color:#075e54;
+    cursor:pointer;
+    text-align:center;
+    margin-top:10px;
 }
 
-.btn.light{
-  background:#eceef4;
-  color:#222;
-}
-
-body.dark .btn.light{
-  background:#303541;
-  color:white;
+.dark .link{
+    color:#4dd0c0;
 }
 
 .hidden{
-  display:none!important;
+    display:none!important;
 }
 
-.center{
-  text-align:center;
+/* NAV */
+
+nav{
+    background:white;
+    display:flex;
+    overflow-x:auto;
+    border-bottom:1px solid #ddd;
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
-.error{
-  color:var(--danger);
-  padding:9px 0;
+.dark nav{
+    background:#1b1b1b;
+    border-color:#333;
 }
 
-.successText{
-  color:var(--success);
-  padding:9px 0;
+nav button{
+    min-width:100px;
+    margin:0;
+    border-radius:0;
+    background:transparent;
+    color:#075e54;
 }
 
-.nav{
-  position:sticky;
-  top:0;
-  z-index:50;
-  display:flex;
-  gap:5px;
-  padding:9px;
-  overflow-x:auto;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+.dark nav button{
+    color:#4dd0c0;
 }
 
-body.dark .nav{
-  background:rgba(24,27,36,.94);
-}
+/* PROFILE */
 
-.nav button{
-  position:relative;
-  white-space:nowrap;
-  border:0;
-  padding:10px 13px;
-  border-radius:11px;
-  background:transparent;
-  color:var(--text);
-}
-
-.nav button:hover{
-  background:rgba(108,76,255,.1);
-}
-
-.badge{
-  position:absolute;
-  top:0;
-  right:0;
-  min-width:18px;
-  height:18px;
-  padding:2px 5px;
-  border-radius:20px;
-  background:#e5484d;
-  color:white;
-  font-size:10px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.hero{
-  padding:28px;
-  border-radius:24px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(108,76,255,.13),
-      rgba(155,99,255,.05)
-    );
-  border:1px solid rgba(108,76,255,.15);
-}
-
-.hero h2{
-  margin-top:0;
-  font-size:26px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:18px;
-}
-
-.stat{
-  padding:18px;
-  text-align:center;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:var(--card);
-}
-
-.stat strong{
-  display:block;
-  font-size:24px;
-  color:var(--primary);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(245px,1fr));
-  gap:15px;
+.profile-photo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:10px auto;
+    background:#ddd;
 }
 
 .user-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:17px;
-  box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    border-bottom:1px solid #ddd;
 }
 
-.avatar{
-  width:78px;
-  height:78px;
-  border-radius:50%;
-  object-fit:cover;
-  background:#ddd;
-  display:block;
-  margin:0 auto 12px;
+.user-photo{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#ddd;
 }
 
-.avatar.small{
-  width:48px;
-  height:48px;
-  margin:0;
+.user-info{
+    flex:1;
 }
 
-.avatar.large{
-  width:120px;
-  height:120px;
+.user-info h3{
+    margin:0 0 5px;
 }
 
-.online-dot{
-  display:inline-block;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#9aa0aa;
-  margin-right:5px;
+.user-info p{
+    margin:0;
+    color:#777;
 }
 
-.online-dot.online{
-  background:#16c784;
-  box-shadow:0 0 0 3px rgba(22,199,132,.12);
+.dark .user-info p{
+    color:#aaa;
 }
 
-.profile-top{
-  display:flex;
-  align-items:center;
-  gap:13px;
+/* CHAT */
+
+.chat-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#075e54;
+    color:white;
+    padding:10px;
+    border-radius:10px 10px 0 0;
 }
 
-.profile-top .avatar{
-  margin:0;
+.chat-header img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
 }
 
 .chat-box{
-  height:430px;
-  overflow-y:auto;
-  padding:14px;
-  border:1px solid var(--border);
-  border-radius:17px;
-  background:rgba(0,0,0,.025);
+    height:430px;
+    overflow-y:auto;
+    padding:15px;
+    background:#e5ddd5;
+}
+
+.dark .chat-box{
+    background:#202020;
 }
 
 .message{
-  max-width:78%;
-  padding:11px 13px;
-  border-radius:15px;
-  margin:8px 0;
-  word-break:break-word;
+    max-width:75%;
+    padding:9px 12px;
+    margin:7px 0;
+    border-radius:10px;
+    word-wrap:break-word;
 }
 
 .message.me{
-  margin-left:auto;
-  background:var(--primary);
-  color:white;
-  border-bottom-right-radius:5px;
+    margin-left:auto;
+    background:#dcf8c6;
 }
 
 .message.other{
-  margin-right:auto;
-  background:#e9ebf1;
-  color:#222;
-  border-bottom-left-radius:5px;
+    margin-right:auto;
+    background:white;
 }
 
-body.dark .message.other{
-  background:#303541;
-  color:white;
+.dark .message.other{
+    background:#333;
 }
 
 .message-time{
-  font-size:10px;
-  opacity:.72;
-  margin-top:5px;
+    font-size:10px;
+    color:#777;
+    margin-top:4px;
+    text-align:right;
+}
+
+.message-status{
+    font-size:12px;
+    margin-left:4px;
 }
 
 .chat-input{
-  display:flex;
-  gap:8px;
-  margin-top:11px;
+    display:flex;
+    gap:5px;
+    padding:8px;
+    background:white;
+}
+
+.dark .chat-input{
+    background:#1e1e1e;
 }
 
 .chat-input input{
-  margin:0;
+    flex:1;
+    margin:0;
 }
 
-.notification{
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:15px;
-  margin:9px 0;
+.chat-input button{
+    width:80px;
+    margin:0;
 }
 
-.notification.unread{
-  border-left:5px solid var(--primary);
-  background:rgba(108,76,255,.08);
+/* ALERT */
+
+.alert{
+    padding:10px;
+    border-radius:8px;
+    margin:10px 0;
+    background:#fff3cd;
+    color:#664d03;
 }
 
-.group-card{
-  position:relative;
+.error{
+    background:#f8d7da;
+    color:#842029;
 }
 
-.group-icon{
-  width:55px;
-  height:55px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(108,76,255,.12);
-  font-size:27px;
-  margin-bottom:12px;
+.success{
+    background:#d1e7dd;
+    color:#0f5132;
 }
 
-.setting-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:16px 0;
-  border-bottom:1px solid var(--border);
-}
+/* LOADING */
 
-.switch{
-  width:48px;
-  height:27px;
-  border:0;
-  border-radius:20px;
-  background:#999;
-  position:relative;
-}
-
-.switch span{
-  position:absolute;
-  width:20px;
-  height:20px;
-  top:3.5px;
-  left:4px;
-  border-radius:50%;
-  background:white;
-  transition:.2s;
-}
-
-.switch.active{
-  background:var(--primary);
-}
-
-.switch.active span{
-  left:24px;
-}
-
-.empty{
-  padding:25px;
-  text-align:center;
-  color:var(--muted);
-}
-
-footer{
-  text-align:center;
-  color:var(--muted);
-  padding:35px 15px;
-}
-
-@media(max-width:700px){
-
-  .app-header{
-    padding:21px 13px;
-  }
-
-  .app-header h1{
-    font-size:22px;
-  }
-
-  .container{
-    width:96%;
-    margin:15px auto;
-  }
-
-  .card{
-    padding:15px;
-    border-radius:16px;
-  }
-
-  .hero{
+.loading{
+    text-align:center;
     padding:20px;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .message{
-    max-width:88%;
-  }
-
-  .chat-box{
-    height:370px;
-  }
-
-  .chat-input{
-    flex-direction:column;
-  }
-
-  .chat-input .btn{
-    width:100%;
-  }
+    color:#777;
 }
 </style>
 </head>
 
 <body>
 
-<header class="app-header">
-  <h1>🌍 Love Connect Community</h1>
-  <p>Connect • Communicate • Build Community</p>
+<header>
+    <h1>🌍 Love Connect Community</h1>
+    <small>Connect • Communicate • Community</small>
 </header>
 
 
-<!-- AUTH -->
-<section id="authPage" class="container">
+<!-- ================= AUTH ================= -->
 
-  <div id="loginBox" class="card auth-card">
+<div id="authPage" class="container">
 
-    <div class="center">
-      <h2>🔐 Welcome Back</h2>
-      <p>Login to your community account.</p>
+    <!-- LOGIN -->
+
+    <div id="loginBox" class="card">
+
+        <h2>🔐 Login</h2>
+
+        <div id="loginMessage"></div>
+
+        <input
+            type="email"
+            id="loginEmail"
+            placeholder="Email address"
+        >
+
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+        >
+
+        <button onclick="loginUser()">
+            Login
+        </button>
+
+        <div class="link" onclick="showRegister()">
+            Create new account
+        </div>
+
+        <div class="link" onclick="resetPassword()">
+            Forgot password?
+        </div>
+
     </div>
 
-    <input
-      id="loginEmail"
-      type="email"
-      placeholder="Email">
 
-    <input
-      id="loginPassword"
-      type="password"
-      placeholder="Password">
+    <!-- REGISTER -->
 
-    <button
-      class="btn"
-      style="width:100%"
-      onclick="login()">
-      Login
-    </button>
+    <div id="registerBox" class="card hidden">
 
-    <button
-      class="btn secondary"
-      style="width:100%"
-      onclick="showRegister()">
-      Create Account
-    </button>
+        <h2>📝 Create Account</h2>
 
-    <div class="center">
-      <button
-        class="btn light"
-        onclick="resetPassword()">
-        Forgot Password?
-      </button>
+        <div id="registerMessage"></div>
+
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Full name"
+        >
+
+        <input
+            type="text"
+            id="registerUsername"
+            placeholder="Username"
+        >
+
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email address"
+        >
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password"
+        >
+
+        <textarea
+            id="registerBio"
+            placeholder="Short bio"
+            rows="3"
+        ></textarea>
+
+        <input
+            type="file"
+            id="registerPhoto"
+            accept="image/*"
+        >
+
+        <button onclick="registerUser()">
+            Register
+        </button>
+
+        <div class="link" onclick="showLogin()">
+            Already have an account? Login
+        </div>
+
     </div>
 
-    <div id="loginMessage"></div>
-
-  </div>
+</div>
 
 
-  <div id="registerBox"
-       class="card auth-card hidden">
 
-    <div class="center">
-      <h2>📝 Create Account</h2>
-      <p>Join the community.</p>
-    </div>
+<!-- ================= APP ================= -->
 
-    <input
-      id="registerName"
-      placeholder="Full Name">
+<div id="appPage" class="hidden">
 
-    <input
-      id="registerUsername"
-      placeholder="Username">
+<nav>
 
-    <input
-      id="registerEmail"
-      type="email"
-      placeholder="Email">
-
-    <input
-      id="registerPassword"
-      type="password"
-      placeholder="Password">
-
-    <button
-      class="btn"
-      style="width:100%"
-      onclick="register()">
-      Register
+    <button onclick="showPage('homePage')">
+        🏠 Home
     </button>
 
-    <button
-      class="btn secondary"
-      style="width:100%"
-      onclick="showLogin()">
-      Back to Login
+    <button onclick="showPage('discoverPage')">
+        🔎 Discover
     </button>
 
-    <div id="registerMessage"></div>
+    <button onclick="showPage('messagesPage')">
+        💬 Messages
+    </button>
 
-  </div>
+    <button onclick="showPage('profilePage')">
+        👤 Profile
+    </button>
 
-</section>
+    <button onclick="toggleDarkMode()">
+        🌙 Dark
+    </button>
 
-
-<!-- APP -->
-<section id="appPage" class="hidden">
-
-<nav class="nav">
-
-  <button onclick="showPage('homePage')">
-    🏠 Home
-  </button>
-
-  <button onclick="showPage('discoverPage')">
-    🔎 Discover
-  </button>
-
-  <button onclick="showPage('messagesPage')">
-    💬 Messages
-    <span id="messageBadge"
-          class="badge hidden">0</span>
-  </button>
-
-  <button onclick="showPage('groupsPage')">
-    👥 Groups
-  </button>
-
-  <button onclick="showPage('notificationsPage')">
-    🔔 Notifications
-    <span id="notificationBadge"
-          class="badge hidden">0</span>
-  </button>
-
-  <button onclick="showPage('profilePage')">
-    👤 Profile
-  </button>
-
-  <button onclick="showPage('settingsPage')">
-    ⚙️ Settings
-  </button>
-
-  <button onclick="toggleDarkMode()">
-    🌙 Dark
-  </button>
-
-  <button onclick="logout()">
-    🚪 Logout
-  </button>
+    <button onclick="logoutUser()">
+        🚪 Logout
+    </button>
 
 </nav>
 
 
-<main class="container">
-
+<div class="container">
 
 <!-- HOME -->
-<section id="homePage" class="page">
 
-  <div class="hero">
+<section id="homePage">
 
-    <h2 id="welcomeText">
-      Welcome
-    </h2>
+    <div class="card">
 
-    <p>
-      Welcome to Love Connect Community.
-      Connect, communicate and build a positive community.
-    </p>
+        <h2>🌍 Welcome to Love Connect</h2>
 
-    <button
-      class="btn"
-      onclick="showPage('discoverPage')">
-      🔎 Explore Community
-    </button>
+        <p>
+            Welcome to Love Connect Community.
+            Connect and communicate with other community members.
+        </p>
 
-    <button
-      class="btn secondary"
-      onclick="showPage('groupsPage')">
-      👥 Explore Groups
-    </button>
+        <div id="homeUser"></div>
 
-  </div>
-
-
-  <div class="stats">
-
-    <div class="stat">
-      <strong id="homeUserCount">0</strong>
-      Members
     </div>
-
-    <div class="stat">
-      <strong id="homeGroupCount">0</strong>
-      Groups
-    </div>
-
-    <div class="stat">
-      <strong id="homeOnlineCount">0</strong>
-      Online
-    </div>
-
-  </div>
-
-
-  <div class="grid" style="margin-top:16px">
-
-    <div class="card center">
-      <h2>🔎</h2>
-      <h3>Discover</h3>
-      <p>
-        Find community members and view their profiles.
-      </p>
-      <button
-        class="btn"
-        onclick="showPage('discoverPage')">
-        Discover
-      </button>
-    </div>
-
-
-    <div class="card center">
-      <h2>💬</h2>
-      <h3>Messages</h3>
-      <p>
-        Communicate privately with community members.
-      </p>
-      <button
-        class="btn"
-        onclick="showPage('messagesPage')">
-        Messages
-      </button>
-    </div>
-
-
-    <div class="card center">
-      <h2>👥</h2>
-      <h3>Groups</h3>
-      <p>
-        Join groups and participate in discussions.
-      </p>
-      <button
-        class="btn"
-        onclick="showPage('groupsPage')">
-        Groups
-      </button>
-    </div>
-
-  </div>
 
 </section>
+
 
 
 <!-- DISCOVER -->
-<section id="discoverPage" class="page hidden">
 
-  <div class="card">
+<section id="discoverPage" class="hidden">
 
-    <h2>🔎 Discover Community</h2>
+    <div class="card">
 
-    <input
-      id="searchInput"
-      placeholder="Search name, username or bio..."
-      oninput="filterUsers()">
+        <h2>🔎 Discover Users</h2>
 
-    <select
-      id="statusFilter"
-      onchange="filterUsers()">
+        <input
+            type="text"
+            id="searchUsers"
+            placeholder="Search users..."
+            oninput="searchUsers()"
+        >
 
-      <option value="all">
-        All Members
-      </option>
+    </div>
 
-      <option value="online">
-        🟢 Online
-      </option>
-
-      <option value="offline">
-        ⚪ Offline
-      </option>
-
-    </select>
-
-  </div>
-
-  <div id="usersGrid" class="grid"></div>
+    <div id="usersContainer" class="card">
+        <div class="loading">
+            Loading users...
+        </div>
+    </div>
 
 </section>
 
 
-<!-- FULL PROFILE -->
-<section id="viewProfilePage"
-         class="page hidden">
 
-  <div class="card">
+<!-- PROFILE VIEW -->
 
-    <button
-      class="btn secondary"
-      onclick="showPage('discoverPage')">
-      ← Back
-    </button>
+<section id="viewProfilePage" class="hidden">
 
-    <div id="fullProfile"></div>
+    <div class="card">
 
-  </div>
+        <button
+            class="secondary"
+            onclick="showPage('discoverPage')"
+        >
+            ← Back
+        </button>
+
+        <div id="viewProfileContent"></div>
+
+    </div>
 
 </section>
+
 
 
 <!-- MESSAGES -->
-<section id="messagesPage"
-         class="page hidden">
 
-  <div id="conversationPage">
+<section id="messagesPage" class="hidden">
 
     <div class="card">
 
-      <h2>💬 Conversations</h2>
+        <h2>💬 Conversations</h2>
 
-      <div id="conversationList"></div>
+        <div id="conversationsContainer">
+            <div class="loading">
+                Loading conversations...
+            </div>
+        </div>
 
     </div>
 
-  </div>
+</section>
 
 
-  <div id="privateChatPage"
-       class="hidden">
+
+<!-- PRIVATE CHAT -->
+
+<section id="privateChatPage" class="hidden">
 
     <div class="card">
 
-      <button
-        class="btn secondary"
-        onclick="closeChat()">
-        ← Back
-      </button>
+        <button
+            class="secondary"
+            onclick="closeChat()"
+        >
+            ← Back to Messages
+        </button>
 
-      <div class="profile-top">
+        <div id="chatHeader"></div>
 
-        <img
-          id="chatAvatar"
-          class="avatar small"
-          src="">
+        <div
+            id="privateChatBox"
+            class="chat-box"
+        ></div>
 
-        <div>
+        <div class="chat-input">
 
-          <strong id="chatName"></strong>
+            <input
+                type="text"
+                id="privateMessageInput"
+                placeholder="Type a message..."
+                onkeydown="handleChatKey(event)"
+            >
 
-          <br>
-
-          <small id="chatStatus"></small>
+            <button onclick="sendPrivateMessage()">
+                Send
+            </button>
 
         </div>
 
-      </div>
-
-      <hr>
-
-      <div
-        id="privateChatBox"
-        class="chat-box">
-      </div>
-
-      <div class="chat-input">
-
-        <input
-          id="privateMessageInput"
-          placeholder="Write a message..."
-          onkeydown="
-            if(event.key==='Enter')
-            sendPrivateMessage()
-          ">
-
-        <button
-          class="btn"
-          onclick="sendPrivateMessage()">
-          Send
-        </button>
-
-      </div>
-
     </div>
-
-  </div>
 
 </section>
 
-
-<!-- GROUPS -->
-<section id="groupsPage"
-         class="page hidden">
-
-  <div class="card">
-
-    <h2>👥 Create Community Group</h2>
-
-    <input
-      id="groupName"
-      placeholder="Group name">
-
-    <textarea
-      id="groupDescription"
-      placeholder="Group description">
-    </textarea>
-
-    <button
-      class="btn"
-      onclick="createGroup()">
-      ➕ Create Group
-    </button>
-
-  </div>
-
-
-  <div id="groupsList"></div>
-
-
-  <div id="groupDetailsPage"
-       class="hidden">
-
-    <div class="card">
-
-      <button
-        class="btn secondary"
-        onclick="closeGroup()">
-        ← Back
-      </button>
-
-      <div id="groupDetails"></div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- NOTIFICATIONS -->
-<section id="notificationsPage"
-         class="page hidden">
-
-  <div class="card">
-
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap">
-
-      <h2>🔔 Notifications</h2>
-
-      <button
-        class="btn"
-        onclick="markAllNotificationsRead()">
-        ✅ Mark all as read
-      </button>
-
-    </div>
-
-    <div id="notificationsList"></div>
-
-  </div>
-
-</section>
 
 
 <!-- PROFILE -->
-<section id="profilePage"
-         class="page hidden">
 
-  <div class="card">
+<section id="profilePage" class="hidden">
 
-    <h2>👤 My Profile</h2>
+    <div class="card">
 
-    <div class="center">
+        <h2>👤 My Profile</h2>
 
-      <img
-        id="myPhoto"
-        class="avatar large"
-        src=""
-        alt="Profile">
+        <div id="profileMessage"></div>
 
-      <input
-        id="photoInput"
-        type="file"
-        accept="image/*">
+        <img
+            id="profilePhotoPreview"
+            class="profile-photo"
+            src=""
+        >
+
+        <input
+            type="file"
+            id="profilePhoto"
+            accept="image/*"
+            onchange="previewProfilePhoto()"
+        >
+
+        <input
+            type="text"
+            id="profileName"
+            placeholder="Full name"
+        >
+
+        <input
+            type="text"
+            id="profileUsername"
+            placeholder="Username"
+        >
+
+        <textarea
+            id="profileBio"
+            placeholder="Bio"
+            rows="4"
+        ></textarea>
+
+        <button onclick="saveProfile()">
+            💾 Save Profile
+        </button>
 
     </div>
-
-    <input
-      id="profileName"
-      placeholder="Full Name">
-
-    <input
-      id="profileUsername"
-      placeholder="Username">
-
-    <textarea
-      id="profileBio"
-      placeholder="Tell the community about yourself">
-    </textarea>
-
-    <button
-      class="btn"
-      onclick="saveProfile()">
-      💾 Save Profile
-    </button>
-
-    <div id="profileMessage"></div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>🛡️ Community Safety</h3>
-
-    <p>
-      Treat other members respectfully.
-      If you see inappropriate behavior,
-      use the report feature.
-    </p>
-
-  </div>
 
 </section>
 
 
-<!-- SETTINGS -->
-<section id="settingsPage"
-         class="page hidden">
-
-  <div class="card">
-
-    <h2>⚙️ Settings</h2>
-
-    <div class="setting-row">
-
-      <div>
-        <strong>🌙 Dark Mode</strong>
-        <br>
-        <small>
-          Change the application appearance.
-        </small>
-      </div>
-
-      <button
-        id="darkSwitch"
-        class="switch"
-        onclick="toggleDarkMode()">
-
-        <span></span>
-
-      </button>
-
-    </div>
+</div>
+</div>
 
 
-    <div class="setting-row">
 
-      <div>
-        <strong>🔔 Notifications</strong>
-        <br>
-        <small>
-          Real-time notifications are enabled.
-        </small>
-      </div>
-
-      <strong>ON</strong>
-
-    </div>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>🔐 Account Security</h3>
-
-    <button
-      class="btn"
-      onclick="sendPasswordResetFromSettings()">
-      🔑 Reset Password
-    </button>
-
-    <button
-      class="btn danger"
-      onclick="logout()">
-      🚪 Logout
-    </button>
-
-  </div>
-
-</section>
-
-</main>
-
-</section>
-
-
-<footer>
-  Love Connect Community © 2026
-</footer>
-
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 import {
-  initializeApp
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-  onAuthStateChanged
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut,
+    sendPasswordResetEmail,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  addDoc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  deleteDoc,
-  query,
-  where,
-  onSnapshot,
-  serverTimestamp,
-  increment
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getFirestore,
+    collection,
+    doc,
+    setDoc,
+    getDoc,
+    getDocs,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    query,
+    where,
+    onSnapshot,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE
-========================= */
+/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
-  apiKey:
-  "AIzaSyDs3GiBIWM-SXmgh67E19CmkLbrD80E-6o",
 
-  authDomain:
-  "love-connect-application.firebaseapp.com",
+    apiKey:
+    "AIzaSyDs3GiBIWM-SXmgh67E19CmkLbrD80E-6o",
 
-  projectId:
-  "love-connect-application",
+    authDomain:
+    "love-connect-application.firebaseapp.com",
 
-  storageBucket:
-  "love-connect-application.firebasestorage.app",
+    projectId:
+    "love-connect-application",
 
-  messagingSenderId:
-  "173097166265",
+    storageBucket:
+    "love-connect-application.firebasestorage.app",
 
-  appId:
-  "1:173097166265:web:2436178e371354ac660268",
+    messagingSenderId:
+    "173097166265",
 
-  measurementId:
-  "G-GVWTM6ZT45"
+    appId:
+    "1:173097166265:web:2436178e371354ac660268",
+
+    measurementId:
+    "G-GVWTM6ZT45"
 };
 
-const app =
-  initializeApp(firebaseConfig);
 
-const auth =
-  getAuth(app);
+/* ================= INITIALIZE ================= */
 
-const db =
-  getFirestore(app);
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* ================= VARIABLES ================= */
 
 let currentUser = null;
 
@@ -1177,3628 +697,1995 @@ let allUsers = [];
 
 let currentChatUser = null;
 
-let currentGroup = null;
+let unsubscribeMessages = null;
 
-let privateMessagesUnsubscribe = null;
-
-let notificationsUnsubscribe = null;
-
-let conversationsUnsubscribe = null;
-
-let groupsUnsubscribe = null;
-
-let groupMessagesUnsubscribe = null;
-
-let userStatusInterval = null;
+let unsubscribeConversations = null;
 
 
-/* =========================
-   HELPERS
-========================= */
+/* ================= HELPERS ================= */
 
-window.escapeHtml = function(value){
+function escapeHtml(value){
 
-  if(
-    value === null ||
-    value === undefined
-  ){
-    return "";
-  }
+    if(value === null || value === undefined){
+        return "";
+    }
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-};
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
 
 
-window.getTime = function(timestamp){
+function getTime(timestamp){
 
-  if(!timestamp) return 0;
+    if(!timestamp){
+        return 0;
+    }
 
-  if(
-    typeof timestamp.toMillis ===
-    "function"
-  ){
-    return timestamp.toMillis();
-  }
+    if(
+        typeof timestamp.toMillis === "function"
+    ){
+        return timestamp.toMillis();
+    }
 
-  if(timestamp.seconds){
-
-    return timestamp.seconds * 1000;
-
-  }
-
-  return (
-    new Date(timestamp).getTime() || 0
-  );
-
-};
+    return new Date(timestamp).getTime() || 0;
+}
 
 
 function formatDate(timestamp){
 
-  const time =
-    getTime(timestamp);
+    const time = getTime(timestamp);
 
-  if(!time) return "";
+    if(!time){
+        return "";
+    }
 
-  return new Date(time)
-    .toLocaleString();
-
+    return new Date(time).toLocaleString();
 }
 
 
-function showMessage(
-  elementId,
-  message,
-  type="error"
-){
+function showMessage(elementId,text,type="success"){
 
-  const el =
-    document.getElementById(elementId);
+    const element =
+        document.getElementById(elementId);
 
-  if(!el) return;
+    if(!element){
+        return;
+    }
 
-  el.className =
-    type === "success"
-      ? "successText"
-      : "error";
-
-  el.textContent =
-    message;
-
+    element.innerHTML =
+        `<div class="alert ${type}">
+            ${escapeHtml(text)}
+        </div>`;
 }
 
 
-/* =========================
-   AUTH FORMS
-========================= */
+/* ================= AUTH UI ================= */
 
 window.showRegister = function(){
 
-  document
-    .getElementById("loginBox")
-    .classList.add("hidden");
+    document
+        .getElementById("loginBox")
+        .classList.add("hidden");
 
-  document
-    .getElementById("registerBox")
-    .classList.remove("hidden");
-
+    document
+        .getElementById("registerBox")
+        .classList.remove("hidden");
 };
 
 
 window.showLogin = function(){
 
-  document
-    .getElementById("registerBox")
-    .classList.add("hidden");
-
-  document
-    .getElementById("loginBox")
-    .classList.remove("hidden");
-
-};
-
-
-/* =========================
-   REGISTER
-========================= */
-
-window.register = async function(){
-
-  const name =
     document
-      .getElementById("registerName")
-      .value.trim();
-
-  const username =
-    document
-      .getElementById("registerUsername")
-      .value.trim();
-
-  const email =
-    document
-      .getElementById("registerEmail")
-      .value.trim();
-
-  const password =
-    document
-      .getElementById("registerPassword")
-      .value;
-
-  if(
-    !name ||
-    !username ||
-    !email ||
-    !password
-  ){
-
-    showMessage(
-      "registerMessage",
-      "Please complete all fields."
-    );
-
-    return;
-
-  }
-
-  if(password.length < 6){
-
-    showMessage(
-      "registerMessage",
-      "Password must contain at least 6 characters."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    const credential =
-      await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-    const uid =
-      credential.user.uid;
-
-    await setDoc(
-      doc(db,"users",uid),
-      {
-        uid:uid,
-        name:name,
-        username:username,
-        email:email,
-        bio:"",
-        photo:"",
-        online:true,
-        lastSeen:serverTimestamp(),
-        createdAt:serverTimestamp(),
-        blocked:false
-      }
-    );
-
-    showMessage(
-      "registerMessage",
-      "Account created successfully.",
-      "success"
-    );
-
-  }catch(error){
-
-    showMessage(
-      "registerMessage",
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   LOGIN
-========================= */
-
-window.login = async function(){
-
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value.trim();
-
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
-  if(!email || !password){
-
-    showMessage(
-      "loginMessage",
-      "Enter your email and password."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-  }catch(error){
-
-    showMessage(
-      "loginMessage",
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   RESET PASSWORD
-========================= */
-
-window.resetPassword = async function(){
-
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value.trim();
-
-  if(!email){
-
-    showMessage(
-      "loginMessage",
-      "Enter your email first."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    await sendPasswordResetEmail(
-      auth,
-      email
-    );
-
-    showMessage(
-      "loginMessage",
-      "Password reset email sent.",
-      "success"
-    );
-
-  }catch(error){
-
-    showMessage(
-      "loginMessage",
-      error.message
-    );
-
-  }
-
-};
-
-
-window.sendPasswordResetFromSettings =
-async function(){
-
-  if(!currentUser) return;
-
-  try{
-
-    await sendPasswordResetEmail(
-      auth,
-      currentUser.email
-    );
-
-    alert(
-      "Password reset email sent."
-    );
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-};
-
-
-/* =========================
-   AUTH STATE
-========================= */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if(user){
-
-      currentUser = user;
-
-      document
-        .getElementById("authPage")
+        .getElementById("registerBox")
         .classList.add("hidden");
 
-      document
-        .getElementById("appPage")
+    document
+        .getElementById("loginBox")
         .classList.remove("hidden");
-
-      await loadMyProfile();
-
-      await loadUsers();
-
-      listenNotifications();
-
-      listenConversations();
-
-      listenGroups();
-
-      updateMyOnlineStatus(true);
-
-      startOnlineStatus();
-
-      showPage("homePage");
-
-    }else{
-
-      currentUser = null;
-
-      document
-        .getElementById("appPage")
-        .classList.add("hidden");
-
-      document
-        .getElementById("authPage")
-        .classList.remove("hidden");
-
-      stopListeners();
-
-    }
-
-  }
-);
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-window.logout = async function(){
-
-  try{
-
-    await updateMyOnlineStatus(false);
-
-  }catch(error){}
-
-  stopListeners();
-
-  await signOut(auth);
-
 };
 
 
-/* =========================
-   STOP LISTENERS
-========================= */
-
-function stopListeners(){
-
-  if(privateMessagesUnsubscribe){
-
-    privateMessagesUnsubscribe();
-
-    privateMessagesUnsubscribe = null;
-
-  }
-
-  if(notificationsUnsubscribe){
-
-    notificationsUnsubscribe();
-
-    notificationsUnsubscribe = null;
-
-  }
-
-  if(conversationsUnsubscribe){
-
-    conversationsUnsubscribe();
-
-    conversationsUnsubscribe = null;
-
-  }
-
-  if(groupsUnsubscribe){
-
-    groupsUnsubscribe();
-
-    groupsUnsubscribe = null;
-
-  }
-
-  if(groupMessagesUnsubscribe){
-
-    groupMessagesUnsubscribe();
-
-    groupMessagesUnsubscribe = null;
-
-  }
-
-  if(userStatusInterval){
-
-    clearInterval(userStatusInterval);
-
-    userStatusInterval = null;
-
-  }
-
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-window.showPage = function(pageId){
-
-  document
-    .querySelectorAll(".page")
-    .forEach(
-      page =>
-        page.classList.add("hidden")
-    );
-
-  const page =
-    document.getElementById(pageId);
-
-  if(page){
-
-    page.classList.remove("hidden");
-
-  }
-
-  if(pageId === "discoverPage"){
-
-    renderUsers(allUsers);
-
-  }
-
-  if(pageId === "profilePage"){
-
-    loadMyProfile();
-
-  }
-
-};
-
-
-/* =========================
-   PROFILE
-========================= */
-
-async function loadMyProfile(){
-
-  if(!currentUser) return;
-
-  const snap =
-    await getDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      )
-    );
-
-  if(!snap.exists()) return;
-
-  const data =
-    snap.data();
-
-  document
-    .getElementById("welcomeText")
-    .textContent =
-      "Welcome, " +
-      (data.name || "Member");
-
-  document
-    .getElementById("profileName")
-    .value =
-      data.name || "";
-
-  document
-    .getElementById("profileUsername")
-    .value =
-      data.username || "";
-
-  document
-    .getElementById("profileBio")
-    .value =
-      data.bio || "";
-
-  document
-    .getElementById("myPhoto")
-    .src =
-      data.photo || "";
-
-}
-
-
-/* =========================
-   PHOTO COMPRESSION
-========================= */
+/* ================= IMAGE COMPRESS ================= */
 
 function compressImage(file){
 
-  return new Promise(
-    (resolve,reject)=>{
+    return new Promise((resolve,reject)=>{
 
-      const reader =
-        new FileReader();
-
-      reader.onload =
-      event => {
-
-        const img =
-          new Image();
-
-        img.onload = () => {
-
-          const maxSize =
-            500;
-
-          let width =
-            img.width;
-
-          let height =
-            img.height;
-
-          if(
-            width > maxSize ||
-            height > maxSize
-          ){
-
-            if(width > height){
-
-              height =
-                Math.round(
-                  height *
-                  maxSize /
-                  width
-                );
-
-              width =
-                maxSize;
-
-            }else{
-
-              width =
-                Math.round(
-                  width *
-                  maxSize /
-                  height
-                );
-
-              height =
-                maxSize;
-
-            }
-
-          }
-
-          const canvas =
-            document.createElement(
-              "canvas"
-            );
-
-          canvas.width =
-            width;
-
-          canvas.height =
-            height;
-
-          const ctx =
-            canvas.getContext(
-              "2d"
-            );
-
-          ctx.drawImage(
-            img,
-            0,
-            0,
-            width,
-            height
-          );
-
-          const result =
-            canvas.toDataURL(
-              "image/jpeg",
-              .65
-            );
-
-          if(result.length > 700000){
-
-            reject(
-              new Error(
-                "Photo is too large. Please choose another photo."
-              )
-            );
-
+        if(!file){
+            resolve("");
             return;
+        }
 
-          }
+        const reader =
+            new FileReader();
 
-          resolve(result);
+        reader.onload = function(event){
 
+            const img =
+                new Image();
+
+            img.onload = function(){
+
+                const canvas =
+                    document.createElement("canvas");
+
+                const maxSize = 500;
+
+                let width = img.width;
+
+                let height = img.height;
+
+
+                if(width > height){
+
+                    if(width > maxSize){
+
+                        height =
+                            height *
+                            maxSize /
+                            width;
+
+                        width = maxSize;
+                    }
+
+                }else{
+
+                    if(height > maxSize){
+
+                        width =
+                            width *
+                            maxSize /
+                            height;
+
+                        height = maxSize;
+                    }
+                }
+
+
+                canvas.width = width;
+
+                canvas.height = height;
+
+
+                const ctx =
+                    canvas.getContext("2d");
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+
+                const result =
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        0.65
+                    );
+
+
+                if(result.length > 500000){
+
+                    reject(
+                        new Error(
+                            "Image is too large. Please choose a smaller photo."
+                        )
+                    );
+
+                    return;
+                }
+
+                resolve(result);
+            };
+
+
+            img.onerror = function(){
+
+                reject(
+                    new Error(
+                        "Could not load image."
+                    )
+                );
+            };
+
+
+            img.src =
+                event.target.result;
         };
 
-        img.onerror = reject;
 
-        img.src =
-          event.target.result;
+        reader.onerror = function(){
 
-      };
+            reject(
+                new Error(
+                    "Could not read image."
+                )
+            );
+        };
 
-      reader.onerror =
-        reject;
 
-      reader.readAsDataURL(file);
-
-    }
-  );
-
+        reader.readAsDataURL(file);
+    });
 }
 
 
-/* =========================
-   SAVE PROFILE
-========================= */
+/* ================= REGISTER ================= */
 
-window.saveProfile = async function(){
+window.registerUser = async function(){
 
-  if(!currentUser) return;
+    const name =
+        document
+        .getElementById("registerName")
+        .value
+        .trim();
 
-  const name =
-    document
-      .getElementById("profileName")
-      .value.trim();
+    const username =
+        document
+        .getElementById("registerUsername")
+        .value
+        .trim();
 
-  const username =
-    document
-      .getElementById("profileUsername")
-      .value.trim();
+    const email =
+        document
+        .getElementById("registerEmail")
+        .value
+        .trim();
 
-  const bio =
-    document
-      .getElementById("profileBio")
-      .value.trim();
+    const password =
+        document
+        .getElementById("registerPassword")
+        .value;
 
-  if(!name || !username){
+    const bio =
+        document
+        .getElementById("registerBio")
+        .value
+        .trim();
 
-    showMessage(
-      "profileMessage",
-      "Name and username are required."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    let photo = "";
-
-    const old =
-      await getDoc(
-        doc(
-          db,
-          "users",
-          currentUser.uid
-        )
-      );
-
-    if(old.exists()){
-
-      photo =
-        old.data().photo || "";
-
-    }
-
-    const file =
-      document
-        .getElementById("photoInput")
+    const photoFile =
+        document
+        .getElementById("registerPhoto")
         .files[0];
 
-    if(file){
 
-      photo =
-        await compressImage(file);
+    if(!name || !username || !email || !password){
 
+        showMessage(
+            "registerMessage",
+            "Please fill all required fields.",
+            "error"
+        );
+
+        return;
     }
 
-    await updateDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      ),
-      {
-        name:name,
-        username:username,
-        bio:bio,
-        photo:photo,
-        updatedAt:serverTimestamp()
-      }
-    );
 
-    document
-      .getElementById("myPhoto")
-      .src =
-        photo || "";
+    if(password.length < 6){
 
-    showMessage(
-      "profileMessage",
-      "Profile updated successfully.",
-      "success"
-    );
+        showMessage(
+            "registerMessage",
+            "Password must contain at least 6 characters.",
+            "error"
+        );
 
-    await loadUsers();
-
-  }catch(error){
-
-    showMessage(
-      "profileMessage",
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   USERS
-========================= */
-
-async function loadUsers(){
-
-  if(!currentUser) return;
-
-  const snap =
-    await getDocs(
-      collection(db,"users")
-    );
-
-  allUsers = [];
-
-  snap.forEach(
-    item => {
-
-      const data =
-        item.data();
-
-      if(
-        data.uid !==
-        currentUser.uid
-      ){
-
-        allUsers.push({
-          id:item.id,
-          ...data
-        });
-
-      }
-
+        return;
     }
-  );
-
-  renderUsers(allUsers);
-
-  updateHomeStats();
-
-}
 
 
-function renderUsers(users){
+    try{
 
-  const grid =
-    document.getElementById(
-      "usersGrid"
-    );
-
-  if(!grid) return;
-
-  grid.innerHTML = "";
-
-  if(users.length === 0){
-
-    grid.innerHTML =
-      `<div class="card empty">
-        No community members found.
-      </div>`;
-
-    return;
-
-  }
-
-  users.forEach(user => {
-
-    const card =
-      document.createElement(
-        "div"
-      );
-
-    card.className =
-      "user-card";
-
-    const online =
-      user.online === true;
-
-    card.innerHTML = `
-
-      <img
-        class="avatar"
-        src="${escapeHtml(user.photo || "")}"
-        alt="Profile photo">
-
-      <div class="center">
-
-        <h3>
-          ${escapeHtml(
-            user.name || "Member"
-          )}
-        </h3>
-
-        <p>
-          @${escapeHtml(
-            user.username || ""
-          )}
-        </p>
-
-        <p>
-
-          <span
-            class="online-dot
-            ${online ? "online" : ""}">
-          </span>
-
-          ${
-            online
-              ? "Online"
-              : "Offline"
-          }
-
-        </p>
-
-        <p>
-          ${escapeHtml(
-            user.bio ||
-            "No bio yet."
-          )}
-        </p>
-
-        <button
-          class="btn"
-          onclick="
-            viewProfile(
-              '${user.uid}'
-            )
-          ">
-          👤 View Profile
-        </button>
-
-        <button
-          class="btn"
-          onclick="
-            openChatByUid(
-              '${user.uid}'
-            )
-          ">
-          💬 Message
-        </button>
-
-        <button
-          class="btn danger"
-          onclick="
-            reportUser(
-              '${user.uid}'
-            )
-          ">
-          🚩 Report
-        </button>
-
-      </div>
-    `;
-
-    grid.appendChild(card);
-
-  });
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-window.filterUsers = function(){
-
-  const search =
-    document
-      .getElementById(
-        "searchInput"
-      )
-      .value
-      .toLowerCase()
-      .trim();
-
-  const status =
-    document
-      .getElementById(
-        "statusFilter"
-      )
-      .value;
-
-  const result =
-    allUsers.filter(
-      user => {
-
-        const text =
-          (
-            (user.name || "") +
-            " " +
-            (user.username || "") +
-            " " +
-            (user.bio || "")
-          ).toLowerCase();
-
-        const searchMatch =
-          text.includes(search);
-
-        const statusMatch =
-          status === "all" ||
-          (
-            status === "online" &&
-            user.online === true
-          ) ||
-          (
-            status === "offline" &&
-            user.online !== true
-          );
-
-        return (
-          searchMatch &&
-          statusMatch
+        showMessage(
+            "registerMessage",
+            "Creating account..."
         );
 
-      }
-    );
 
-  renderUsers(result);
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-};
 
+        const user =
+            userCredential.user;
 
-/* =========================
-   FULL PROFILE
-========================= */
 
-window.viewProfile =
-async function(uid){
+        let photo = "";
 
-  const snap =
-    await getDoc(
-      doc(
-        db,
-        "users",
-        uid
-      )
-    );
+        if(photoFile){
 
-  if(!snap.exists()){
-
-    alert(
-      "User not found."
-    );
-
-    return;
-
-  }
-
-  const user =
-    snap.data();
-
-  document
-    .querySelectorAll(".page")
-    .forEach(
-      page =>
-        page.classList.add("hidden")
-    );
-
-  document
-    .getElementById(
-      "viewProfilePage"
-    )
-    .classList.remove("hidden");
-
-  document
-    .getElementById(
-      "fullProfile"
-    ).innerHTML = `
-
-      <div class="center">
-
-        <img
-          class="avatar large"
-          src="${escapeHtml(
-            user.photo || ""
-          )}"
-          alt="Profile">
-
-        <h2>
-          ${escapeHtml(
-            user.name ||
-            "Member"
-          )}
-        </h2>
-
-        <p>
-          @${escapeHtml(
-            user.username ||
-            ""
-          )}
-        </p>
-
-        <p>
-
-          <span
-            class="online-dot
-            ${
-              user.online
-                ? "online"
-                : ""
-            }">
-          </span>
-
-          ${
-            user.online
-              ? "Online"
-              : "Offline"
-          }
-
-        </p>
-
-      </div>
-
-      <hr>
-
-      <h3>About</h3>
-
-      <p>
-        ${escapeHtml(
-          user.bio ||
-          "No bio available."
-        )}
-      </p>
-
-      <button
-        class="btn"
-        onclick="
-          openChatByUid(
-            '${user.uid}'
-          )
-        ">
-        💬 Message
-      </button>
-
-      <button
-        class="btn danger"
-        onclick="
-          reportUser(
-            '${user.uid}'
-          )
-        ">
-        🚩 Report
-      </button>
-
-    `;
-
-};
-
-
-/* =========================
-   PRIVATE CHAT
-========================= */
-
-window.openChatByUid =
-async function(uid){
-
-  const snap =
-    await getDoc(
-      doc(
-        db,
-        "users",
-        uid
-      )
-    );
-
-  if(!snap.exists()) return;
-
-  openChat({
-    uid:uid,
-    ...snap.data()
-  });
-
-};
-
-
-window.openChat =
-function(user){
-
-  currentChatUser =
-    user;
-
-  showPage(
-    "messagesPage"
-  );
-
-  document
-    .getElementById(
-      "conversationPage"
-    )
-    .classList.add("hidden");
-
-  document
-    .getElementById(
-      "privateChatPage"
-    )
-    .classList.remove("hidden");
-
-  document
-    .getElementById(
-      "chatName"
-    )
-    .textContent =
-      user.name ||
-      "Member";
-
-  document
-    .getElementById(
-      "chatAvatar"
-    )
-    .src =
-      user.photo ||
-      "";
-
-  updateChatStatus(
-    user
-  );
-
-  listenPrivateMessages();
-
-};
-
-
-window.closeChat =
-function(){
-
-  currentChatUser =
-    null;
-
-  if(
-    privateMessagesUnsubscribe
-  ){
-
-    privateMessagesUnsubscribe();
-
-    privateMessagesUnsubscribe =
-      null;
-
-  }
-
-  document
-    .getElementById(
-      "privateChatPage"
-    )
-    .classList.add("hidden");
-
-  document
-    .getElementById(
-      "conversationPage"
-    )
-    .classList.remove("hidden");
-
-};
-
-
-function updateChatStatus(
-  user
-){
-
-  const el =
-    document.getElementById(
-      "chatStatus"
-    );
-
-  if(user.online){
-
-    el.innerHTML =
-      `
-      <span
-        class="online-dot online">
-      </span>
-      Online
-      `;
-
-  }else{
-
-    el.textContent =
-      "Last seen: " +
-      (
-        formatDate(
-          user.lastSeen
-        ) ||
-        "Unknown"
-      );
-
-  }
-
-}
-
-
-/* =========================
-   PRIVATE MESSAGES
-========================= */
-
-function listenPrivateMessages(){
-
-  if(
-    !currentUser ||
-    !currentChatUser
-  ) return;
-
-  if(
-    privateMessagesUnsubscribe
-  ){
-
-    privateMessagesUnsubscribe();
-
-  }
-
-  const q =
-    query(
-      collection(
-        db,
-        "messages"
-      ),
-      where(
-        "participants",
-        "array-contains",
-        currentUser.uid
-      )
-    );
-
-  privateMessagesUnsubscribe =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const messages = [];
-
-        snapshot.forEach(
-          item => {
-
-            const data =
-              item.data();
-
-            if(
-              data.participants &&
-              data.participants.includes(
-                currentChatUser.uid
-              )
-            ){
-
-              messages.push({
-                id:item.id,
-                ...data
-              });
-
-            }
-
-          }
-        );
-
-        messages.sort(
-          (a,b) =>
-            getTime(
-              a.createdAt
-            ) -
-            getTime(
-              b.createdAt
-            )
-        );
-
-        renderPrivateMessages(
-          messages
-        );
-
-      },
-      error => {
-
-        document
-          .getElementById(
-            "privateChatBox"
-          )
-          .innerHTML =
-            `
-            <div class="error">
-              ${escapeHtml(
-                error.message
-              )}
-            </div>
-            `;
-
-      }
-    );
-
-}
-
-
-function renderPrivateMessages(
-  messages
-){
-
-  const box =
-    document.getElementById(
-      "privateChatBox"
-    );
-
-  box.innerHTML = "";
-
-  messages.forEach(
-    message => {
-
-      const mine =
-        message.sender ===
-        currentUser.uid;
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className =
-        "message " +
-        (
-          mine
-            ? "me"
-            : "other"
-        );
-
-      let status = "";
-
-      if(mine){
-
-        if(
-          message.read === true
-        ){
-
-          status =
-            "✓✓ Read";
-
-        }else if(
-          message.delivered ===
-          true
-        ){
-
-          status =
-            "✓✓ Delivered";
-
-        }else{
-
-          status =
-            "✓ Sent";
-
+            photo =
+                await compressImage(
+                    photoFile
+                );
         }
 
-      }
 
-      div.innerHTML = `
+        await updateProfile(
+            user,
+            {
+                displayName:name
+            }
+        );
 
-        <div>
-          ${escapeHtml(
-            message.text || ""
-          )}
-        </div>
 
-        <div
-          class="message-time">
+        await setDoc(
+            doc(db,"users",user.uid),
+            {
 
-          ${formatDate(
-            message.createdAt
-          )}
+                uid:user.uid,
 
-          ${
-            mine
-              ? " • " + status
-              : ""
-          }
+                name:name,
 
-          ${
-            mine
-              ?
-              `<br>
-               <button
-                 class="btn danger"
-                 style="
-                   padding:4px 8px;
-                   font-size:10px
-                 "
-                 onclick="
-                   deleteOwnMessage(
-                     '${message.id}'
-                   )
-                 ">
-                 Delete
-               </button>`
-              :
-              ""
-          }
+                username:username,
 
-        </div>
+                email:email,
 
-      `;
+                bio:bio,
 
-      box.appendChild(
-        div
-      );
+                photo:photo,
 
+                online:true,
+
+                createdAt:serverTimestamp(),
+
+                updatedAt:serverTimestamp()
+            }
+        );
+
+
+        showMessage(
+            "registerMessage",
+            "Account created successfully."
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "registerMessage",
+            error.message,
+            "error"
+        );
     }
-  );
-
-  box.scrollTop =
-    box.scrollHeight;
-
-}
-
-
-window.sendPrivateMessage =
-async function(){
-
-  if(
-    !currentUser ||
-    !currentChatUser
-  ) return;
-
-  const input =
-    document.getElementById(
-      "privateMessageInput"
-    );
-
-  const text =
-    input.value.trim();
-
-  if(!text) return;
-
-  try{
-
-    await addDoc(
-      collection(
-        db,
-        "messages"
-      ),
-      {
-        sender:
-          currentUser.uid,
-
-        receiver:
-          currentChatUser.uid,
-
-        participants:[
-          currentUser.uid,
-          currentChatUser.uid
-        ],
-
-        text:text,
-
-        delivered:false,
-
-        read:false,
-
-        createdAt:
-          serverTimestamp()
-      }
-    );
-
-    input.value = "";
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
 };
 
 
-/* =========================
-   DELETE PRIVATE MESSAGE
-========================= */
+/* ================= LOGIN ================= */
 
-window.deleteOwnMessage =
-async function(messageId){
+window.loginUser = async function(){
 
-  if(
-    !confirm(
-      "Delete this message?"
-    )
-  ) return;
-
-  try{
-
-    const ref =
-      doc(
-        db,
-        "messages",
-        messageId
-      );
-
-    const snap =
-      await getDoc(ref);
-
-    if(!snap.exists()) return;
-
-    if(
-      snap.data().sender !==
-      currentUser.uid
-    ){
-
-      alert(
-        "You can only delete your own message."
-      );
-
-      return;
-
-    }
-
-    await deleteDoc(ref);
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   CONVERSATIONS
-========================= */
-
-function listenConversations(){
-
-  if(!currentUser) return;
-
-  if(
-    conversationsUnsubscribe
-  ){
-
-    conversationsUnsubscribe();
-
-  }
-
-  const q =
-    query(
-      collection(
-        db,
-        "messages"
-      ),
-      where(
-        "participants",
-        "array-contains",
-        currentUser.uid
-      )
-    );
-
-  conversationsUnsubscribe =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const map =
-          new Map();
-
-        let unread = 0;
-
-        snapshot.forEach(
-          item => {
-
-            const data =
-              item.data();
-
-            const other =
-              data.sender ===
-              currentUser.uid
-                ? data.receiver
-                : data.sender;
-
-            if(!other) return;
-
-            if(
-              data.receiver ===
-              currentUser.uid &&
-              data.read !== true
-            ){
-
-              unread++;
-
-            }
-
-            const old =
-              map.get(other);
-
-            if(
-              !old ||
-              getTime(
-                data.createdAt
-              ) >
-              getTime(
-                old.createdAt
-              )
-            ){
-
-              map.set(
-                other,
-                {
-                  id:item.id,
-                  ...data,
-                  otherUid:other
-                }
-              );
-
-            }
-
-          }
-        );
-
-        renderConversations(
-          Array.from(
-            map.values()
-          )
-        );
-
-        updateMessageBadge(
-          unread
-        );
-
-      }
-    );
-
-}
-
-
-async function renderConversations(
-  items
-){
-
-  const box =
-    document.getElementById(
-      "conversationList"
-    );
-
-  box.innerHTML = "";
-
-  if(items.length === 0){
-
-    box.innerHTML =
-      `
-      <div class="empty">
-        No conversations yet.
-      </div>
-      `;
-
-    return;
-
-  }
-
-  for(
-    const item of items
-  ){
-
-    const snap =
-      await getDoc(
-        doc(
-          db,
-          "users",
-          item.otherUid
-        )
-      );
-
-    if(!snap.exists()) continue;
-
-    const user =
-      snap.data();
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-    div.className =
-      "notification";
-
-    div.innerHTML = `
-
-      <div
-        class="profile-top">
-
-        <img
-          class="avatar small"
-          src="${escapeHtml(
-            user.photo || ""
-          )}">
-
-        <div
-          style="flex:1">
-
-          <strong>
-            ${escapeHtml(
-              user.name ||
-              "Member"
-            )}
-          </strong>
-
-          <br>
-
-          <small>
-            ${escapeHtml(
-              item.text || ""
-            )}
-          </small>
-
-        </div>
-
-        <button
-          class="btn"
-          onclick="
-            openChatByUid(
-              '${user.uid}'
-            )
-          ">
-          Open
-        </button>
-
-      </div>
-
-    `;
-
-    box.appendChild(
-      div
-    );
-
-  }
-
-}
-
-
-function updateMessageBadge(
-  count
-){
-
-  const badge =
-    document.getElementById(
-      "messageBadge"
-    );
-
-  if(count > 0){
-
-    badge.textContent =
-      count > 99
-        ? "99+"
-        : count;
-
-    badge.classList.remove(
-      "hidden"
-    );
-
-  }else{
-
-    badge.classList.add(
-      "hidden"
-    );
-
-  }
-
-}
-
-
-/* =========================
-   NOTIFICATIONS
-========================= */
-
-function listenNotifications(){
-
-  if(!currentUser) return;
-
-  if(
-    notificationsUnsubscribe
-  ){
-
-    notificationsUnsubscribe();
-
-  }
-
-  const q =
-    query(
-      collection(
-        db,
-        "notifications"
-      ),
-      where(
-        "userId",
-        "==",
-        currentUser.uid
-      )
-    );
-
-  notificationsUnsubscribe =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const notifications = [];
-
-        let unread = 0;
-
-        snapshot.forEach(
-          item => {
-
-            const data =
-              item.data();
-
-            notifications.push({
-              id:item.id,
-              ...data
-            });
-
-            if(
-              data.read !== true
-            ){
-
-              unread++;
-
-            }
-
-          }
-        );
-
-        notifications.sort(
-          (a,b) =>
-            getTime(
-              b.createdAt
-            ) -
-            getTime(
-              a.createdAt
-            )
-        );
-
-        renderNotifications(
-          notifications
-        );
-
-        updateNotificationBadge(
-          unread
-        );
-
-      },
-      error => {
-
+    const email =
         document
-          .getElementById(
-            "notificationsList"
-          )
-          .innerHTML =
-            `
-            <div class="error">
-              ${escapeHtml(
-                error.message
-              )}
-            </div>
-            `;
-
-      }
-    );
-
-}
-
-
-function renderNotifications(
-  items
-){
-
-  const box =
-    document.getElementById(
-      "notificationsList"
-    );
-
-  box.innerHTML = "";
-
-  if(items.length === 0){
-
-    box.innerHTML =
-      `
-      <div class="empty">
-        No notifications yet.
-      </div>
-      `;
-
-    return;
-
-  }
-
-  items.forEach(
-    item => {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className =
-        "notification " +
-        (
-          item.read === true
-            ? ""
-            : "unread"
-        );
-
-      div.innerHTML = `
-
-        <strong>
-          ${escapeHtml(
-            item.title ||
-            "Notification"
-          )}
-        </strong>
-
-        <p>
-          ${escapeHtml(
-            item.message ||
-            ""
-          )}
-        </p>
-
-        <small>
-          ${formatDate(
-            item.createdAt
-          )}
-        </small>
-
-        ${
-          item.read !== true
-            ?
-            `<br>
-             <button
-               class="btn"
-               onclick="
-                 markNotificationRead(
-                   '${item.id}'
-                 )
-               ">
-               ✅ Mark as read
-             </button>`
-            :
-            `<br>
-             <small>✓ Read</small>`
-        }
-
-      `;
-
-      box.appendChild(
-        div
-      );
-
-    }
-  );
-
-}
-
-
-function updateNotificationBadge(
-  count
-){
-
-  const badge =
-    document.getElementById(
-      "notificationBadge"
-    );
-
-  if(count > 0){
-
-    badge.textContent =
-      count > 99
-        ? "99+"
-        : count;
-
-    badge.classList.remove(
-      "hidden"
-    );
-
-  }else{
-
-    badge.classList.add(
-      "hidden"
-    );
-
-  }
-
-}
-
-
-window.markNotificationRead =
-async function(id){
-
-  try{
-
-    await updateDoc(
-      doc(
-        db,
-        "notifications",
-        id
-      ),
-      {
-        read:true
-      }
-    );
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-window.markAllNotificationsRead =
-async function(){
-
-  if(!currentUser) return;
-
-  try{
-
-    const q =
-      query(
-        collection(
-          db,
-          "notifications"
-        ),
-        where(
-          "userId",
-          "==",
-          currentUser.uid
-        )
-      );
-
-    const snap =
-      await getDocs(q);
-
-    for(
-      const item of snap.docs
-    ){
-
-      if(
-        item.data().read !== true
-      ){
-
-        await updateDoc(
-          item.ref,
-          {
-            read:true
-          }
-        );
-
-      }
-
-    }
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   GROUPS
-========================= */
-
-function listenGroups(){
-
-  if(
-    groupsUnsubscribe
-  ){
-
-    groupsUnsubscribe();
-
-  }
-
-  groupsUnsubscribe =
-    onSnapshot(
-      collection(
-        db,
-        "groups"
-      ),
-      snapshot => {
-
-        const groups = [];
-
-        snapshot.forEach(
-          item => {
-
-            groups.push({
-              id:item.id,
-              ...item.data()
-            });
-
-          }
-        );
-
-        groups.sort(
-          (a,b) =>
-            getTime(
-              b.createdAt
-            ) -
-            getTime(
-              a.createdAt
-            )
-        );
-
-        renderGroups(
-          groups
-        );
-
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+    const password =
         document
-          .getElementById(
-            "homeGroupCount"
-          )
-          .textContent =
-            groups.length;
-
-      }
-    );
-
-}
+        .getElementById("loginPassword")
+        .value;
 
 
-function renderGroups(
-  groups
-){
+    if(!email || !password){
 
-  const box =
-    document.getElementById(
-      "groupsList"
-    );
-
-  box.innerHTML = "";
-
-  if(groups.length === 0){
-
-    box.innerHTML =
-      `
-      <div class="card empty">
-        No groups available.
-      </div>
-      `;
-
-    return;
-
-  }
-
-  groups.forEach(
-    group => {
-
-      const div =
-        document.createElement(
-          "div"
+        showMessage(
+            "loginMessage",
+            "Enter email and password.",
+            "error"
         );
 
-      div.className =
-        "card group-card";
-
-      div.innerHTML = `
-
-        <div
-          class="group-icon">
-          👥
-        </div>
-
-        <h3>
-          ${escapeHtml(
-            group.name ||
-            ""
-          )}
-        </h3>
-
-        <p>
-          ${escapeHtml(
-            group.description ||
-            ""
-          )}
-        </p>
-
-        <small>
-          👤 Members:
-          ${group.memberCount || 0}
-        </small>
-
-        <br><br>
-
-        <button
-          class="btn"
-          onclick="
-            openGroup(
-              '${group.id}'
-            )
-          ">
-          Open
-        </button>
-
-        <button
-          class="btn success"
-          onclick="
-            joinGroup(
-              '${group.id}'
-            )
-          ">
-          Join
-        </button>
-
-        <button
-          class="btn danger"
-          onclick="
-            leaveGroup(
-              '${group.id}'
-            )
-          ">
-          Leave
-        </button>
-
-      `;
-
-      box.appendChild(
-        div
-      );
-
-    }
-  );
-
-}
-
-
-window.createGroup =
-async function(){
-
-  if(!currentUser) return;
-
-  const name =
-    document
-      .getElementById(
-        "groupName"
-      )
-      .value.trim();
-
-  const description =
-    document
-      .getElementById(
-        "groupDescription"
-      )
-      .value.trim();
-
-  if(!name){
-
-    alert(
-      "Enter group name."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    const groupRef =
-      await addDoc(
-        collection(
-          db,
-          "groups"
-        ),
-        {
-          name:name,
-          description:description,
-          createdBy:
-            currentUser.uid,
-          memberCount:1,
-          active:true,
-          createdAt:
-            serverTimestamp()
-        }
-      );
-
-    await setDoc(
-      doc(
-        db,
-        "groups",
-        groupRef.id,
-        "members",
-        currentUser.uid
-      ),
-      {
-        uid:
-          currentUser.uid,
-        role:"admin",
-        joinedAt:
-          serverTimestamp()
-      }
-    );
-
-    document
-      .getElementById(
-        "groupName"
-      )
-      .value = "";
-
-    document
-      .getElementById(
-        "groupDescription"
-      )
-      .value = "";
-
-    alert(
-      "Group created successfully."
-    );
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-window.joinGroup =
-async function(groupId){
-
-  if(!currentUser) return;
-
-  const memberRef =
-    doc(
-      db,
-      "groups",
-      groupId,
-      "members",
-      currentUser.uid
-    );
-
-  const existing =
-    await getDoc(
-      memberRef
-    );
-
-  if(existing.exists()){
-
-    alert(
-      "You are already a member."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    await setDoc(
-      memberRef,
-      {
-        uid:
-          currentUser.uid,
-        role:"member",
-        joinedAt:
-          serverTimestamp()
-      }
-    );
-
-    await updateDoc(
-      doc(
-        db,
-        "groups",
-        groupId
-      ),
-      {
-        memberCount:
-          increment(1)
-      }
-    );
-
-    alert(
-      "You joined the group."
-    );
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-window.leaveGroup =
-async function(groupId){
-
-  if(!currentUser) return;
-
-  if(
-    !confirm(
-      "Leave this group?"
-    )
-  ) return;
-
-  try{
-
-    const memberRef =
-      doc(
-        db,
-        "groups",
-        groupId,
-        "members",
-        currentUser.uid
-      );
-
-    const member =
-      await getDoc(
-        memberRef
-      );
-
-    if(!member.exists()){
-
-      alert(
-        "You are not a member."
-      );
-
-      return;
-
+        return;
     }
 
-    await deleteDoc(
-      memberRef
-    );
 
-    await updateDoc(
-      doc(
-        db,
-        "groups",
-        groupId
-      ),
-      {
-        memberCount:
-          increment(-1)
-      }
-    );
+    try{
 
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   OPEN GROUP
-========================= */
-
-window.openGroup =
-async function(groupId){
-
-  const snap =
-    await getDoc(
-      doc(
-        db,
-        "groups",
-        groupId
-      )
-    );
-
-  if(!snap.exists()) return;
-
-  currentGroup = {
-    id:groupId,
-    ...snap.data()
-  };
-
-  document
-    .querySelectorAll(".page")
-    .forEach(
-      page =>
-        page.classList.add(
-          "hidden"
-        )
-    );
-
-  document
-    .getElementById(
-      "groupsPage"
-    )
-    .classList.remove(
-      "hidden"
-    );
-
-  document
-    .getElementById(
-      "groupDetailsPage"
-    )
-    .classList.remove(
-      "hidden"
-    );
-
-  await renderGroupDetails();
-
-};
-
-
-async function renderGroupDetails(){
-
-  if(
-    !currentGroup ||
-    !currentUser
-  ) return;
-
-  const memberRef =
-    doc(
-      db,
-      "groups",
-      currentGroup.id,
-      "members",
-      currentUser.uid
-    );
-
-  const member =
-    await getDoc(
-      memberRef
-    );
-
-  const isMember =
-    member.exists();
-
-  const isAdmin =
-    currentGroup.createdBy ===
-    currentUser.uid;
-
-  document
-    .getElementById(
-      "groupDetails"
-    ).innerHTML = `
-
-      <h2>
-        👥
-        ${escapeHtml(
-          currentGroup.name
-        )}
-      </h2>
-
-      <p>
-        ${escapeHtml(
-          currentGroup.description ||
-          ""
-        )}
-      </p>
-
-      <p>
-        👤 Members:
-        ${currentGroup.memberCount || 0}
-      </p>
-
-      ${
-        isMember
-          ?
-          `<button
-             class="btn danger"
-             onclick="
-               leaveGroup(
-                 '${currentGroup.id}'
-               )
-             ">
-             Leave Group
-           </button>`
-          :
-          `<button
-             class="btn success"
-             onclick="
-               joinGroup(
-                 '${currentGroup.id}'
-               )
-             ">
-             Join Group
-           </button>`
-      }
-
-      <hr>
-
-      <h3>👤 Members</h3>
-
-      <div id="groupMembers"></div>
-
-      <hr>
-
-      <h3>💬 Group Chat</h3>
-
-      <div
-        id="groupChatBox"
-        class="chat-box">
-      </div>
-
-      ${
-        isMember
-          ?
-          `
-          <div class="chat-input">
-
-            <input
-              id="groupMessageInput"
-              placeholder="Write a group message..."
-              onkeydown="
-                if(event.key==='Enter')
-                sendGroupMessage()
-              ">
-
-            <button
-              class="btn"
-              onclick="
-                sendGroupMessage()
-              ">
-              Send
-            </button>
-
-          </div>
-          `
-          :
-          `<p>
-             Join the group to participate in chat.
-           </p>`
-      }
-
-      ${
-        isAdmin
-          ?
-          `
-          <hr>
-
-          <h3>➕ Add Member</h3>
-
-          <input
-            id="addMemberUsername"
-            placeholder="Enter username">
-
-          <button
-            class="btn"
-            onclick="
-              addGroupMember()
-            ">
-            Add Member
-          </button>
-          `
-          :
-          ""
-      }
-
-    `;
-
-  await loadGroupMembers();
-
-  if(isMember){
-
-    listenGroupMessages();
-
-  }
-
-}
-
-
-window.closeGroup =
-function(){
-
-  currentGroup = null;
-
-  if(
-    groupMessagesUnsubscribe
-  ){
-
-    groupMessagesUnsubscribe();
-
-    groupMessagesUnsubscribe =
-      null;
-
-  }
-
-  document
-    .getElementById(
-      "groupDetailsPage"
-    )
-    .classList.add(
-      "hidden"
-    );
-
-};
-
-
-/* =========================
-   GROUP MEMBERS
-========================= */
-
-async function loadGroupMembers(){
-
-  if(!currentGroup) return;
-
-  const snap =
-    await getDocs(
-      collection(
-        db,
-        "groups",
-        currentGroup.id,
-        "members"
-      )
-    );
-
-  const box =
-    document.getElementById(
-      "groupMembers"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  for(
-    const item of snap.docs
-  ){
-
-    const member =
-      item.data();
-
-    const userSnap =
-      await getDoc(
-        doc(
-          db,
-          "users",
-          member.uid
-        )
-      );
-
-    if(!userSnap.exists())
-      continue;
-
-    const user =
-      userSnap.data();
-
-    const div =
-      document.createElement(
-        "div"
-      );
-
-    div.className =
-      "notification";
-
-    div.innerHTML = `
-
-      <div
-        class="profile-top">
-
-        <img
-          class="avatar small"
-          src="${escapeHtml(
-            user.photo || ""
-          )}">
-
-        <div>
-
-          <strong>
-            ${escapeHtml(
-              user.name ||
-              "Member"
-            )}
-          </strong>
-
-          <br>
-
-          <small>
-            @${escapeHtml(
-              user.username ||
-              ""
-            )}
-            •
-            ${escapeHtml(
-              member.role ||
-              "member"
-            )}
-          </small>
-
-        </div>
-
-      </div>
-
-    `;
-
-    box.appendChild(
-      div
-    );
-
-  }
-
-}
-
-
-/* =========================
-   ADD MEMBER
-========================= */
-
-window.addGroupMember =
-async function(){
-
-  if(
-    !currentGroup ||
-    !currentUser
-  ) return;
-
-  if(
-    currentGroup.createdBy !==
-    currentUser.uid
-  ){
-
-    alert(
-      "Only the group creator can add members."
-    );
-
-    return;
-
-  }
-
-  const username =
-    document
-      .getElementById(
-        "addMemberUsername"
-      )
-      .value.trim();
-
-  if(!username){
-
-    alert(
-      "Enter username."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    const q =
-      query(
-        collection(
-          db,
-          "users"
-        ),
-        where(
-          "username",
-          "==",
-          username
-        )
-      );
-
-    const snap =
-      await getDocs(q);
-
-    if(snap.empty){
-
-      alert(
-        "User not found."
-      );
-
-      return;
-
-    }
-
-    const user =
-      snap.docs[0].data();
-
-    const memberRef =
-      doc(
-        db,
-        "groups",
-        currentGroup.id,
-        "members",
-        user.uid
-      );
-
-    const existing =
-      await getDoc(
-        memberRef
-      );
-
-    if(existing.exists()){
-
-      alert(
-        "User is already a member."
-      );
-
-      return;
-
-    }
-
-    await setDoc(
-      memberRef,
-      {
-        uid:user.uid,
-        role:"member",
-        joinedAt:
-          serverTimestamp()
-      }
-    );
-
-    await updateDoc(
-      doc(
-        db,
-        "groups",
-        currentGroup.id
-      ),
-      {
-        memberCount:
-          increment(1)
-      }
-    );
-
-    alert(
-      "Member added."
-    );
-
-    renderGroupDetails();
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   GROUP MESSAGES
-========================= */
-
-function listenGroupMessages(){
-
-  if(
-    !currentGroup ||
-    !currentUser
-  ) return;
-
-  if(
-    groupMessagesUnsubscribe
-  ){
-
-    groupMessagesUnsubscribe();
-
-  }
-
-  const q =
-    collection(
-      db,
-      "groups",
-      currentGroup.id,
-      "messages"
-    );
-
-  groupMessagesUnsubscribe =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const messages = [];
-
-        snapshot.forEach(
-          item => {
-
-            messages.push({
-              id:item.id,
-              ...item.data()
-            });
-
-          }
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
         );
 
-        messages.sort(
-          (a,b) =>
-            getTime(
-              a.createdAt
-            ) -
-            getTime(
-              b.createdAt
-            )
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "loginMessage",
+            error.message,
+            "error"
         );
-
-        renderGroupMessages(
-          messages
-        );
-
-      }
-    );
-
-}
-
-
-function renderGroupMessages(
-  messages
-){
-
-  const box =
-    document.getElementById(
-      "groupChatBox"
-    );
-
-  if(!box) return;
-
-  box.innerHTML = "";
-
-  messages.forEach(
-    message => {
-
-      const mine =
-        message.sender ===
-        currentUser.uid;
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className =
-        "message " +
-        (
-          mine
-            ? "me"
-            : "other"
-        );
-
-      div.innerHTML = `
-
-        <strong>
-          ${escapeHtml(
-            message.senderName ||
-            "Member"
-          )}
-        </strong>
-
-        <div>
-          ${escapeHtml(
-            message.text ||
-            ""
-          )}
-        </div>
-
-        <div
-          class="message-time">
-
-          ${formatDate(
-            message.createdAt
-          )}
-
-          ${
-            mine
-              ?
-              `<br>
-               <button
-                 class="btn danger"
-                 style="
-                   padding:4px 8px;
-                   font-size:10px
-                 "
-                 onclick="
-                   deleteGroupMessage(
-                     '${message.id}'
-                   )
-                 ">
-                 Delete
-               </button>`
-              :
-              ""
-          }
-
-        </div>
-
-      `;
-
-      box.appendChild(
-        div
-      );
-
     }
-  );
-
-  box.scrollTop =
-    box.scrollHeight;
-
-}
-
-
-/* =========================
-   SEND GROUP MESSAGE
-========================= */
-
-window.sendGroupMessage =
-async function(){
-
-  if(
-    !currentGroup ||
-    !currentUser
-  ) return;
-
-  const input =
-    document.getElementById(
-      "groupMessageInput"
-    );
-
-  if(!input) return;
-
-  const text =
-    input.value.trim();
-
-  if(!text) return;
-
-  const memberRef =
-    doc(
-      db,
-      "groups",
-      currentGroup.id,
-      "members",
-      currentUser.uid
-    );
-
-  const member =
-    await getDoc(
-      memberRef
-    );
-
-  if(!member.exists()){
-
-    alert(
-      "Join the group first."
-    );
-
-    return;
-
-  }
-
-  const userSnap =
-    await getDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      )
-    );
-
-  const user =
-    userSnap.exists()
-      ? userSnap.data()
-      : {};
-
-  try{
-
-    await addDoc(
-      collection(
-        db,
-        "groups",
-        currentGroup.id,
-        "messages"
-      ),
-      {
-        sender:
-          currentUser.uid,
-
-        senderName:
-          user.name ||
-          "Member",
-
-        text:text,
-
-        createdAt:
-          serverTimestamp()
-      }
-    );
-
-    input.value = "";
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
 };
 
 
-/* =========================
-   DELETE GROUP MESSAGE
-========================= */
+/* ================= PASSWORD RESET ================= */
 
-window.deleteGroupMessage =
-async function(messageId){
+window.resetPassword = async function(){
 
-  if(
-    !currentGroup ||
-    !currentUser
-  ) return;
+    const email =
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
 
-  if(
-    !confirm(
-      "Delete this message?"
-    )
-  ) return;
 
-  try{
+    if(!email){
 
-    const ref =
-      doc(
-        db,
-        "groups",
-        currentGroup.id,
-        "messages",
-        messageId
-      );
+        alert(
+            "Enter your email address first."
+        );
 
-    const snap =
-      await getDoc(ref);
-
-    if(!snap.exists()) return;
-
-    if(
-      snap.data().sender !==
-      currentUser.uid
-    ){
-
-      alert(
-        "You can only delete your own message."
-      );
-
-      return;
-
+        return;
     }
 
-    await deleteDoc(ref);
 
-  }catch(error){
+    try{
 
-    alert(
-      error.message
-    );
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
 
-  }
+        alert(
+            "Password reset email has been sent."
+        );
 
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
 };
 
 
-/* =========================
-   REPORT
-========================= */
+/* ================= LOGOUT ================= */
 
-window.reportUser =
-async function(uid){
+window.logoutUser = async function(){
 
-  if(!currentUser) return;
-
-  const reason =
-    prompt(
-      "Why are you reporting this user?"
-    );
-
-  if(!reason) return;
-
-  try{
-
-    await addDoc(
-      collection(
-        db,
-        "reports"
-      ),
-      {
-        reporterId:
-          currentUser.uid,
-
-        reportedUserId:
-          uid,
-
-        reason:reason,
-
-        status:
-          "pending",
-
-        createdAt:
-          serverTimestamp()
-      }
-    );
-
-    alert(
-      "Report submitted successfully."
-    );
-
-  }catch(error){
-
-    alert(
-      error.message
-    );
-
-  }
-
-};
-
-
-/* =========================
-   ONLINE STATUS
-========================= */
-
-async function updateMyOnlineStatus(
-  status
-){
-
-  if(!currentUser) return;
-
-  try{
-
-    await updateDoc(
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      ),
-      {
-        online:status,
-        lastSeen:
-          serverTimestamp()
-      }
-    );
-
-  }catch(error){}
-
-}
-
-
-function startOnlineStatus(){
-
-  if(userStatusInterval){
-
-    clearInterval(
-      userStatusInterval
-    );
-
-  }
-
-  userStatusInterval =
-    setInterval(
-      () => {
+    try{
 
         if(currentUser){
 
-          updateMyOnlineStatus(
-            true
-          );
-
+            await updateDoc(
+                doc(db,"users",currentUser.uid),
+                {
+                    online:false
+                }
+            );
         }
 
-      },
-      60000
-    );
+    }catch(error){
 
-}
-
-
-/* =========================
-   HOME STATS
-========================= */
-
-function updateHomeStats(){
-
-  const count =
-    allUsers.length + 1;
-
-  document
-    .getElementById(
-      "homeUserCount"
-    )
-    .textContent =
-      count;
-
-  const online =
-    allUsers.filter(
-      user =>
-        user.online === true
-    ).length;
-
-  if(currentUser){
-
-    const me =
-      allUsers.find(
-        user =>
-          user.uid ===
-          currentUser.uid
-      );
-
-    document
-      .getElementById(
-        "homeOnlineCount"
-      )
-      .textContent =
-        online +
-        (
-          me &&
-          me.online
-            ? 0
-            : 1
-        );
-
-  }else{
-
-    document
-      .getElementById(
-        "homeOnlineCount"
-      )
-      .textContent =
-        online;
-
-  }
-
-}
+        console.log(error);
+    }
 
 
-/* =========================
-   DARK MODE
-========================= */
-
-window.toggleDarkMode =
-function(){
-
-  document
-    .body
-    .classList.toggle(
-      "dark"
-    );
-
-  const active =
-    document
-      .body
-      .classList
-      .contains("dark");
-
-  localStorage.setItem(
-    "loveConnectDarkMode",
-    active
-      ? "true"
-      : "false"
-  );
-
-  const switchEl =
-    document.getElementById(
-      "darkSwitch"
-    );
-
-  if(switchEl){
-
-    switchEl.classList.toggle(
-      "active",
-      active
-    );
-
-  }
-
+    await signOut(auth);
 };
 
 
-function loadDarkMode(){
+/* ================= AUTH STATE ================= */
 
-  const active =
-    localStorage.getItem(
-      "loveConnectDarkMode"
-    ) === "true";
+onAuthStateChanged(
+    auth,
+    async user => {
 
-  if(active){
+        if(user){
 
-    document
-      .body
-      .classList.add(
-        "dark"
-      );
+            currentUser = user;
 
-  }
+            document
+                .getElementById("authPage")
+                .classList.add("hidden");
 
-  const switchEl =
-    document.getElementById(
-      "darkSwitch"
-    );
+            document
+                .getElementById("appPage")
+                .classList.remove("hidden");
 
-  if(switchEl){
 
-    switchEl.classList.toggle(
-      "active",
-      active
-    );
+            await setOnlineStatus();
 
-  }
+            await loadMyProfile();
 
+            await loadUsers();
+
+            listenConversations();
+
+            showPage("homePage");
+
+        }else{
+
+            currentUser = null;
+
+            document
+                .getElementById("authPage")
+                .classList.remove("hidden");
+
+            document
+                .getElementById("appPage")
+                .classList.add("hidden");
+
+
+            if(unsubscribeMessages){
+
+                unsubscribeMessages();
+
+                unsubscribeMessages = null;
+            }
+
+
+            if(unsubscribeConversations){
+
+                unsubscribeConversations();
+
+                unsubscribeConversations = null;
+            }
+        }
+    }
+);
+
+
+/* ================= ONLINE STATUS ================= */
+
+async function setOnlineStatus(){
+
+    if(!currentUser){
+        return;
+    }
+
+    try{
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            ),
+            {
+                online:true
+            },
+            {
+                merge:true
+            }
+        );
+
+    }catch(error){
+
+        console.log(
+            "Status error:",
+            error
+        );
+    }
 }
 
 
-loadDarkMode();
+/* ================= PAGE SYSTEM ================= */
+
+window.showPage = function(pageId){
+
+    const pages = [
+
+        "homePage",
+
+        "discoverPage",
+
+        "viewProfilePage",
+
+        "messagesPage",
+
+        "privateChatPage",
+
+        "profilePage"
+    ];
 
 
-/* =========================
-   BEFORE CLOSE
-========================= */
+    pages.forEach(id => {
 
-window.addEventListener(
-  "beforeunload",
-  () => {
+        const element =
+            document.getElementById(id);
 
-    if(currentUser){
+        if(element){
 
-      updateMyOnlineStatus(
-        false
-      );
+            element.classList.add("hidden");
+        }
+    });
 
+
+    const page =
+        document.getElementById(pageId);
+
+    if(page){
+
+        page.classList.remove("hidden");
     }
 
-  }
-);
+
+    if(pageId === "discoverPage"){
+
+        loadUsers();
+    }
+
+
+    if(pageId === "messagesPage"){
+
+        listenConversations();
+    }
+};
+
+
+/* ================= LOAD MY PROFILE ================= */
+
+async function loadMyProfile(){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    try{
+
+        const snapshot =
+            await getDoc(
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                )
+            );
+
+
+        if(!snapshot.exists()){
+            return;
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        document
+            .getElementById("profileName")
+            .value =
+            data.name || "";
+
+
+        document
+            .getElementById("profileUsername")
+            .value =
+            data.username || "";
+
+
+        document
+            .getElementById("profileBio")
+            .value =
+            data.bio || "";
+
+
+        document
+            .getElementById("profilePhotoPreview")
+            .src =
+            data.photo ||
+            "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(
+                "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
+                "<rect width='100%' height='100%' fill='#ddd'/>" +
+                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
+                "</svg>"
+            );
+
+
+        document
+            .getElementById("homeUser")
+            .innerHTML =
+            `<h3>Welcome, ${escapeHtml(data.name || currentUser.email)}</h3>
+             <p>@${escapeHtml(data.username || "")}</p>`;
+
+    }catch(error){
+
+        console.error(error);
+    }
+}
+
+
+/* ================= SAVE PROFILE ================= */
+
+window.saveProfile = async function(){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    const name =
+        document
+        .getElementById("profileName")
+        .value
+        .trim();
+
+    const username =
+        document
+        .getElementById("profileUsername")
+        .value
+        .trim();
+
+    const bio =
+        document
+        .getElementById("profileBio")
+        .value
+        .trim();
+
+    const photoFile =
+        document
+        .getElementById("profilePhoto")
+        .files[0];
+
+
+    if(!name || !username){
+
+        showMessage(
+            "profileMessage",
+            "Name and username are required.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        let photo =
+            document
+            .getElementById("profilePhotoPreview")
+            .src;
+
+
+        if(photoFile){
+
+            photo =
+                await compressImage(
+                    photoFile
+                );
+        }
+
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            ),
+            {
+
+                name:name,
+
+                username:username,
+
+                bio:bio,
+
+                photo:photo,
+
+                updatedAt:serverTimestamp()
+
+            },
+            {
+                merge:true
+            }
+        );
+
+
+        await updateProfile(
+            currentUser,
+            {
+                displayName:name
+            }
+        );
+
+
+        showMessage(
+            "profileMessage",
+            "Profile updated successfully."
+        );
+
+
+        await loadUsers();
+
+        await loadMyProfile();
+
+    }catch(error){
+
+        console.error(error);
+
+        showMessage(
+            "profileMessage",
+            error.message,
+            "error"
+        );
+    }
+};
+
+
+/* ================= PREVIEW PHOTO ================= */
+
+window.previewProfilePhoto = async function(){
+
+    const file =
+        document
+        .getElementById("profilePhoto")
+        .files[0];
+
+
+    if(!file){
+        return;
+    }
+
+
+    try{
+
+        const photo =
+            await compressImage(file);
+
+
+        document
+            .getElementById("profilePhotoPreview")
+            .src =
+            photo;
+
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
+};
+
+
+/* ================= LOAD USERS ================= */
+
+async function loadUsers(){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    const container =
+        document.getElementById(
+            "usersContainer"
+        );
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
+
+
+        allUsers = [];
+
+
+        snapshot.forEach(item => {
+
+            const data =
+                item.data();
+
+
+            if(
+                data.uid &&
+                data.uid !== currentUser.uid
+            ){
+
+                allUsers.push({
+                    id:item.id,
+                    ...data
+                });
+            }
+        });
+
+
+        renderUsers(allUsers);
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            `<div class="alert error">
+                ${escapeHtml(error.message)}
+            </div>`;
+    }
+}
+
+
+/* ================= RENDER USERS ================= */
+
+function renderUsers(users){
+
+    const container =
+        document.getElementById(
+            "usersContainer"
+        );
+
+
+    if(!users.length){
+
+        container.innerHTML =
+            `<p>No other users found.</p>`;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    users.forEach(user => {
+
+        const photo =
+            user.photo ||
+            "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(
+                "<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>" +
+                "<rect width='100%' height='100%' fill='#ddd'/>" +
+                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='30'>👤</text>" +
+                "</svg>"
+            );
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "user-card";
+
+
+        div.innerHTML =
+
+            `<img
+                class="user-photo"
+                src="${photo}"
+            >
+
+            <div class="user-info">
+
+                <h3>
+                    ${escapeHtml(user.name || "User")}
+                </h3>
+
+                <p>
+                    @${escapeHtml(user.username || "")}
+                </p>
+
+                <p>
+                    ${user.online ? "🟢 Online" : "⚫ Offline"}
+                </p>
+
+            </div>
+
+            <div>
+
+                <button
+                    onclick="viewUserProfile('${user.uid}')"
+                >
+                    View
+                </button>
+
+                <button
+                    onclick="openChatByUid('${user.uid}')"
+                >
+                    Chat
+                </button>
+
+            </div>`;
+
+
+        container.appendChild(div);
+    });
+}
+
+
+/* ================= SEARCH USERS ================= */
+
+window.searchUsers = function(){
+
+    const search =
+        document
+        .getElementById("searchUsers")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    if(!search){
+
+        renderUsers(allUsers);
+
+        return;
+    }
+
+
+    const filtered =
+        allUsers.filter(user => {
+
+            const name =
+                (user.name || "")
+                .toLowerCase();
+
+            const username =
+                (user.username || "")
+                .toLowerCase();
+
+            return (
+                name.includes(search) ||
+                username.includes(search)
+            );
+        });
+
+
+    renderUsers(filtered);
+};
+
+
+/* ================= VIEW PROFILE ================= */
+
+window.viewUserProfile = function(uid){
+
+    const user =
+        allUsers.find(
+            item => item.uid === uid
+        );
+
+
+    if(!user){
+        return;
+    }
+
+
+    const photo =
+        user.photo ||
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+            "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
+            "<rect width='100%' height='100%' fill='#ddd'/>" +
+            "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
+            "</svg>"
+        );
+
+
+    document
+        .getElementById(
+            "viewProfileContent"
+        )
+        .innerHTML =
+
+        `<img
+            class="profile-photo"
+            src="${photo}"
+        >
+
+        <h2 style="text-align:center">
+            ${escapeHtml(user.name || "User")}
+        </h2>
+
+        <p style="text-align:center">
+            @${escapeHtml(user.username || "")}
+        </p>
+
+        <p style="text-align:center">
+            ${user.online ? "🟢 Online" : "⚫ Offline"}
+        </p>
+
+        <div class="card">
+
+            <h3>About</h3>
+
+            <p>
+                ${escapeHtml(user.bio || "No bio available.")}
+            </p>
+
+        </div>
+
+        <button
+            onclick="openChatByUid('${user.uid}')"
+        >
+            💬 Send Message
+        </button>`;
+
+
+    showPage(
+        "viewProfilePage"
+    );
+};
+
+
+/* ================= OPEN CHAT ================= */
+
+window.openChatByUid = function(uid){
+
+    const user =
+        allUsers.find(
+            item => item.uid === uid
+        );
+
+
+    if(!user){
+        return;
+    }
+
+
+    openChat(user);
+};
+
+
+function openChat(user){
+
+    currentChatUser = user;
+
+
+    document
+        .getElementById(
+            "chatHeader"
+        )
+        .innerHTML =
+
+        `<div class="chat-header">
+
+            <img
+                src="${
+                    user.photo ||
+                    "data:image/svg+xml;charset=UTF-8," +
+                    encodeURIComponent(
+                        "<svg xmlns='http://www.w3.org/2000/svg' width='45' height='45'>" +
+                        "<rect width='100%' height='100%' fill='#ddd'/>" +
+                        "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='25'>👤</text>" +
+                        "</svg>"
+                    )
+                }"
+            >
+
+            <div>
+
+                <strong>
+                    ${escapeHtml(user.name || "User")}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${
+                        user.online
+                        ? "🟢 Online"
+                        : "⚫ Offline"
+                    }
+                </small>
+
+            </div>
+
+        </div>`;
+
+
+    showPage(
+        "privateChatPage"
+    );
+
+
+    listenPrivateMessages();
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById(
+                "privateMessageInput"
+            )
+            .focus();
+
+    },100);
+}
+
+
+/* ================= CLOSE CHAT ================= */
+
+window.closeChat = function(){
+
+    currentChatUser = null;
+
+
+    if(unsubscribeMessages){
+
+        unsubscribeMessages();
+
+        unsubscribeMessages = null;
+    }
+
+
+    showPage(
+        "messagesPage"
+    );
+};
+
+
+/* ================= LISTEN PRIVATE MESSAGES ================= */
+
+function listenPrivateMessages(){
+
+    if(
+        !currentUser ||
+        !currentChatUser
+    ){
+        return;
+    }
+
+
+    if(unsubscribeMessages){
+
+        unsubscribeMessages();
+
+        unsubscribeMessages = null;
+    }
+
+
+    const q =
+        query(
+            collection(
+                db,
+                "messages"
+            ),
+            where(
+                "participants",
+                "array-contains",
+                currentUser.uid
+            )
+        );
+
+
+    unsubscribeMessages =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                const messages = [];
+
+
+                snapshot.forEach(item => {
+
+                    const data =
+                        item.data();
+
+
+                    const isThisConversation =
+
+                        (
+                            data.sender ===
+                            currentUser.uid
+
+                            &&
+
+                            data.receiver ===
+                            currentChatUser.uid
+                        )
+
+                        ||
+
+                        (
+                            data.sender ===
+                            currentChatUser.uid
+
+                            &&
+
+                            data.receiver ===
+                            currentUser.uid
+                        );
+
+
+                    if(isThisConversation){
+
+                        messages.push({
+
+                            id:item.id,
+
+                            ...data
+
+                        });
+                    }
+                });
+
+
+                messages.sort(
+                    (a,b) =>
+                    getTime(a.createdAt) -
+                    getTime(b.createdAt)
+                );
+
+
+                renderPrivateMessages(
+                    messages
+                );
+
+
+                markMessagesAsRead(
+                    messages
+                );
+
+            },
+
+            error => {
+
+                console.error(
+                    "Message listener error:",
+                    error
+                );
+
+
+                document
+                    .getElementById(
+                        "privateChatBox"
+                    )
+                    .innerHTML =
+
+                    `<div class="alert error">
+                        ${escapeHtml(error.message)}
+                    </div>`;
+            }
+        );
+}
+
+
+/* ================= RENDER MESSAGES ================= */
+
+function renderPrivateMessages(messages){
+
+    const box =
+        document.getElementById(
+            "privateChatBox"
+        );
+
+
+    if(!messages.length){
+
+        box.innerHTML =
+            `<div style="text-align:center;color:#777">
+                No messages yet. Start the conversation.
+            </div>`;
+
+        return;
+    }
+
+
+    box.innerHTML = "";
+
+
+    messages.forEach(message => {
+
+        const mine =
+            message.sender ===
+            currentUser.uid;
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "message " +
+            (
+                mine
+                ? "me"
+                : "other"
+            );
+
+
+        let status = "";
+
+
+        if(mine){
+
+            if(message.read === true){
+
+                status =
+                    `<span
+                        class="message-status"
+                        title="Read"
+                    >
+                        ✓✓
+                    </span>`;
+
+            }else if(message.delivered === true){
+
+                status =
+                    `<span
+                        class="message-status"
+                        title="Delivered"
+                    >
+                        ✓✓
+                    </span>`;
+
+            }else{
+
+                status =
+                    `<span
+                        class="message-status"
+                        title="Sent"
+                    >
+                        ✓
+                    </span>`;
+            }
+        }
+
+
+        div.innerHTML =
+
+            `<div>
+                ${escapeHtml(message.text || "")}
+            </div>
+
+            <div class="message-time">
+
+                ${formatDate(message.createdAt)}
+
+                ${status}
+
+                ${
+                    mine
+                    ?
+                    `<button
+                        style="
+                            width:auto;
+                            padding:3px 7px;
+                            margin-left:5px;
+                            background:#c62828;
+                            font-size:10px;
+                        "
+                        onclick="deleteMessage('${message.id}')"
+                    >
+                        Delete
+                    </button>`
+                    :
+                    ""
+                }
+
+            </div>`;
+
+
+        box.appendChild(div);
+    });
+
+
+    box.scrollTop =
+        box.scrollHeight;
+}
+
+
+/* ================= MARK READ ================= */
+
+async function markMessagesAsRead(messages){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    const updates = [];
+
+
+    for(
+        const message
+        of messages
+    ){
+
+        if(
+
+            message.receiver ===
+            currentUser.uid
+
+            &&
+
+            (
+                message.delivered !== true
+                ||
+                message.read !== true
+            )
+
+        ){
+
+            updates.push(
+
+                updateDoc(
+                    doc(
+                        db,
+                        "messages",
+                        message.id
+                    ),
+                    {
+                        delivered:true,
+                        read:true
+                    }
+                )
+
+            );
+        }
+    }
+
+
+    if(updates.length){
+
+        try{
+
+            await Promise.all(
+                updates
+            );
+
+        }catch(error){
+
+            console.error(
+                "Read receipt error:",
+                error
+            );
+        }
+    }
+}
+
+
+/* ================= SEND MESSAGE ================= */
+
+window.sendPrivateMessage = async function(){
+
+    if(
+        !currentUser ||
+        !currentChatUser
+    ){
+
+        alert(
+            "Please select a user first."
+        );
+
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            "privateMessageInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+        return;
+    }
+
+
+    try{
+
+        const participants = [
+
+            currentUser.uid,
+
+            currentChatUser.uid
+
+        ];
+
+
+        await addDoc(
+
+            collection(
+                db,
+                "messages"
+            ),
+
+            {
+
+                sender:
+                    currentUser.uid,
+
+                receiver:
+                    currentChatUser.uid,
+
+                participants:
+                    participants,
+
+                text:
+                    text,
+
+                delivered:
+                    false,
+
+                read:
+                    false,
+
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+
+
+        input.value = "";
+
+        input.focus();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Failed to send message: " +
+            error.message
+        );
+    }
+};
+
+
+/* ================= ENTER TO SEND ================= */
+
+window.handleChatKey = function(event){
+
+    if(
+        event.key === "Enter" &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        sendPrivateMessage();
+    }
+};
+
+
+/* ================= DELETE MESSAGE ================= */
+
+window.deleteMessage = async function(messageId){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    if(
+        !confirm(
+            "Delete this message?"
+        )
+    ){
+        return;
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "messages",
+                messageId
+            )
+        );
+
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
+};
+
+
+/* ================= CONVERSATIONS ================= */
+
+function listenConversations(){
+
+    if(!currentUser){
+        return;
+    }
+
+
+    if(unsubscribeConversations){
+
+        unsubscribeConversations();
+
+        unsubscribeConversations = null;
+    }
+
+
+    const q =
+        query(
+            collection(
+                db,
+                "messages"
+            ),
+            where(
+                "participants",
+                "array-contains",
+                currentUser.uid
+            )
+        );
+
+
+    unsubscribeConversations =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                const map =
+                    new Map();
+
+
+                snapshot.forEach(item => {
+
+                    const data =
+                        item.data();
+
+
+                    if(
+                        !data.sender ||
+                        !data.receiver
+                    ){
+                        return;
+                    }
+
+
+                    const otherUid =
+
+                        data.sender ===
+                        currentUser.uid
+
+                        ?
+
+                        data.receiver
+
+                        :
+
+                        data.sender;
+
+
+                    const old =
+                        map.get(
+                            otherUid
+                        );
+
+
+                    if(
+
+                        !old
+
+                        ||
+
+                        getTime(
+                            data.createdAt
+                        )
+
+                        >
+
+                        getTime(
+                            old.createdAt
+                        )
+
+                    ){
+
+                        map.set(
+                            otherUid,
+                            {
+                                id:item.id,
+
+                                ...data,
+
+                                otherUid:
+                                    otherUid
+                            }
+                        );
+                    }
+                });
+
+
+                renderConversations(
+                    Array.from(
+                        map.values()
+                    )
+                );
+
+            },
+
+            error => {
+
+                console.error(
+                    error
+                );
+
+
+                document
+                    .getElementById(
+                        "conversationsContainer"
+                    )
+                    .innerHTML =
+
+                    `<div class="alert error">
+                        ${escapeHtml(error.message)}
+                    </div>`;
+            }
+        );
+}
+
+
+/* ================= RENDER CONVERSATIONS ================= */
+
+function renderConversations(
+    conversations
+){
+
+    const container =
+        document.getElementById(
+            "conversationsContainer"
+        );
+
+
+    if(!conversations.length){
+
+        container.innerHTML =
+            `<p>
+                No conversations yet.
+                Go to Discover and select a user.
+            </p>`;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    conversations.sort(
+        (a,b) =>
+        getTime(b.createdAt) -
+        getTime(a.createdAt)
+    );
+
+
+    conversations.forEach(
+        conversation => {
+
+            const user =
+                allUsers.find(
+                    item =>
+                    item.uid ===
+                    conversation.otherUid
+                );
+
+
+            if(!user){
+                return;
+            }
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "user-card";
+
+
+            const photo =
+                user.photo || "";
+
+
+            const unread =
+
+                conversation.receiver ===
+                currentUser.uid
+
+                &&
+
+                conversation.read !== true;
+
+
+            div.innerHTML =
+
+                `<img
+                    class="user-photo"
+                    src="${photo}"
+                >
+
+                <div class="user-info">
+
+                    <h3>
+                        ${escapeHtml(
+                            user.name ||
+                            "User"
+                        )}
+
+                        ${
+                            unread
+                            ? " 🔵"
+                            : ""
+                        }
+
+                    </h3>
+
+                    <p>
+                        ${escapeHtml(
+                            conversation.text ||
+                            ""
+                        )}
+                    </p>
+
+                    <small>
+                        ${formatDate(
+                            conversation.createdAt
+                        )}
+                    </small>
+
+                </div>
+
+                <button
+                    style="width:auto"
+                    onclick="openChatByUid('${user.uid}')"
+                >
+                    Open
+                </button>`;
+
+
+            container.appendChild(
+                div
+            );
+        }
+    );
+}
+
+
+/* ================= DARK MODE ================= */
+
+window.toggleDarkMode = function(){
+
+    document
+        .body
+        .classList
+        .toggle("dark");
+
+
+    localStorage.setItem(
+        "loveConnectDark",
+        document
+            .body
+            .classList
+            .contains("dark")
+            ? "1"
+            : "0"
+    );
+};
+
+
+if(
+    localStorage.getItem(
+        "loveConnectDark"
+    ) === "1"
+){
+
+    document
+        .body
+        .classList
+        .add("dark");
+}
 
 </script>
 
