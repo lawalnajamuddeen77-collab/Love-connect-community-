@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Love Connect Community</title>
 
@@ -14,7 +14,7 @@
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f6f8;
+    background:#f3f5f7;
     color:#222;
 }
 
@@ -26,8 +26,8 @@ body.dark{
 header{
     background:#075e54;
     color:white;
-    padding:16px;
     text-align:center;
+    padding:15px;
 }
 
 header h1{
@@ -36,7 +36,6 @@ header h1{
 }
 
 .container{
-    width:100%;
     max-width:900px;
     margin:auto;
     padding:15px;
@@ -44,8 +43,8 @@ header h1{
 
 .card{
     background:white;
-    padding:20px;
     border-radius:12px;
+    padding:18px;
     margin-bottom:15px;
     box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
@@ -59,26 +58,21 @@ textarea,
 button{
     width:100%;
     padding:12px;
-    margin:7px 0;
+    margin:6px 0;
     border-radius:8px;
     border:1px solid #ccc;
     font-size:15px;
 }
 
-textarea{
-    resize:none;
-}
-
 button{
     background:#075e54;
     color:white;
-    border:none;
-    cursor:pointer;
+    border:0;
     font-weight:bold;
 }
 
-button:hover{
-    opacity:.9;
+button:active{
+    transform:scale(.98);
 }
 
 .secondary{
@@ -89,68 +83,75 @@ button:hover{
     background:#c62828;
 }
 
-.link{
-    color:#075e54;
-    cursor:pointer;
-    text-align:center;
-    margin-top:10px;
-}
-
-.dark .link{
-    color:#4dd0c0;
-}
-
 .hidden{
     display:none!important;
 }
 
-/* NAV */
+.link{
+    color:#075e54;
+    text-align:center;
+    margin:10px;
+    cursor:pointer;
+}
+
+.dark .link{
+    color:#55d6c4;
+}
+
+.alert{
+    padding:10px;
+    border-radius:8px;
+    margin:8px 0;
+}
+
+.error{
+    background:#f8d7da;
+    color:#842029;
+}
+
+.success{
+    background:#d1e7dd;
+    color:#0f5132;
+}
 
 nav{
-    background:white;
     display:flex;
     overflow-x:auto;
-    border-bottom:1px solid #ddd;
+    background:white;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
+    border-bottom:1px solid #ddd;
 }
 
 .dark nav{
-    background:#1b1b1b;
+    background:#1c1c1c;
     border-color:#333;
 }
 
 nav button{
     min-width:100px;
-    margin:0;
-    border-radius:0;
     background:transparent;
     color:#075e54;
+    border-radius:0;
 }
 
 .dark nav button{
-    color:#4dd0c0;
+    color:#55d6c4;
 }
 
-/* PROFILE */
-
-.profile-photo{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    margin:10px auto;
-    background:#ddd;
-}
+/* USERS */
 
 .user-card{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:12px;
+    padding:12px 0;
     border-bottom:1px solid #ddd;
+}
+
+.user-card:last-child{
+    border-bottom:0;
 }
 
 .user-photo{
@@ -166,11 +167,11 @@ nav button{
 }
 
 .user-info h3{
-    margin:0 0 5px;
+    margin:0 0 4px;
 }
 
 .user-info p{
-    margin:0;
+    margin:3px 0;
     color:#777;
 }
 
@@ -178,9 +179,21 @@ nav button{
     color:#aaa;
 }
 
+/* PROFILE */
+
+.profile-photo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:10px auto;
+    background:#ddd;
+}
+
 /* CHAT */
 
-.chat-header{
+.chat-top{
     display:flex;
     align-items:center;
     gap:10px;
@@ -190,97 +203,168 @@ nav button{
     border-radius:10px 10px 0 0;
 }
 
-.chat-header img{
+.chat-top img{
     width:45px;
     height:45px;
     border-radius:50%;
     object-fit:cover;
 }
 
+.chat-top-info{
+    flex:1;
+}
+
+.chat-top-info strong{
+    font-size:16px;
+}
+
+.chat-top-info small{
+    opacity:.85;
+}
+
 .chat-box{
     height:430px;
     overflow-y:auto;
-    padding:15px;
+    padding:12px;
     background:#e5ddd5;
+    scroll-behavior:smooth;
 }
 
 .dark .chat-box{
     background:#202020;
 }
 
+.message-row{
+    display:flex;
+    margin:6px 0;
+}
+
+.message-row.mine{
+    justify-content:flex-end;
+}
+
+.message-row.theirs{
+    justify-content:flex-start;
+}
+
 .message{
-    max-width:75%;
-    padding:9px 12px;
-    margin:7px 0;
+    max-width:78%;
+    padding:9px 11px;
     border-radius:10px;
+    position:relative;
     word-wrap:break-word;
 }
 
-.message.me{
-    margin-left:auto;
+.mine .message{
     background:#dcf8c6;
+    border-top-right-radius:3px;
 }
 
-.message.other{
-    margin-right:auto;
+.theirs .message{
     background:white;
+    border-top-left-radius:3px;
 }
 
-.dark .message.other{
+.dark .theirs .message{
     background:#333;
 }
 
-.message-time{
+.message-text{
+    white-space:pre-wrap;
+}
+
+.message-footer{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:4px;
+    margin-top:4px;
     font-size:10px;
     color:#777;
-    margin-top:4px;
-    text-align:right;
 }
 
-.message-status{
-    font-size:12px;
-    margin-left:4px;
+.tick{
+    font-size:13px;
 }
 
-.chat-input{
+.read{
+    color:#075e54;
+}
+
+.dark .read{
+    color:#4dd0c0;
+}
+
+.delete-btn{
+    width:auto;
+    padding:2px 6px;
+    margin:0;
+    background:#c62828;
+    font-size:10px;
+}
+
+.chat-input-area{
     display:flex;
     gap:5px;
     padding:8px;
     background:white;
+    border-radius:0 0 10px 10px;
 }
 
-.dark .chat-input{
+.dark .chat-input-area{
     background:#1e1e1e;
 }
 
-.chat-input input{
+.chat-input-area input{
     flex:1;
     margin:0;
 }
 
-.chat-input button{
-    width:80px;
+.send-btn{
+    width:75px;
     margin:0;
 }
 
-/* ALERT */
+/* CONVERSATIONS */
 
-.alert{
-    padding:10px;
-    border-radius:8px;
-    margin:10px 0;
-    background:#fff3cd;
-    color:#664d03;
+.conversation{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid #ddd;
+    cursor:pointer;
 }
 
-.error{
-    background:#f8d7da;
-    color:#842029;
+.conversation:last-child{
+    border-bottom:0;
 }
 
-.success{
-    background:#d1e7dd;
-    color:#0f5132;
+.conversation-info{
+    flex:1;
+}
+
+.conversation-info h3{
+    margin:0;
+}
+
+.conversation-info p{
+    margin:4px 0;
+    color:#777;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.unread{
+    font-weight:bold;
+}
+
+.unread-dot{
+    width:10px;
+    height:10px;
+    background:#075e54;
+    border-radius:50%;
 }
 
 /* LOADING */
@@ -314,14 +398,14 @@ nav button{
         <div id="loginMessage"></div>
 
         <input
-            type="email"
             id="loginEmail"
+            type="email"
             placeholder="Email address"
         >
 
         <input
-            type="password"
             id="loginPassword"
+            type="password"
             placeholder="Password"
         >
 
@@ -329,11 +413,17 @@ nav button{
             Login
         </button>
 
-        <div class="link" onclick="showRegister()">
+        <div
+            class="link"
+            onclick="showRegister()"
+        >
             Create new account
         </div>
 
-        <div class="link" onclick="resetPassword()">
+        <div
+            class="link"
+            onclick="resetPassword()"
+        >
             Forgot password?
         </div>
 
@@ -349,38 +439,38 @@ nav button{
         <div id="registerMessage"></div>
 
         <input
-            type="text"
             id="registerName"
+            type="text"
             placeholder="Full name"
         >
 
         <input
-            type="text"
             id="registerUsername"
+            type="text"
             placeholder="Username"
         >
 
         <input
-            type="email"
             id="registerEmail"
+            type="email"
             placeholder="Email address"
         >
 
         <input
-            type="password"
             id="registerPassword"
+            type="password"
             placeholder="Password"
         >
 
         <textarea
             id="registerBio"
-            placeholder="Short bio"
             rows="3"
+            placeholder="Short bio"
         ></textarea>
 
         <input
-            type="file"
             id="registerPhoto"
+            type="file"
             accept="image/*"
         >
 
@@ -388,7 +478,10 @@ nav button{
             Register
         </button>
 
-        <div class="link" onclick="showLogin()">
+        <div
+            class="link"
+            onclick="showLogin()"
+        >
             Already have an account? Login
         </div>
 
@@ -433,20 +526,27 @@ nav button{
 
 <div class="container">
 
-<!-- HOME -->
+
+<!-- ================= HOME ================= -->
 
 <section id="homePage">
 
     <div class="card">
 
-        <h2>🌍 Welcome to Love Connect</h2>
+        <h2>🏠 Home</h2>
+
+        <div id="homeUser">
+            Loading...
+        </div>
 
         <p>
             Welcome to Love Connect Community.
-            Connect and communicate with other community members.
         </p>
 
-        <div id="homeUser"></div>
+        <p>
+            Use Discover to find community members
+            and start a private conversation.
+        </p>
 
     </div>
 
@@ -454,24 +554,27 @@ nav button{
 
 
 
-<!-- DISCOVER -->
+<!-- ================= DISCOVER ================= -->
 
 <section id="discoverPage" class="hidden">
 
     <div class="card">
 
-        <h2>🔎 Discover Users</h2>
+        <h2>🔎 Discover</h2>
 
         <input
-            type="text"
             id="searchUsers"
-            placeholder="Search users..."
+            type="text"
+            placeholder="Search name or username..."
             oninput="searchUsers()"
         >
 
     </div>
 
-    <div id="usersContainer" class="card">
+    <div
+        id="usersContainer"
+        class="card"
+    >
         <div class="loading">
             Loading users...
         </div>
@@ -481,7 +584,7 @@ nav button{
 
 
 
-<!-- PROFILE VIEW -->
+<!-- ================= VIEW PROFILE ================= -->
 
 <section id="viewProfilePage" class="hidden">
 
@@ -502,15 +605,17 @@ nav button{
 
 
 
-<!-- MESSAGES -->
+<!-- ================= MESSAGES ================= -->
 
 <section id="messagesPage" class="hidden">
 
     <div class="card">
 
-        <h2>💬 Conversations</h2>
+        <h2>💬 Messages</h2>
 
-        <div id="conversationsContainer">
+        <div
+            id="conversationsContainer"
+        >
             <div class="loading">
                 Loading conversations...
             </div>
@@ -522,7 +627,7 @@ nav button{
 
 
 
-<!-- PRIVATE CHAT -->
+<!-- ================= PRIVATE CHAT ================= -->
 
 <section id="privateChatPage" class="hidden">
 
@@ -532,7 +637,7 @@ nav button{
             class="secondary"
             onclick="closeChat()"
         >
-            ← Back to Messages
+            ← Back
         </button>
 
         <div id="chatHeader"></div>
@@ -542,16 +647,19 @@ nav button{
             class="chat-box"
         ></div>
 
-        <div class="chat-input">
+        <div class="chat-input-area">
 
             <input
-                type="text"
                 id="privateMessageInput"
-                placeholder="Type a message..."
+                type="text"
+                placeholder="Write a message..."
                 onkeydown="handleChatKey(event)"
             >
 
-            <button onclick="sendPrivateMessage()">
+            <button
+                class="send-btn"
+                onclick="sendPrivateMessage()"
+            >
                 Send
             </button>
 
@@ -563,7 +671,7 @@ nav button{
 
 
 
-<!-- PROFILE -->
+<!-- ================= PROFILE ================= -->
 
 <section id="profilePage" class="hidden">
 
@@ -580,28 +688,28 @@ nav button{
         >
 
         <input
-            type="file"
             id="profilePhoto"
+            type="file"
             accept="image/*"
             onchange="previewProfilePhoto()"
         >
 
         <input
-            type="text"
             id="profileName"
+            type="text"
             placeholder="Full name"
         >
 
         <input
-            type="text"
             id="profileUsername"
+            type="text"
             placeholder="Username"
         >
 
         <textarea
             id="profileBio"
-            placeholder="Bio"
             rows="4"
+            placeholder="Bio"
         ></textarea>
 
         <button onclick="saveProfile()">
@@ -624,7 +732,10 @@ nav button{
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
 import {
     getAuth,
@@ -634,7 +745,10 @@ import {
     signOut,
     sendPasswordResetEmail,
     updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 import {
     getFirestore,
@@ -650,7 +764,10 @@ import {
     where,
     onSnapshot,
     serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 /* ================= FIREBASE CONFIG ================= */
@@ -680,33 +797,42 @@ const firebaseConfig = {
 };
 
 
-/* ================= INITIALIZE ================= */
 
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const app =
+    initializeApp(firebaseConfig);
 
 
-/* ================= VARIABLES ================= */
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* ================= GLOBAL VARIABLES ================= */
 
 let currentUser = null;
 
-let allUsers = [];
-
 let currentChatUser = null;
+
+let allUsers = [];
 
 let unsubscribeMessages = null;
 
 let unsubscribeConversations = null;
 
 
+
 /* ================= HELPERS ================= */
 
 function escapeHtml(value){
 
-    if(value === null || value === undefined){
+    if(
+        value === null ||
+        value === undefined
+    ){
         return "";
     }
 
@@ -726,7 +852,8 @@ function getTime(timestamp){
     }
 
     if(
-        typeof timestamp.toMillis === "function"
+        typeof timestamp.toMillis ===
+        "function"
     ){
         return timestamp.toMillis();
     }
@@ -737,20 +864,26 @@ function getTime(timestamp){
 
 function formatDate(timestamp){
 
-    const time = getTime(timestamp);
+    const time =
+        getTime(timestamp);
 
     if(!time){
-        return "";
+        return "Sending...";
     }
 
-    return new Date(time).toLocaleString();
+    return new Date(time)
+        .toLocaleString();
 }
 
 
-function showMessage(elementId,text,type="success"){
+function showMessage(
+    id,
+    text,
+    type="success"
+){
 
     const element =
-        document.getElementById(elementId);
+        document.getElementById(id);
 
     if(!element){
         return;
@@ -763,17 +896,53 @@ function showMessage(elementId,text,type="success"){
 }
 
 
+
+function defaultPhoto(){
+
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+
+            `<svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="120"
+                height="120"
+            >
+
+                <rect
+                    width="100%"
+                    height="100%"
+                    fill="#ddd"
+                />
+
+                <text
+                    x="50%"
+                    y="50%"
+                    dominant-baseline="middle"
+                    text-anchor="middle"
+                    font-size="50"
+                >
+                    👤
+                </text>
+
+            </svg>`
+        );
+}
+
+
+
 /* ================= AUTH UI ================= */
 
 window.showRegister = function(){
 
     document
         .getElementById("loginBox")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
 
     document
         .getElementById("registerBox")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 };
 
 
@@ -781,143 +950,175 @@ window.showLogin = function(){
 
     document
         .getElementById("registerBox")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
 
     document
         .getElementById("loginBox")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 };
 
 
-/* ================= IMAGE COMPRESS ================= */
+
+/* ================= IMAGE ================= */
 
 function compressImage(file){
 
-    return new Promise((resolve,reject)=>{
+    return new Promise(
+        (resolve,reject)=>{
 
-        if(!file){
-            resolve("");
-            return;
-        }
+            if(!file){
 
-        const reader =
-            new FileReader();
+                resolve("");
 
-        reader.onload = function(event){
-
-            const img =
-                new Image();
-
-            img.onload = function(){
-
-                const canvas =
-                    document.createElement("canvas");
-
-                const maxSize = 500;
-
-                let width = img.width;
-
-                let height = img.height;
+                return;
+            }
 
 
-                if(width > height){
+            const reader =
+                new FileReader();
 
-                    if(width > maxSize){
 
-                        height =
-                            height *
-                            maxSize /
-                            width;
+            reader.onload =
+            event => {
 
-                        width = maxSize;
+                const img =
+                    new Image();
+
+
+                img.onload =
+                () => {
+
+                    const canvas =
+                        document
+                        .createElement("canvas");
+
+
+                    const max =
+                        500;
+
+
+                    let width =
+                        img.width;
+
+                    let height =
+                        img.height;
+
+
+                    if(
+                        width > max ||
+                        height > max
+                    ){
+
+                        if(width > height){
+
+                            height =
+                                height *
+                                max /
+                                width;
+
+                            width =
+                                max;
+
+                        }else{
+
+                            width =
+                                width *
+                                max /
+                                height;
+
+                            height =
+                                max;
+                        }
                     }
 
-                }else{
 
-                    if(height > maxSize){
+                    canvas.width =
+                        width;
 
-                        width =
-                            width *
-                            maxSize /
-                            height;
-
-                        height = maxSize;
-                    }
-                }
+                    canvas.height =
+                        height;
 
 
-                canvas.width = width;
-
-                canvas.height = height;
-
-
-                const ctx =
-                    canvas.getContext("2d");
-
-                ctx.drawImage(
-                    img,
-                    0,
-                    0,
-                    width,
-                    height
-                );
+                    const ctx =
+                        canvas
+                        .getContext("2d");
 
 
-                const result =
-                    canvas.toDataURL(
-                        "image/jpeg",
-                        0.65
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        width,
+                        height
                     );
 
 
-                if(result.length > 500000){
+                    const result =
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            .65
+                        );
+
+
+                    if(
+                        result.length >
+                        500000
+                    ){
+
+                        reject(
+                            new Error(
+                                "Image is too large."
+                            )
+                        );
+
+                        return;
+                    }
+
+
+                    resolve(result);
+                };
+
+
+                img.onerror =
+                () => {
 
                     reject(
                         new Error(
-                            "Image is too large. Please choose a smaller photo."
+                            "Could not load image."
                         )
                     );
+                };
 
-                    return;
-                }
 
-                resolve(result);
+                img.src =
+                    event.target.result;
             };
 
 
-            img.onerror = function(){
+            reader.onerror =
+            () => {
 
                 reject(
                     new Error(
-                        "Could not load image."
+                        "Could not read image."
                     )
                 );
             };
 
 
-            img.src =
-                event.target.result;
-        };
-
-
-        reader.onerror = function(){
-
-            reject(
-                new Error(
-                    "Could not read image."
-                )
-            );
-        };
-
-
-        reader.readAsDataURL(file);
-    });
+            reader.readAsDataURL(file);
+        }
+    );
 }
+
 
 
 /* ================= REGISTER ================= */
 
-window.registerUser = async function(){
+window.registerUser =
+async function(){
 
     const name =
         document
@@ -925,11 +1126,13 @@ window.registerUser = async function(){
         .value
         .trim();
 
+
     const username =
         document
         .getElementById("registerUsername")
         .value
         .trim();
+
 
     const email =
         document
@@ -937,10 +1140,12 @@ window.registerUser = async function(){
         .value
         .trim();
 
+
     const password =
         document
         .getElementById("registerPassword")
         .value;
+
 
     const bio =
         document
@@ -948,13 +1153,19 @@ window.registerUser = async function(){
         .value
         .trim();
 
+
     const photoFile =
         document
         .getElementById("registerPhoto")
         .files[0];
 
 
-    if(!name || !username || !email || !password){
+    if(
+        !name ||
+        !username ||
+        !email ||
+        !password
+    ){
 
         showMessage(
             "registerMessage",
@@ -970,7 +1181,7 @@ window.registerUser = async function(){
 
         showMessage(
             "registerMessage",
-            "Password must contain at least 6 characters.",
+            "Password must be at least 6 characters.",
             "error"
         );
 
@@ -986,7 +1197,7 @@ window.registerUser = async function(){
         );
 
 
-        const userCredential =
+        const result =
             await createUserWithEmailAndPassword(
                 auth,
                 email,
@@ -995,10 +1206,11 @@ window.registerUser = async function(){
 
 
         const user =
-            userCredential.user;
+            result.user;
 
 
         let photo = "";
+
 
         if(photoFile){
 
@@ -1018,7 +1230,11 @@ window.registerUser = async function(){
 
 
         await setDoc(
-            doc(db,"users",user.uid),
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
             {
 
                 uid:user.uid,
@@ -1035,16 +1251,19 @@ window.registerUser = async function(){
 
                 online:true,
 
-                createdAt:serverTimestamp(),
+                createdAt:
+                    serverTimestamp(),
 
-                updatedAt:serverTimestamp()
+                updatedAt:
+                    serverTimestamp()
+
             }
         );
 
 
         showMessage(
             "registerMessage",
-            "Account created successfully."
+            "Registration successful."
         );
 
 
@@ -1061,9 +1280,11 @@ window.registerUser = async function(){
 };
 
 
+
 /* ================= LOGIN ================= */
 
-window.loginUser = async function(){
+window.loginUser =
+async function(){
 
     const email =
         document
@@ -1071,13 +1292,17 @@ window.loginUser = async function(){
         .value
         .trim();
 
+
     const password =
         document
         .getElementById("loginPassword")
         .value;
 
 
-    if(!email || !password){
+    if(
+        !email ||
+        !password
+    ){
 
         showMessage(
             "loginMessage",
@@ -1099,8 +1324,6 @@ window.loginUser = async function(){
 
     }catch(error){
 
-        console.error(error);
-
         showMessage(
             "loginMessage",
             error.message,
@@ -1110,9 +1333,11 @@ window.loginUser = async function(){
 };
 
 
-/* ================= PASSWORD RESET ================= */
 
-window.resetPassword = async function(){
+/* ================= RESET PASSWORD ================= */
+
+window.resetPassword =
+async function(){
 
     const email =
         document
@@ -1124,7 +1349,7 @@ window.resetPassword = async function(){
     if(!email){
 
         alert(
-            "Enter your email address first."
+            "Enter your email first."
         );
 
         return;
@@ -1138,8 +1363,9 @@ window.resetPassword = async function(){
             email
         );
 
+
         alert(
-            "Password reset email has been sent."
+            "Password reset email sent."
         );
 
     }catch(error){
@@ -1151,18 +1377,27 @@ window.resetPassword = async function(){
 };
 
 
+
 /* ================= LOGOUT ================= */
 
-window.logoutUser = async function(){
+window.logoutUser =
+async function(){
 
     try{
 
         if(currentUser){
 
-            await updateDoc(
-                doc(db,"users",currentUser.uid),
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                ),
                 {
                     online:false
+                },
+                {
+                    merge:true
                 }
             );
         }
@@ -1177,6 +1412,7 @@ window.logoutUser = async function(){
 };
 
 
+
 /* ================= AUTH STATE ================= */
 
 onAuthStateChanged(
@@ -1185,15 +1421,20 @@ onAuthStateChanged(
 
         if(user){
 
-            currentUser = user;
+            currentUser =
+                user;
+
 
             document
                 .getElementById("authPage")
-                .classList.add("hidden");
+                .classList
+                .add("hidden");
+
 
             document
                 .getElementById("appPage")
-                .classList.remove("hidden");
+                .classList
+                .remove("hidden");
 
 
             await setOnlineStatus();
@@ -1208,22 +1449,31 @@ onAuthStateChanged(
 
         }else{
 
-            currentUser = null;
+            currentUser =
+                null;
+
+            currentChatUser =
+                null;
+
 
             document
                 .getElementById("authPage")
-                .classList.remove("hidden");
+                .classList
+                .remove("hidden");
+
 
             document
                 .getElementById("appPage")
-                .classList.add("hidden");
+                .classList
+                .add("hidden");
 
 
             if(unsubscribeMessages){
 
                 unsubscribeMessages();
 
-                unsubscribeMessages = null;
+                unsubscribeMessages =
+                    null;
             }
 
 
@@ -1231,20 +1481,23 @@ onAuthStateChanged(
 
                 unsubscribeConversations();
 
-                unsubscribeConversations = null;
+                unsubscribeConversations =
+                    null;
             }
         }
     }
 );
 
 
-/* ================= ONLINE STATUS ================= */
+
+/* ================= ONLINE ================= */
 
 async function setOnlineStatus(){
 
     if(!currentUser){
         return;
     }
+
 
     try{
 
@@ -1264,17 +1517,16 @@ async function setOnlineStatus(){
 
     }catch(error){
 
-        console.log(
-            "Status error:",
-            error
-        );
+        console.log(error);
     }
 }
 
 
-/* ================= PAGE SYSTEM ================= */
 
-window.showPage = function(pageId){
+/* ================= PAGE ================= */
+
+window.showPage =
+function(pageId){
 
     const pages = [
 
@@ -1292,41 +1544,57 @@ window.showPage = function(pageId){
     ];
 
 
-    pages.forEach(id => {
+    pages.forEach(
+        id => {
 
-        const element =
-            document.getElementById(id);
+            const page =
+                document
+                .getElementById(id);
 
-        if(element){
+            if(page){
 
-            element.classList.add("hidden");
+                page
+                    .classList
+                    .add("hidden");
+            }
         }
-    });
+    );
 
 
-    const page =
-        document.getElementById(pageId);
+    const selected =
+        document
+        .getElementById(pageId);
 
-    if(page){
 
-        page.classList.remove("hidden");
+    if(selected){
+
+        selected
+            .classList
+            .remove("hidden");
     }
 
 
-    if(pageId === "discoverPage"){
+    if(
+        pageId ===
+        "discoverPage"
+    ){
 
         loadUsers();
     }
 
 
-    if(pageId === "messagesPage"){
+    if(
+        pageId ===
+        "messagesPage"
+    ){
 
         listenConversations();
     }
 };
 
 
-/* ================= LOAD MY PROFILE ================= */
+
+/* ================= MY PROFILE ================= */
 
 async function loadMyProfile(){
 
@@ -1337,7 +1605,7 @@ async function loadMyProfile(){
 
     try{
 
-        const snapshot =
+        const snap =
             await getDoc(
                 doc(
                     db,
@@ -1347,13 +1615,13 @@ async function loadMyProfile(){
             );
 
 
-        if(!snapshot.exists()){
+        if(!snap.exists()){
             return;
         }
 
 
         const data =
-            snapshot.data();
+            snap.data();
 
 
         document
@@ -1378,20 +1646,27 @@ async function loadMyProfile(){
             .getElementById("profilePhotoPreview")
             .src =
             data.photo ||
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(
-                "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
-                "<rect width='100%' height='100%' fill='#ddd'/>" +
-                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
-                "</svg>"
-            );
+            defaultPhoto();
 
 
         document
             .getElementById("homeUser")
             .innerHTML =
-            `<h3>Welcome, ${escapeHtml(data.name || currentUser.email)}</h3>
-             <p>@${escapeHtml(data.username || "")}</p>`;
+
+            `<h3>
+                Welcome,
+                ${escapeHtml(
+                    data.name ||
+                    currentUser.email
+                )}
+            </h3>
+
+            <p>
+                @${escapeHtml(
+                    data.username || ""
+                )}
+            </p>`;
+        
 
     }catch(error){
 
@@ -1400,9 +1675,11 @@ async function loadMyProfile(){
 }
 
 
+
 /* ================= SAVE PROFILE ================= */
 
-window.saveProfile = async function(){
+window.saveProfile =
+async function(){
 
     if(!currentUser){
         return;
@@ -1415,11 +1692,13 @@ window.saveProfile = async function(){
         .value
         .trim();
 
+
     const username =
         document
         .getElementById("profileUsername")
         .value
         .trim();
+
 
     const bio =
         document
@@ -1427,13 +1706,17 @@ window.saveProfile = async function(){
         .value
         .trim();
 
-    const photoFile =
+
+    const file =
         document
         .getElementById("profilePhoto")
         .files[0];
 
 
-    if(!name || !username){
+    if(
+        !name ||
+        !username
+    ){
 
         showMessage(
             "profileMessage",
@@ -1449,15 +1732,17 @@ window.saveProfile = async function(){
 
         let photo =
             document
-            .getElementById("profilePhotoPreview")
+            .getElementById(
+                "profilePhotoPreview"
+            )
             .src;
 
 
-        if(photoFile){
+        if(file){
 
             photo =
                 await compressImage(
-                    photoFile
+                    file
                 );
         }
 
@@ -1478,7 +1763,8 @@ window.saveProfile = async function(){
 
                 photo:photo,
 
-                updatedAt:serverTimestamp()
+                updatedAt:
+                    serverTimestamp()
 
             },
             {
@@ -1497,7 +1783,7 @@ window.saveProfile = async function(){
 
         showMessage(
             "profileMessage",
-            "Profile updated successfully."
+            "Profile saved successfully."
         );
 
 
@@ -1506,8 +1792,6 @@ window.saveProfile = async function(){
         await loadMyProfile();
 
     }catch(error){
-
-        console.error(error);
 
         showMessage(
             "profileMessage",
@@ -1518,9 +1802,11 @@ window.saveProfile = async function(){
 };
 
 
-/* ================= PREVIEW PHOTO ================= */
 
-window.previewProfilePhoto = async function(){
+/* ================= PHOTO PREVIEW ================= */
+
+window.previewProfilePhoto =
+async function(){
 
     const file =
         document
@@ -1540,7 +1826,9 @@ window.previewProfilePhoto = async function(){
 
 
         document
-            .getElementById("profilePhotoPreview")
+            .getElementById(
+                "profilePhotoPreview"
+            )
             .src =
             photo;
 
@@ -1553,6 +1841,7 @@ window.previewProfilePhoto = async function(){
 };
 
 
+
 /* ================= LOAD USERS ================= */
 
 async function loadUsers(){
@@ -1560,12 +1849,6 @@ async function loadUsers(){
     if(!currentUser){
         return;
     }
-
-
-    const container =
-        document.getElementById(
-            "usersContainer"
-        );
 
 
     try{
@@ -1582,45 +1865,61 @@ async function loadUsers(){
         allUsers = [];
 
 
-        snapshot.forEach(item => {
+        snapshot.forEach(
+            item => {
 
-            const data =
-                item.data();
+                const data =
+                    item.data();
 
 
-            if(
-                data.uid &&
-                data.uid !== currentUser.uid
-            ){
+                if(
+                    data.uid &&
+                    data.uid !==
+                    currentUser.uid
+                ){
 
-                allUsers.push({
-                    id:item.id,
-                    ...data
-                });
+                    allUsers.push({
+
+                        id:item.id,
+
+                        ...data
+                    });
+                }
             }
-        });
+        );
 
 
-        renderUsers(allUsers);
+        renderUsers(
+            allUsers
+        );
 
     }catch(error){
 
         console.error(error);
 
-        container.innerHTML =
+        document
+            .getElementById(
+                "usersContainer"
+            )
+            .innerHTML =
+
             `<div class="alert error">
-                ${escapeHtml(error.message)}
+                ${escapeHtml(
+                    error.message
+                )}
             </div>`;
     }
 }
 
 
-/* ================= RENDER USERS ================= */
+
+/* ================= USERS ================= */
 
 function renderUsers(users){
 
     const container =
-        document.getElementById(
+        document
+        .getElementById(
             "usersContainer"
         );
 
@@ -1628,7 +1927,7 @@ function renderUsers(users){
     if(!users.length){
 
         container.innerHTML =
-            `<p>No other users found.</p>`;
+            "<p>No other users found.</p>";
 
         return;
     }
@@ -1637,137 +1936,159 @@ function renderUsers(users){
     container.innerHTML = "";
 
 
-    users.forEach(user => {
+    users.forEach(
+        user => {
 
-        const photo =
-            user.photo ||
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(
-                "<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>" +
-                "<rect width='100%' height='100%' fill='#ddd'/>" +
-                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='30'>👤</text>" +
-                "</svg>"
+            const div =
+                document
+                .createElement("div");
+
+
+            div.className =
+                "user-card";
+
+
+            div.innerHTML =
+
+                `<img
+                    class="user-photo"
+                    src="${
+                        user.photo ||
+                        defaultPhoto()
+                    }"
+                >
+
+                <div class="user-info">
+
+                    <h3>
+                        ${escapeHtml(
+                            user.name ||
+                            "User"
+                        )}
+                    </h3>
+
+                    <p>
+                        @${escapeHtml(
+                            user.username ||
+                            ""
+                        )}
+                    </p>
+
+                    <p>
+                        ${
+                            user.online
+                            ? "🟢 Online"
+                            : "⚫ Offline"
+                        }
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <button
+                        onclick="viewUserProfile(
+                            '${user.uid}'
+                        )"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        onclick="openChatByUid(
+                            '${user.uid}'
+                        )"
+                    >
+                        Chat
+                    </button>
+
+                </div>`;
+
+
+            container.appendChild(
+                div
             );
-
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "user-card";
-
-
-        div.innerHTML =
-
-            `<img
-                class="user-photo"
-                src="${photo}"
-            >
-
-            <div class="user-info">
-
-                <h3>
-                    ${escapeHtml(user.name || "User")}
-                </h3>
-
-                <p>
-                    @${escapeHtml(user.username || "")}
-                </p>
-
-                <p>
-                    ${user.online ? "🟢 Online" : "⚫ Offline"}
-                </p>
-
-            </div>
-
-            <div>
-
-                <button
-                    onclick="viewUserProfile('${user.uid}')"
-                >
-                    View
-                </button>
-
-                <button
-                    onclick="openChatByUid('${user.uid}')"
-                >
-                    Chat
-                </button>
-
-            </div>`;
-
-
-        container.appendChild(div);
-    });
+        }
+    );
 }
 
 
-/* ================= SEARCH USERS ================= */
 
-window.searchUsers = function(){
+/* ================= SEARCH ================= */
 
-    const search =
+window.searchUsers =
+function(){
+
+    const value =
         document
-        .getElementById("searchUsers")
+        .getElementById(
+            "searchUsers"
+        )
         .value
         .toLowerCase()
         .trim();
 
 
-    if(!search){
+    if(!value){
 
-        renderUsers(allUsers);
+        renderUsers(
+            allUsers
+        );
 
         return;
     }
 
 
     const filtered =
-        allUsers.filter(user => {
+        allUsers.filter(
+            user => {
 
-            const name =
-                (user.name || "")
-                .toLowerCase();
-
-            const username =
-                (user.username || "")
-                .toLowerCase();
-
-            return (
-                name.includes(search) ||
-                username.includes(search)
-            );
-        });
+                const name =
+                    (
+                        user.name ||
+                        ""
+                    )
+                    .toLowerCase();
 
 
-    renderUsers(filtered);
+                const username =
+                    (
+                        user.username ||
+                        ""
+                    )
+                    .toLowerCase();
+
+
+                return (
+                    name.includes(value) ||
+                    username.includes(value)
+                );
+            }
+        );
+
+
+    renderUsers(
+        filtered
+    );
 };
 
 
-/* ================= VIEW PROFILE ================= */
 
-window.viewUserProfile = function(uid){
+/* ================= VIEW USER ================= */
+
+window.viewUserProfile =
+function(uid){
 
     const user =
         allUsers.find(
-            item => item.uid === uid
+            item =>
+            item.uid === uid
         );
 
 
     if(!user){
         return;
     }
-
-
-    const photo =
-        user.photo ||
-        "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(
-            "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
-            "<rect width='100%' height='100%' fill='#ddd'/>" +
-            "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
-            "</svg>"
-        );
 
 
     document
@@ -1778,19 +2099,32 @@ window.viewUserProfile = function(uid){
 
         `<img
             class="profile-photo"
-            src="${photo}"
+            src="${
+                user.photo ||
+                defaultPhoto()
+            }"
         >
 
         <h2 style="text-align:center">
-            ${escapeHtml(user.name || "User")}
+            ${escapeHtml(
+                user.name ||
+                "User"
+            )}
         </h2>
 
         <p style="text-align:center">
-            @${escapeHtml(user.username || "")}
+            @${escapeHtml(
+                user.username ||
+                ""
+            )}
         </p>
 
         <p style="text-align:center">
-            ${user.online ? "🟢 Online" : "⚫ Offline"}
+            ${
+                user.online
+                ? "🟢 Online"
+                : "⚫ Offline"
+            }
         </p>
 
         <div class="card">
@@ -1798,15 +2132,20 @@ window.viewUserProfile = function(uid){
             <h3>About</h3>
 
             <p>
-                ${escapeHtml(user.bio || "No bio available.")}
+                ${escapeHtml(
+                    user.bio ||
+                    "No bio available."
+                )}
             </p>
 
         </div>
 
         <button
-            onclick="openChatByUid('${user.uid}')"
+            onclick="openChatByUid(
+                '${user.uid}'
+            )"
         >
-            💬 Send Message
+            💬 Message
         </button>`;
 
 
@@ -1816,13 +2155,21 @@ window.viewUserProfile = function(uid){
 };
 
 
+
+/* ==================================================
+   PRIVATE CHAT
+================================================== */
+
+
 /* ================= OPEN CHAT ================= */
 
-window.openChatByUid = function(uid){
+window.openChatByUid =
+function(uid){
 
     const user =
         allUsers.find(
-            item => item.uid === uid
+            item =>
+            item.uid === uid
         );
 
 
@@ -1831,56 +2178,11 @@ window.openChatByUid = function(uid){
     }
 
 
-    openChat(user);
-};
+    currentChatUser =
+        user;
 
 
-function openChat(user){
-
-    currentChatUser = user;
-
-
-    document
-        .getElementById(
-            "chatHeader"
-        )
-        .innerHTML =
-
-        `<div class="chat-header">
-
-            <img
-                src="${
-                    user.photo ||
-                    "data:image/svg+xml;charset=UTF-8," +
-                    encodeURIComponent(
-                        "<svg xmlns='http://www.w3.org/2000/svg' width='45' height='45'>" +
-                        "<rect width='100%' height='100%' fill='#ddd'/>" +
-                        "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='25'>👤</text>" +
-                        "</svg>"
-                    )
-                }"
-            >
-
-            <div>
-
-                <strong>
-                    ${escapeHtml(user.name || "User")}
-                </strong>
-
-                <br>
-
-                <small>
-                    ${
-                        user.online
-                        ? "🟢 Online"
-                        : "⚫ Offline"
-                    }
-                </small>
-
-            </div>
-
-        </div>`;
-
+    showChatHeader();
 
     showPage(
         "privateChatPage"
@@ -1890,30 +2192,92 @@ function openChat(user){
     listenPrivateMessages();
 
 
-    setTimeout(() => {
+    setTimeout(
+        () => {
 
-        document
-            .getElementById(
-                "privateMessageInput"
-            )
-            .focus();
+            const input =
+                document
+                .getElementById(
+                    "privateMessageInput"
+                );
 
-    },100);
+
+            if(input){
+                input.focus();
+            }
+
+        },
+        100
+    );
+};
+
+
+
+/* ================= CHAT HEADER ================= */
+
+function showChatHeader(){
+
+    if(!currentChatUser){
+        return;
+    }
+
+
+    document
+        .getElementById(
+            "chatHeader"
+        )
+        .innerHTML =
+
+        `<div class="chat-top">
+
+            <img
+                src="${
+                    currentChatUser.photo ||
+                    defaultPhoto()
+                }"
+            >
+
+            <div class="chat-top-info">
+
+                <strong>
+                    ${escapeHtml(
+                        currentChatUser.name ||
+                        "User"
+                    )}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${
+                        currentChatUser.online
+                        ? "🟢 Online"
+                        : "⚫ Offline"
+                    }
+                </small>
+
+            </div>
+
+        </div>`;
 }
+
 
 
 /* ================= CLOSE CHAT ================= */
 
-window.closeChat = function(){
+window.closeChat =
+function(){
 
-    currentChatUser = null;
+    currentChatUser =
+        null;
 
 
     if(unsubscribeMessages){
 
         unsubscribeMessages();
 
-        unsubscribeMessages = null;
+        unsubscribeMessages =
+            null;
     }
 
 
@@ -1923,7 +2287,8 @@ window.closeChat = function(){
 };
 
 
-/* ================= LISTEN PRIVATE MESSAGES ================= */
+
+/* ================= LISTEN CHAT ================= */
 
 function listenPrivateMessages(){
 
@@ -1939,8 +2304,21 @@ function listenPrivateMessages(){
 
         unsubscribeMessages();
 
-        unsubscribeMessages = null;
+        unsubscribeMessages =
+            null;
     }
+
+
+    /*
+       IMPORTANT:
+
+       We listen only to messages
+       where current user is a participant.
+
+       Then we check BOTH sender and receiver
+       so messages from another conversation
+       cannot enter this chat.
+    */
 
 
     const q =
@@ -1965,54 +2343,62 @@ function listenPrivateMessages(){
                 const messages = [];
 
 
-                snapshot.forEach(item => {
+                snapshot.forEach(
+                    item => {
 
-                    const data =
-                        item.data();
-
-
-                    const isThisConversation =
-
-                        (
-                            data.sender ===
-                            currentUser.uid
-
-                            &&
-
-                            data.receiver ===
-                            currentChatUser.uid
-                        )
-
-                        ||
-
-                        (
-                            data.sender ===
-                            currentChatUser.uid
-
-                            &&
-
-                            data.receiver ===
-                            currentUser.uid
-                        );
+                        const data =
+                            item.data();
 
 
-                    if(isThisConversation){
+                        const messageBetweenUsers =
 
-                        messages.push({
+                            (
+                                data.sender ===
+                                currentUser.uid
 
-                            id:item.id,
+                                &&
 
-                            ...data
+                                data.receiver ===
+                                currentChatUser.uid
+                            )
 
-                        });
+                            ||
+
+                            (
+                                data.sender ===
+                                currentChatUser.uid
+
+                                &&
+
+                                data.receiver ===
+                                currentUser.uid
+                            );
+
+
+                        if(
+                            messageBetweenUsers
+                        ){
+
+                            messages.push({
+
+                                id:item.id,
+
+                                ...data
+                            });
+                        }
                     }
-                });
+                );
 
 
                 messages.sort(
                     (a,b) =>
-                    getTime(a.createdAt) -
-                    getTime(b.createdAt)
+                    getTime(
+                        a.createdAt
+                    )
+                    -
+                    getTime(
+                        b.createdAt
+                    )
                 );
 
 
@@ -2030,7 +2416,6 @@ function listenPrivateMessages(){
             error => {
 
                 console.error(
-                    "Message listener error:",
                     error
                 );
 
@@ -2042,19 +2427,25 @@ function listenPrivateMessages(){
                     .innerHTML =
 
                     `<div class="alert error">
-                        ${escapeHtml(error.message)}
+                        ${escapeHtml(
+                            error.message
+                        )}
                     </div>`;
             }
         );
 }
 
 
-/* ================= RENDER MESSAGES ================= */
 
-function renderPrivateMessages(messages){
+/* ================= RENDER CHAT ================= */
+
+function renderPrivateMessages(
+    messages
+){
 
     const box =
-        document.getElementById(
+        document
+        .getElementById(
             "privateChatBox"
         );
 
@@ -2062,8 +2453,16 @@ function renderPrivateMessages(messages){
     if(!messages.length){
 
         box.innerHTML =
-            `<div style="text-align:center;color:#777">
-                No messages yet. Start the conversation.
+
+            `<div
+                style="
+                    text-align:center;
+                    color:#777;
+                    padding:30px;
+                "
+            >
+                No messages yet.<br>
+                Start a conversation.
             </div>`;
 
         return;
@@ -2073,100 +2472,130 @@ function renderPrivateMessages(messages){
     box.innerHTML = "";
 
 
-    messages.forEach(message => {
+    messages.forEach(
+        message => {
 
-        const mine =
-            message.sender ===
-            currentUser.uid;
-
-
-        const div =
-            document.createElement("div");
+            const mine =
+                message.sender ===
+                currentUser.uid;
 
 
-        div.className =
-            "message " +
-            (
-                mine
-                ? "me"
-                : "other"
+            const row =
+                document
+                .createElement("div");
+
+
+            row.className =
+                "message-row " +
+                (
+                    mine
+                    ? "mine"
+                    : "theirs"
+                );
+
+
+            const bubble =
+                document
+                .createElement("div");
+
+
+            bubble.className =
+                "message";
+
+
+            let status = "";
+
+
+            if(mine){
+
+                if(
+                    message.read === true
+                ){
+
+                    status =
+                        `<span
+                            class="tick read"
+                            title="Read"
+                        >
+                            ✓✓
+                        </span>`;
+
+                }else if(
+                    message.delivered === true
+                ){
+
+                    status =
+                        `<span
+                            class="tick"
+                            title="Delivered"
+                        >
+                            ✓✓
+                        </span>`;
+
+                }else{
+
+                    status =
+                        `<span
+                            class="tick"
+                            title="Sent"
+                        >
+                            ✓
+                        </span>`;
+                }
+            }
+
+
+            bubble.innerHTML =
+
+                `<div class="message-text">
+                    ${escapeHtml(
+                        message.text ||
+                        ""
+                    )}
+                </div>
+
+                <div class="message-footer">
+
+                    <span>
+                        ${formatDate(
+                            message.createdAt
+                        )}
+                    </span>
+
+                    ${status}
+
+                    ${
+                        mine
+
+                        ?
+
+                        `<button
+                            class="delete-btn"
+                            onclick="deleteMessage(
+                                '${message.id}'
+                            )"
+                        >
+                            Delete
+                        </button>`
+
+                        :
+
+                        ""
+                    }
+
+                </div>`;
+
+
+            row.appendChild(
+                bubble
             );
 
 
-        let status = "";
-
-
-        if(mine){
-
-            if(message.read === true){
-
-                status =
-                    `<span
-                        class="message-status"
-                        title="Read"
-                    >
-                        ✓✓
-                    </span>`;
-
-            }else if(message.delivered === true){
-
-                status =
-                    `<span
-                        class="message-status"
-                        title="Delivered"
-                    >
-                        ✓✓
-                    </span>`;
-
-            }else{
-
-                status =
-                    `<span
-                        class="message-status"
-                        title="Sent"
-                    >
-                        ✓
-                    </span>`;
-            }
+            box.appendChild(
+                row
+            );
         }
-
-
-        div.innerHTML =
-
-            `<div>
-                ${escapeHtml(message.text || "")}
-            </div>
-
-            <div class="message-time">
-
-                ${formatDate(message.createdAt)}
-
-                ${status}
-
-                ${
-                    mine
-                    ?
-                    `<button
-                        style="
-                            width:auto;
-                            padding:3px 7px;
-                            margin-left:5px;
-                            background:#c62828;
-                            font-size:10px;
-                        "
-                        onclick="deleteMessage('${message.id}')"
-                    >
-                        Delete
-                    </button>`
-                    :
-                    ""
-                }
-
-            </div>`;
-
-
-        box.appendChild(div);
-    });
+    );
 
 
     box.scrollTop =
@@ -2174,16 +2603,19 @@ function renderPrivateMessages(messages){
 }
 
 
-/* ================= MARK READ ================= */
 
-async function markMessagesAsRead(messages){
+/* ================= READ ================= */
+
+async function markMessagesAsRead(
+    messages
+){
 
     if(!currentUser){
         return;
     }
 
 
-    const updates = [];
+    const jobs = [];
 
 
     for(
@@ -2206,7 +2638,7 @@ async function markMessagesAsRead(messages){
 
         ){
 
-            updates.push(
+            jobs.push(
 
                 updateDoc(
                     doc(
@@ -2225,18 +2657,18 @@ async function markMessagesAsRead(messages){
     }
 
 
-    if(updates.length){
+    if(jobs.length){
 
         try{
 
             await Promise.all(
-                updates
+                jobs
             );
 
         }catch(error){
 
             console.error(
-                "Read receipt error:",
+                "Read update error:",
                 error
             );
         }
@@ -2244,9 +2676,11 @@ async function markMessagesAsRead(messages){
 }
 
 
-/* ================= SEND MESSAGE ================= */
 
-window.sendPrivateMessage = async function(){
+/* ================= SEND ================= */
+
+window.sendPrivateMessage =
+async function(){
 
     if(
         !currentUser ||
@@ -2254,7 +2688,7 @@ window.sendPrivateMessage = async function(){
     ){
 
         alert(
-            "Please select a user first."
+            "Select a user first."
         );
 
         return;
@@ -2262,7 +2696,8 @@ window.sendPrivateMessage = async function(){
 
 
     const input =
-        document.getElementById(
+        document
+        .getElementById(
             "privateMessageInput"
         );
 
@@ -2283,7 +2718,6 @@ window.sendPrivateMessage = async function(){
             currentUser.uid,
 
             currentChatUser.uid
-
         ];
 
 
@@ -2326,7 +2760,11 @@ window.sendPrivateMessage = async function(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Send error:",
+            error
+        );
+
 
         alert(
             "Failed to send message: " +
@@ -2336,12 +2774,15 @@ window.sendPrivateMessage = async function(){
 };
 
 
-/* ================= ENTER TO SEND ================= */
 
-window.handleChatKey = function(event){
+/* ================= ENTER ================= */
+
+window.handleChatKey =
+function(event){
 
     if(
-        event.key === "Enter" &&
+        event.key === "Enter"
+        &&
         !event.shiftKey
     ){
 
@@ -2352,20 +2793,24 @@ window.handleChatKey = function(event){
 };
 
 
-/* ================= DELETE MESSAGE ================= */
 
-window.deleteMessage = async function(messageId){
+/* ================= DELETE ================= */
+
+window.deleteMessage =
+async function(messageId){
 
     if(!currentUser){
         return;
     }
 
 
-    if(
-        !confirm(
+    const ok =
+        confirm(
             "Delete this message?"
-        )
-    ){
+        );
+
+
+    if(!ok){
         return;
     }
 
@@ -2389,7 +2834,10 @@ window.deleteMessage = async function(messageId){
 };
 
 
-/* ================= CONVERSATIONS ================= */
+
+/* ==================================================
+   CONVERSATIONS
+================================================== */
 
 function listenConversations(){
 
@@ -2402,7 +2850,8 @@ function listenConversations(){
 
         unsubscribeConversations();
 
-        unsubscribeConversations = null;
+        unsubscribeConversations =
+            null;
     }
 
 
@@ -2429,71 +2878,77 @@ function listenConversations(){
                     new Map();
 
 
-                snapshot.forEach(item => {
+                snapshot.forEach(
+                    item => {
 
-                    const data =
-                        item.data();
+                        const data =
+                            item.data();
 
 
-                    if(
-                        !data.sender ||
-                        !data.receiver
-                    ){
-                        return;
+                        if(
+                            !data.sender ||
+                            !data.receiver ||
+                            !Array.isArray(
+                                data.participants
+                            )
+                        ){
+                            return;
+                        }
+
+
+                        const otherUid =
+
+                            data.sender ===
+                            currentUser.uid
+
+                            ?
+
+                            data.receiver
+
+                            :
+
+                            data.sender;
+
+
+                        const old =
+                            map.get(
+                                otherUid
+                            );
+
+
+                        if(
+
+                            !old
+
+                            ||
+
+                            getTime(
+                                data.createdAt
+                            )
+
+                            >
+
+                            getTime(
+                                old.createdAt
+                            )
+
+                        ){
+
+                            map.set(
+                                otherUid,
+                                {
+
+                                    id:item.id,
+
+                                    ...data,
+
+                                    otherUid:
+                                        otherUid
+                                }
+                            );
+                        }
                     }
-
-
-                    const otherUid =
-
-                        data.sender ===
-                        currentUser.uid
-
-                        ?
-
-                        data.receiver
-
-                        :
-
-                        data.sender;
-
-
-                    const old =
-                        map.get(
-                            otherUid
-                        );
-
-
-                    if(
-
-                        !old
-
-                        ||
-
-                        getTime(
-                            data.createdAt
-                        )
-
-                        >
-
-                        getTime(
-                            old.createdAt
-                        )
-
-                    ){
-
-                        map.set(
-                            otherUid,
-                            {
-                                id:item.id,
-
-                                ...data,
-
-                                otherUid:
-                                    otherUid
-                            }
-                        );
-                    }
-                });
+                );
 
 
                 renderConversations(
@@ -2518,11 +2973,14 @@ function listenConversations(){
                     .innerHTML =
 
                     `<div class="alert error">
-                        ${escapeHtml(error.message)}
+                        ${escapeHtml(
+                            error.message
+                        )}
                     </div>`;
             }
         );
 }
+
 
 
 /* ================= RENDER CONVERSATIONS ================= */
@@ -2532,7 +2990,8 @@ function renderConversations(
 ){
 
     const container =
-        document.getElementById(
+        document
+        .getElementById(
             "conversationsContainer"
         );
 
@@ -2540,6 +2999,7 @@ function renderConversations(
     if(!conversations.length){
 
         container.innerHTML =
+
             `<p>
                 No conversations yet.
                 Go to Discover and select a user.
@@ -2549,14 +3009,14 @@ function renderConversations(
     }
 
 
-    container.innerHTML = "";
-
-
     conversations.sort(
         (a,b) =>
         getTime(b.createdAt) -
         getTime(a.createdAt)
     );
+
+
+    container.innerHTML = "";
 
 
     conversations.forEach(
@@ -2575,20 +3035,6 @@ function renderConversations(
             }
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "user-card";
-
-
-            const photo =
-                user.photo || "";
-
-
             const unread =
 
                 conversation.receiver ===
@@ -2599,27 +3045,50 @@ function renderConversations(
                 conversation.read !== true;
 
 
+            const div =
+                document
+                .createElement("div");
+
+
+            div.className =
+                "conversation";
+
+
+            div.onclick =
+                () => {
+
+                    openChatByUid(
+                        user.uid
+                    );
+                };
+
+
             div.innerHTML =
 
                 `<img
                     class="user-photo"
-                    src="${photo}"
+                    src="${
+                        user.photo ||
+                        defaultPhoto()
+                    }"
                 >
 
-                <div class="user-info">
+                <div
+                    class="
+                        conversation-info
+                        ${
+                            unread
+                            ? "unread"
+                            : ""
+                        }
+                    "
+                >
 
                     <h3>
                         ${escapeHtml(
                             user.name ||
                             "User"
                         )}
-
-                        ${
-                            unread
-                            ? " 🔵"
-                            : ""
-                        }
-
                     </h3>
 
                     <p>
@@ -2637,12 +3106,15 @@ function renderConversations(
 
                 </div>
 
-                <button
-                    style="width:auto"
-                    onclick="openChatByUid('${user.uid}')"
-                >
-                    Open
-                </button>`;
+                ${
+                    unread
+                    ?
+                    `<div
+                        class="unread-dot"
+                    ></div>`
+                    :
+                    ""
+                }`;
 
 
             container.appendChild(
@@ -2653,9 +3125,11 @@ function renderConversations(
 }
 
 
+
 /* ================= DARK MODE ================= */
 
-window.toggleDarkMode = function(){
+window.toggleDarkMode =
+function(){
 
     document
         .body
