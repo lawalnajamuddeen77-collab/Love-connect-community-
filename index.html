@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Love Connect Community</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -14,7 +15,7 @@
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f3f5f7;
+    background:#f4f6f8;
     color:#222;
 }
 
@@ -23,11 +24,13 @@ body.dark{
     color:#eee;
 }
 
+/* ================= HEADER ================= */
+
 header{
     background:#075e54;
     color:white;
+    padding:16px;
     text-align:center;
-    padding:15px;
 }
 
 header h1{
@@ -35,16 +38,28 @@ header h1{
     font-size:22px;
 }
 
+header small{
+    display:block;
+    margin-top:5px;
+}
+
+
+/* ================= CONTAINER ================= */
+
 .container{
+    width:100%;
     max-width:900px;
     margin:auto;
     padding:15px;
 }
 
+
+/* ================= CARD ================= */
+
 .card{
     background:white;
+    padding:20px;
     border-radius:12px;
-    padding:18px;
     margin-bottom:15px;
     box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
@@ -53,26 +68,34 @@ header h1{
     background:#1e1e1e;
 }
 
+
+/* ================= INPUTS ================= */
+
 input,
 textarea,
 button{
     width:100%;
     padding:12px;
-    margin:6px 0;
+    margin:7px 0;
     border-radius:8px;
     border:1px solid #ccc;
     font-size:15px;
 }
 
+textarea{
+    resize:none;
+}
+
 button{
     background:#075e54;
     color:white;
-    border:0;
+    border:none;
+    cursor:pointer;
     font-weight:bold;
 }
 
-button:active{
-    transform:scale(.98);
+button:hover{
+    opacity:.9;
 }
 
 .secondary{
@@ -83,75 +106,70 @@ button:active{
     background:#c62828;
 }
 
+.link{
+    color:#075e54;
+    cursor:pointer;
+    text-align:center;
+    margin-top:10px;
+}
+
+.dark .link{
+    color:#4dd0c0;
+}
+
 .hidden{
     display:none!important;
 }
 
-.link{
-    color:#075e54;
-    text-align:center;
-    margin:10px;
-    cursor:pointer;
-}
 
-.dark .link{
-    color:#55d6c4;
-}
-
-.alert{
-    padding:10px;
-    border-radius:8px;
-    margin:8px 0;
-}
-
-.error{
-    background:#f8d7da;
-    color:#842029;
-}
-
-.success{
-    background:#d1e7dd;
-    color:#0f5132;
-}
+/* ================= NAV ================= */
 
 nav{
+    background:white;
     display:flex;
     overflow-x:auto;
-    background:white;
+    border-bottom:1px solid #ddd;
     position:sticky;
     top:0;
-    z-index:20;
-    border-bottom:1px solid #ddd;
+    z-index:10;
 }
 
 .dark nav{
-    background:#1c1c1c;
+    background:#1b1b1b;
     border-color:#333;
 }
 
 nav button{
     min-width:100px;
+    margin:0;
+    border-radius:0;
     background:transparent;
     color:#075e54;
-    border-radius:0;
 }
 
 .dark nav button{
-    color:#55d6c4;
+    color:#4dd0c0;
 }
 
-/* USERS */
+
+/* ================= PROFILE ================= */
+
+.profile-photo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:10px auto;
+    background:#ddd;
+}
 
 .user-card{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:12px 0;
+    padding:12px;
     border-bottom:1px solid #ddd;
-}
-
-.user-card:last-child{
-    border-bottom:0;
 }
 
 .user-photo{
@@ -167,11 +185,11 @@ nav button{
 }
 
 .user-info h3{
-    margin:0 0 4px;
+    margin:0 0 5px;
 }
 
 .user-info p{
-    margin:3px 0;
+    margin:0;
     color:#777;
 }
 
@@ -179,21 +197,10 @@ nav button{
     color:#aaa;
 }
 
-/* PROFILE */
 
-.profile-photo{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    margin:10px auto;
-    background:#ddd;
-}
+/* ================= CHAT ================= */
 
-/* CHAT */
-
-.chat-top{
+.chat-header{
     display:flex;
     align-items:center;
     gap:10px;
@@ -203,191 +210,164 @@ nav button{
     border-radius:10px 10px 0 0;
 }
 
-.chat-top img{
+.chat-header img{
     width:45px;
     height:45px;
     border-radius:50%;
     object-fit:cover;
 }
 
-.chat-top-info{
-    flex:1;
-}
-
-.chat-top-info strong{
-    font-size:16px;
-}
-
-.chat-top-info small{
-    opacity:.85;
-}
-
 .chat-box{
     height:430px;
     overflow-y:auto;
-    padding:12px;
+    padding:15px;
     background:#e5ddd5;
-    scroll-behavior:smooth;
 }
 
 .dark .chat-box{
     background:#202020;
 }
 
-.message-row{
-    display:flex;
-    margin:6px 0;
-}
-
-.message-row.mine{
-    justify-content:flex-end;
-}
-
-.message-row.theirs{
-    justify-content:flex-start;
-}
-
 .message{
-    max-width:78%;
-    padding:9px 11px;
+    max-width:75%;
+    padding:9px 12px;
+    margin:7px 0;
     border-radius:10px;
-    position:relative;
     word-wrap:break-word;
 }
 
-.mine .message{
+.message.me{
+    margin-left:auto;
     background:#dcf8c6;
-    border-top-right-radius:3px;
 }
 
-.theirs .message{
+.message.other{
+    margin-right:auto;
     background:white;
-    border-top-left-radius:3px;
 }
 
-.dark .theirs .message{
+.dark .message.other{
     background:#333;
 }
 
-.message-text{
-    white-space:pre-wrap;
-}
-
-.message-footer{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    gap:4px;
-    margin-top:4px;
+.message-time{
     font-size:10px;
     color:#777;
+    margin-top:4px;
+    text-align:right;
 }
 
-.tick{
-    font-size:13px;
+.message-status{
+    font-size:12px;
+    margin-left:4px;
 }
 
-.read{
-    color:#075e54;
-}
-
-.dark .read{
-    color:#4dd0c0;
-}
-
-.delete-btn{
-    width:auto;
-    padding:2px 6px;
-    margin:0;
-    background:#c62828;
-    font-size:10px;
-}
-
-.chat-input-area{
+.chat-input{
     display:flex;
     gap:5px;
     padding:8px;
     background:white;
-    border-radius:0 0 10px 10px;
 }
 
-.dark .chat-input-area{
+.dark .chat-input{
     background:#1e1e1e;
 }
 
-.chat-input-area input{
+.chat-input input{
     flex:1;
     margin:0;
 }
 
-.send-btn{
-    width:75px;
+.chat-input button{
+    width:80px;
     margin:0;
 }
 
-/* CONVERSATIONS */
 
-.conversation{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 0;
-    border-bottom:1px solid #ddd;
-    cursor:pointer;
+/* ================= ALERT ================= */
+
+.alert{
+    padding:10px;
+    border-radius:8px;
+    margin:10px 0;
+    background:#fff3cd;
+    color:#664d03;
 }
 
-.conversation:last-child{
-    border-bottom:0;
+.error{
+    background:#f8d7da;
+    color:#842029;
 }
 
-.conversation-info{
-    flex:1;
+.success{
+    background:#d1e7dd;
+    color:#0f5132;
 }
 
-.conversation-info h3{
-    margin:0;
-}
 
-.conversation-info p{
-    margin:4px 0;
-    color:#777;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.unread{
-    font-weight:bold;
-}
-
-.unread-dot{
-    width:10px;
-    height:10px;
-    background:#075e54;
-    border-radius:50%;
-}
-
-/* LOADING */
+/* ================= LOADING ================= */
 
 .loading{
     text-align:center;
     padding:20px;
     color:#777;
 }
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#075e54;
+    color:white;
+    text-align:center;
+    padding:20px 10px;
+    margin-top:25px;
+    line-height:1.8;
+}
+
+footer .creator{
+    font-size:15px;
+    font-weight:bold;
+}
+
+footer .contact{
+    font-size:13px;
+}
+
+footer .copyright{
+    font-size:12px;
+    opacity:.9;
+}
+
+.dark footer{
+    background:#0b3d38;
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header>
+
     <h1>🌍 Love Connect Community</h1>
-    <small>Connect • Communicate • Community</small>
+
+    <small>
+        Connect • Communicate • Community
+    </small>
+
 </header>
+
 
 
 <!-- ================= AUTH ================= -->
 
 <div id="authPage" class="container">
+
 
     <!-- LOGIN -->
 
@@ -398,14 +378,14 @@ nav button{
         <div id="loginMessage"></div>
 
         <input
-            id="loginEmail"
             type="email"
+            id="loginEmail"
             placeholder="Email address"
         >
 
         <input
-            id="loginPassword"
             type="password"
+            id="loginPassword"
             placeholder="Password"
         >
 
@@ -430,47 +410,51 @@ nav button{
     </div>
 
 
+
     <!-- REGISTER -->
 
-    <div id="registerBox" class="card hidden">
+    <div
+        id="registerBox"
+        class="card hidden"
+    >
 
         <h2>📝 Create Account</h2>
 
         <div id="registerMessage"></div>
 
         <input
-            id="registerName"
             type="text"
+            id="registerName"
             placeholder="Full name"
         >
 
         <input
-            id="registerUsername"
             type="text"
+            id="registerUsername"
             placeholder="Username"
         >
 
         <input
-            id="registerEmail"
             type="email"
+            id="registerEmail"
             placeholder="Email address"
         >
 
         <input
-            id="registerPassword"
             type="password"
+            id="registerPassword"
             placeholder="Password"
         >
 
         <textarea
             id="registerBio"
-            rows="3"
             placeholder="Short bio"
+            rows="3"
         ></textarea>
 
         <input
-            id="registerPhoto"
             type="file"
+            id="registerPhoto"
             accept="image/*"
         >
 
@@ -493,236 +477,306 @@ nav button{
 
 <!-- ================= APP ================= -->
 
-<div id="appPage" class="hidden">
-
-<nav>
-
-    <button onclick="showPage('homePage')">
-        🏠 Home
-    </button>
-
-    <button onclick="showPage('discoverPage')">
-        🔎 Discover
-    </button>
-
-    <button onclick="showPage('messagesPage')">
-        💬 Messages
-    </button>
-
-    <button onclick="showPage('profilePage')">
-        👤 Profile
-    </button>
-
-    <button onclick="toggleDarkMode()">
-        🌙 Dark
-    </button>
-
-    <button onclick="logoutUser()">
-        🚪 Logout
-    </button>
-
-</nav>
+<div
+    id="appPage"
+    class="hidden"
+>
 
 
-<div class="container">
+    <!-- NAV -->
 
-
-<!-- ================= HOME ================= -->
-
-<section id="homePage">
-
-    <div class="card">
-
-        <h2>🏠 Home</h2>
-
-        <div id="homeUser">
-            Loading...
-        </div>
-
-        <p>
-            Welcome to Love Connect Community.
-        </p>
-
-        <p>
-            Use Discover to find community members
-            and start a private conversation.
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= DISCOVER ================= -->
-
-<section id="discoverPage" class="hidden">
-
-    <div class="card">
-
-        <h2>🔎 Discover</h2>
-
-        <input
-            id="searchUsers"
-            type="text"
-            placeholder="Search name or username..."
-            oninput="searchUsers()"
-        >
-
-    </div>
-
-    <div
-        id="usersContainer"
-        class="card"
-    >
-        <div class="loading">
-            Loading users...
-        </div>
-    </div>
-
-</section>
-
-
-
-<!-- ================= VIEW PROFILE ================= -->
-
-<section id="viewProfilePage" class="hidden">
-
-    <div class="card">
+    <nav>
 
         <button
-            class="secondary"
+            onclick="showPage('homePage')"
+        >
+            🏠 Home
+        </button>
+
+        <button
             onclick="showPage('discoverPage')"
         >
-            ← Back
+            🔎 Discover
         </button>
-
-        <div id="viewProfileContent"></div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= MESSAGES ================= -->
-
-<section id="messagesPage" class="hidden">
-
-    <div class="card">
-
-        <h2>💬 Messages</h2>
-
-        <div
-            id="conversationsContainer"
-        >
-            <div class="loading">
-                Loading conversations...
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ================= PRIVATE CHAT ================= -->
-
-<section id="privateChatPage" class="hidden">
-
-    <div class="card">
 
         <button
-            class="secondary"
-            onclick="closeChat()"
+            onclick="showPage('messagesPage')"
         >
-            ← Back
+            💬 Messages
         </button>
 
-        <div id="chatHeader"></div>
+        <button
+            onclick="showPage('profilePage')"
+        >
+            👤 Profile
+        </button>
 
-        <div
-            id="privateChatBox"
-            class="chat-box"
-        ></div>
+        <button
+            onclick="toggleDarkMode()"
+        >
+            🌙 Dark
+        </button>
 
-        <div class="chat-input-area">
+        <button
+            onclick="logoutUser()"
+        >
+            🚪 Logout
+        </button>
 
-            <input
-                id="privateMessageInput"
-                type="text"
-                placeholder="Write a message..."
-                onkeydown="handleChatKey(event)"
+    </nav>
+
+
+
+    <div class="container">
+
+
+        <!-- ================= HOME ================= -->
+
+        <section id="homePage">
+
+            <div class="card">
+
+                <h2>
+                    🌍 Welcome to Love Connect
+                </h2>
+
+                <p>
+                    Welcome to Love Connect Community.
+                    Connect and communicate with other
+                    community members.
+                </p>
+
+                <div id="homeUser"></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= DISCOVER ================= -->
+
+        <section
+            id="discoverPage"
+            class="hidden"
+        >
+
+            <div class="card">
+
+                <h2>
+                    🔎 Discover Users
+                </h2>
+
+                <input
+                    type="text"
+                    id="searchUsers"
+                    placeholder="Search users..."
+                    oninput="searchUsers()"
+                >
+
+            </div>
+
+            <div
+                id="usersContainer"
+                class="card"
             >
 
-            <button
-                class="send-btn"
-                onclick="sendPrivateMessage()"
-            >
-                Send
-            </button>
+                <div class="loading">
+                    Loading users...
+                </div>
 
-        </div>
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= VIEW PROFILE ================= -->
+
+        <section
+            id="viewProfilePage"
+            class="hidden"
+        >
+
+            <div class="card">
+
+                <button
+                    class="secondary"
+                    onclick="showPage('discoverPage')"
+                >
+                    ← Back
+                </button>
+
+                <div
+                    id="viewProfileContent"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= MESSAGES ================= -->
+
+        <section
+            id="messagesPage"
+            class="hidden"
+        >
+
+            <div class="card">
+
+                <h2>
+                    💬 Conversations
+                </h2>
+
+                <div
+                    id="conversationsContainer"
+                >
+
+                    <div class="loading">
+                        Loading conversations...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= PRIVATE CHAT ================= -->
+
+        <section
+            id="privateChatPage"
+            class="hidden"
+        >
+
+            <div class="card">
+
+                <button
+                    class="secondary"
+                    onclick="closeChat()"
+                >
+                    ← Back to Messages
+                </button>
+
+                <div id="chatHeader"></div>
+
+                <div
+                    id="privateChatBox"
+                    class="chat-box"
+                ></div>
+
+                <div class="chat-input">
+
+                    <input
+                        type="text"
+                        id="privateMessageInput"
+                        placeholder="Type a message..."
+                        onkeydown="handleChatKey(event)"
+                    >
+
+                    <button
+                        onclick="sendPrivateMessage()"
+                    >
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <section
+            id="profilePage"
+            class="hidden"
+        >
+
+            <div class="card">
+
+                <h2>
+                    👤 My Profile
+                </h2>
+
+                <div
+                    id="profileMessage"
+                ></div>
+
+                <img
+                    id="profilePhotoPreview"
+                    class="profile-photo"
+                    src=""
+                >
+
+                <input
+                    type="file"
+                    id="profilePhoto"
+                    accept="image/*"
+                    onchange="previewProfilePhoto()"
+                >
+
+                <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Full name"
+                >
+
+                <input
+                    type="text"
+                    id="profileUsername"
+                    placeholder="Username"
+                >
+
+                <textarea
+                    id="profileBio"
+                    placeholder="Bio"
+                    rows="4"
+                ></textarea>
+
+                <button
+                    onclick="saveProfile()"
+                >
+                    💾 Save Profile
+                </button>
+
+            </div>
+
+        </section>
+
 
     </div>
 
-</section>
+
+</div>
 
 
 
-<!-- ================= PROFILE ================= -->
+<!-- ================= FOOTER ================= -->
 
-<section id="profilePage" class="hidden">
+<footer>
 
-    <div class="card">
-
-        <h2>👤 My Profile</h2>
-
-        <div id="profileMessage"></div>
-
-        <img
-            id="profilePhotoPreview"
-            class="profile-photo"
-            src=""
-        >
-
-        <input
-            id="profilePhoto"
-            type="file"
-            accept="image/*"
-            onchange="previewProfilePhoto()"
-        >
-
-        <input
-            id="profileName"
-            type="text"
-            placeholder="Full name"
-        >
-
-        <input
-            id="profileUsername"
-            type="text"
-            placeholder="Username"
-        >
-
-        <textarea
-            id="profileBio"
-            rows="4"
-            placeholder="Bio"
-        ></textarea>
-
-        <button onclick="saveProfile()">
-            💾 Save Profile
-        </button>
-
+    <div class="creator">
+        Created by Engineer Najamuddeen Lawal Danmusa
     </div>
 
-</section>
+    <div class="contact">
+        Email/Contact:
+        nlawaldms123@gmail.com
+        | 07089306672
+    </div>
 
+    <div class="copyright">
+        © 2027 All Rights Reserved
+    </div>
 
-</div>
-</div>
+</footer>
 
 
 
@@ -798,26 +852,28 @@ const firebaseConfig = {
 
 
 
-const app =
-    initializeApp(firebaseConfig);
+/* ================= INITIALIZE ================= */
 
+const app =
+    initializeApp(
+        firebaseConfig
+    );
 
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
 
 
 
-/* ================= GLOBAL VARIABLES ================= */
+/* ================= VARIABLES ================= */
 
 let currentUser = null;
 
-let currentChatUser = null;
-
 let allUsers = [];
+
+let currentChatUser = null;
 
 let unsubscribeMessages = null;
 
@@ -833,6 +889,7 @@ function escapeHtml(value){
         value === null ||
         value === undefined
     ){
+
         return "";
     }
 
@@ -855,10 +912,14 @@ function getTime(timestamp){
         typeof timestamp.toMillis ===
         "function"
     ){
+
         return timestamp.toMillis();
     }
 
-    return new Date(timestamp).getTime() || 0;
+    return (
+        new Date(timestamp).getTime()
+        || 0
+    );
 }
 
 
@@ -868,7 +929,7 @@ function formatDate(timestamp){
         getTime(timestamp);
 
     if(!time){
-        return "Sending...";
+        return "";
     }
 
     return new Date(time)
@@ -877,13 +938,15 @@ function formatDate(timestamp){
 
 
 function showMessage(
-    id,
+    elementId,
     text,
     type="success"
 ){
 
     const element =
-        document.getElementById(id);
+        document.getElementById(
+            elementId
+        );
 
     if(!element){
         return;
@@ -897,71 +960,36 @@ function showMessage(
 
 
 
-function defaultPhoto(){
-
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(
-
-            `<svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="120"
-                height="120"
-            >
-
-                <rect
-                    width="100%"
-                    height="100%"
-                    fill="#ddd"
-                />
-
-                <text
-                    x="50%"
-                    y="50%"
-                    dominant-baseline="middle"
-                    text-anchor="middle"
-                    font-size="50"
-                >
-                    👤
-                </text>
-
-            </svg>`
-        );
-}
-
-
-
 /* ================= AUTH UI ================= */
 
-window.showRegister = function(){
+window.showRegister =
+function(){
 
     document
         .getElementById("loginBox")
-        .classList
-        .add("hidden");
+        .classList.add("hidden");
 
     document
         .getElementById("registerBox")
-        .classList
-        .remove("hidden");
+        .classList.remove("hidden");
 };
 
 
-window.showLogin = function(){
+window.showLogin =
+function(){
 
     document
         .getElementById("registerBox")
-        .classList
-        .add("hidden");
+        .classList.add("hidden");
 
     document
         .getElementById("loginBox")
-        .classList
-        .remove("hidden");
+        .classList.remove("hidden");
 };
 
 
 
-/* ================= IMAGE ================= */
+/* ================= IMAGE COMPRESS ================= */
 
 function compressImage(file){
 
@@ -975,29 +1003,27 @@ function compressImage(file){
                 return;
             }
 
-
             const reader =
                 new FileReader();
 
 
             reader.onload =
-            event => {
+            function(event){
 
                 const img =
                     new Image();
 
 
                 img.onload =
-                () => {
+                function(){
 
                     const canvas =
-                        document
-                        .createElement("canvas");
+                        document.createElement(
+                            "canvas"
+                        );
 
 
-                    const max =
-                        500;
-
+                    const maxSize = 500;
 
                     let width =
                         img.width;
@@ -1006,30 +1032,30 @@ function compressImage(file){
                         img.height;
 
 
-                    if(
-                        width > max ||
-                        height > max
-                    ){
+                    if(width > height){
 
-                        if(width > height){
+                        if(width > maxSize){
 
                             height =
                                 height *
-                                max /
+                                maxSize /
                                 width;
 
                             width =
-                                max;
+                                maxSize;
+                        }
 
-                        }else{
+                    }else{
+
+                        if(height > maxSize){
 
                             width =
                                 width *
-                                max /
+                                maxSize /
                                 height;
 
                             height =
-                                max;
+                                maxSize;
                         }
                     }
 
@@ -1042,8 +1068,9 @@ function compressImage(file){
 
 
                     const ctx =
-                        canvas
-                        .getContext("2d");
+                        canvas.getContext(
+                            "2d"
+                        );
 
 
                     ctx.drawImage(
@@ -1058,7 +1085,7 @@ function compressImage(file){
                     const result =
                         canvas.toDataURL(
                             "image/jpeg",
-                            .65
+                            0.65
                         );
 
 
@@ -1069,7 +1096,7 @@ function compressImage(file){
 
                         reject(
                             new Error(
-                                "Image is too large."
+                                "Image is too large. Please choose a smaller photo."
                             )
                         );
 
@@ -1082,7 +1109,7 @@ function compressImage(file){
 
 
                 img.onerror =
-                () => {
+                function(){
 
                     reject(
                         new Error(
@@ -1098,7 +1125,7 @@ function compressImage(file){
 
 
             reader.onerror =
-            () => {
+            function(){
 
                 reject(
                     new Error(
@@ -1109,6 +1136,7 @@ function compressImage(file){
 
 
             reader.readAsDataURL(file);
+
         }
     );
 }
@@ -1122,41 +1150,53 @@ async function(){
 
     const name =
         document
-        .getElementById("registerName")
+        .getElementById(
+            "registerName"
+        )
         .value
         .trim();
 
 
     const username =
         document
-        .getElementById("registerUsername")
+        .getElementById(
+            "registerUsername"
+        )
         .value
         .trim();
 
 
     const email =
         document
-        .getElementById("registerEmail")
+        .getElementById(
+            "registerEmail"
+        )
         .value
         .trim();
 
 
     const password =
         document
-        .getElementById("registerPassword")
+        .getElementById(
+            "registerPassword"
+        )
         .value;
 
 
     const bio =
         document
-        .getElementById("registerBio")
+        .getElementById(
+            "registerBio"
+        )
         .value
         .trim();
 
 
     const photoFile =
         document
-        .getElementById("registerPhoto")
+        .getElementById(
+            "registerPhoto"
+        )
         .files[0];
 
 
@@ -1181,7 +1221,7 @@ async function(){
 
         showMessage(
             "registerMessage",
-            "Password must be at least 6 characters.",
+            "Password must contain at least 6 characters.",
             "error"
         );
 
@@ -1197,7 +1237,7 @@ async function(){
         );
 
 
-        const result =
+        const userCredential =
             await createUserWithEmailAndPassword(
                 auth,
                 email,
@@ -1206,7 +1246,7 @@ async function(){
 
 
         const user =
-            result.user;
+            userCredential.user;
 
 
         let photo = "";
@@ -1237,19 +1277,26 @@ async function(){
             ),
             {
 
-                uid:user.uid,
+                uid:
+                    user.uid,
 
-                name:name,
+                name:
+                    name,
 
-                username:username,
+                username:
+                    username,
 
-                email:email,
+                email:
+                    email,
 
-                bio:bio,
+                bio:
+                    bio,
 
-                photo:photo,
+                photo:
+                    photo,
 
-                online:true,
+                online:
+                    true,
 
                 createdAt:
                     serverTimestamp(),
@@ -1263,13 +1310,14 @@ async function(){
 
         showMessage(
             "registerMessage",
-            "Registration successful."
+            "Account created successfully."
         );
 
 
     }catch(error){
 
         console.error(error);
+
 
         showMessage(
             "registerMessage",
@@ -1288,21 +1336,22 @@ async function(){
 
     const email =
         document
-        .getElementById("loginEmail")
+        .getElementById(
+            "loginEmail"
+        )
         .value
         .trim();
 
 
     const password =
         document
-        .getElementById("loginPassword")
+        .getElementById(
+            "loginPassword"
+        )
         .value;
 
 
-    if(
-        !email ||
-        !password
-    ){
+    if(!email || !password){
 
         showMessage(
             "loginMessage",
@@ -1324,6 +1373,9 @@ async function(){
 
     }catch(error){
 
+        console.error(error);
+
+
         showMessage(
             "loginMessage",
             error.message,
@@ -1334,14 +1386,16 @@ async function(){
 
 
 
-/* ================= RESET PASSWORD ================= */
+/* ================= PASSWORD RESET ================= */
 
 window.resetPassword =
 async function(){
 
     const email =
         document
-        .getElementById("loginEmail")
+        .getElementById(
+            "loginEmail"
+        )
         .value
         .trim();
 
@@ -1349,7 +1403,7 @@ async function(){
     if(!email){
 
         alert(
-            "Enter your email first."
+            "Enter your email address first."
         );
 
         return;
@@ -1365,8 +1419,9 @@ async function(){
 
 
         alert(
-            "Password reset email sent."
+            "Password reset email has been sent."
         );
+
 
     }catch(error){
 
@@ -1387,7 +1442,7 @@ async function(){
 
         if(currentUser){
 
-            await setDoc(
+            await updateDoc(
                 doc(
                     db,
                     "users",
@@ -1395,9 +1450,6 @@ async function(){
                 ),
                 {
                     online:false
-                },
-                {
-                    merge:true
                 }
             );
         }
@@ -1426,15 +1478,21 @@ onAuthStateChanged(
 
 
             document
-                .getElementById("authPage")
-                .classList
-                .add("hidden");
+                .getElementById(
+                    "authPage"
+                )
+                .classList.add(
+                    "hidden"
+                );
 
 
             document
-                .getElementById("appPage")
-                .classList
-                .remove("hidden");
+                .getElementById(
+                    "appPage"
+                )
+                .classList.remove(
+                    "hidden"
+                );
 
 
             await setOnlineStatus();
@@ -1445,30 +1503,38 @@ onAuthStateChanged(
 
             listenConversations();
 
-            showPage("homePage");
+            showPage(
+                "homePage"
+            );
+
 
         }else{
 
             currentUser =
                 null;
 
-            currentChatUser =
-                null;
+
+            document
+                .getElementById(
+                    "authPage"
+                )
+                .classList.remove(
+                    "hidden"
+                );
 
 
             document
-                .getElementById("authPage")
-                .classList
-                .remove("hidden");
+                .getElementById(
+                    "appPage"
+                )
+                .classList.add(
+                    "hidden"
+                );
 
 
-            document
-                .getElementById("appPage")
-                .classList
-                .add("hidden");
-
-
-            if(unsubscribeMessages){
+            if(
+                unsubscribeMessages
+            ){
 
                 unsubscribeMessages();
 
@@ -1477,7 +1543,9 @@ onAuthStateChanged(
             }
 
 
-            if(unsubscribeConversations){
+            if(
+                unsubscribeConversations
+            ){
 
                 unsubscribeConversations();
 
@@ -1490,7 +1558,7 @@ onAuthStateChanged(
 
 
 
-/* ================= ONLINE ================= */
+/* ================= ONLINE STATUS ================= */
 
 async function setOnlineStatus(){
 
@@ -1517,13 +1585,16 @@ async function setOnlineStatus(){
 
     }catch(error){
 
-        console.log(error);
+        console.log(
+            "Status error:",
+            error
+        );
     }
 }
 
 
 
-/* ================= PAGE ================= */
+/* ================= PAGE SYSTEM ================= */
 
 window.showPage =
 function(pageId){
@@ -1541,36 +1612,41 @@ function(pageId){
         "privateChatPage",
 
         "profilePage"
+
     ];
 
 
     pages.forEach(
         id => {
 
-            const page =
-                document
-                .getElementById(id);
+            const element =
+                document.getElementById(
+                    id
+                );
 
-            if(page){
 
-                page
-                    .classList
-                    .add("hidden");
+            if(element){
+
+                element.classList.add(
+                    "hidden"
+                );
             }
+
         }
     );
 
 
-    const selected =
-        document
-        .getElementById(pageId);
+    const page =
+        document.getElementById(
+            pageId
+        );
 
 
-    if(selected){
+    if(page){
 
-        selected
-            .classList
-            .remove("hidden");
+        page.classList.remove(
+            "hidden"
+        );
     }
 
 
@@ -1594,7 +1670,7 @@ function(pageId){
 
 
 
-/* ================= MY PROFILE ================= */
+/* ================= LOAD MY PROFILE ================= */
 
 async function loadMyProfile(){
 
@@ -1605,7 +1681,7 @@ async function loadMyProfile(){
 
     try{
 
-        const snap =
+        const snapshot =
             await getDoc(
                 doc(
                     db,
@@ -1615,50 +1691,69 @@ async function loadMyProfile(){
             );
 
 
-        if(!snap.exists()){
+        if(
+            !snapshot.exists()
+        ){
+
             return;
         }
 
 
         const data =
-            snap.data();
+            snapshot.data();
 
 
         document
-            .getElementById("profileName")
+            .getElementById(
+                "profileName"
+            )
             .value =
             data.name || "";
 
 
         document
-            .getElementById("profileUsername")
+            .getElementById(
+                "profileUsername"
+            )
             .value =
             data.username || "";
 
 
         document
-            .getElementById("profileBio")
+            .getElementById(
+                "profileBio"
+            )
             .value =
             data.bio || "";
 
 
         document
-            .getElementById("profilePhotoPreview")
+            .getElementById(
+                "profilePhotoPreview"
+            )
             .src =
             data.photo ||
-            defaultPhoto();
+            "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(
+                "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
+                "<rect width='100%' height='100%' fill='#ddd'/>" +
+                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
+                "</svg>"
+            );
 
 
         document
-            .getElementById("homeUser")
+            .getElementById(
+                "homeUser"
+            )
             .innerHTML =
-
             `<h3>
-                Welcome,
-                ${escapeHtml(
-                    data.name ||
-                    currentUser.email
-                )}
+                Welcome, ${
+                    escapeHtml(
+                        data.name ||
+                        currentUser.email
+                    )
+                }
             </h3>
 
             <p>
@@ -1666,7 +1761,7 @@ async function loadMyProfile(){
                     data.username || ""
                 )}
             </p>`;
-        
+            
 
     }catch(error){
 
@@ -1688,28 +1783,36 @@ async function(){
 
     const name =
         document
-        .getElementById("profileName")
+        .getElementById(
+            "profileName"
+        )
         .value
         .trim();
 
 
     const username =
         document
-        .getElementById("profileUsername")
+        .getElementById(
+            "profileUsername"
+        )
         .value
         .trim();
 
 
     const bio =
         document
-        .getElementById("profileBio")
+        .getElementById(
+            "profileBio"
+        )
         .value
         .trim();
 
 
-    const file =
+    const photoFile =
         document
-        .getElementById("profilePhoto")
+        .getElementById(
+            "profilePhoto"
+        )
         .files[0];
 
 
@@ -1738,11 +1841,11 @@ async function(){
             .src;
 
 
-        if(file){
+        if(photoFile){
 
             photo =
                 await compressImage(
-                    file
+                    photoFile
                 );
         }
 
@@ -1755,13 +1858,17 @@ async function(){
             ),
             {
 
-                name:name,
+                name:
+                    name,
 
-                username:username,
+                username:
+                    username,
 
-                bio:bio,
+                bio:
+                    bio,
 
-                photo:photo,
+                photo:
+                    photo,
 
                 updatedAt:
                     serverTimestamp()
@@ -1776,14 +1883,15 @@ async function(){
         await updateProfile(
             currentUser,
             {
-                displayName:name
+                displayName:
+                    name
             }
         );
 
 
         showMessage(
             "profileMessage",
-            "Profile saved successfully."
+            "Profile updated successfully."
         );
 
 
@@ -1791,7 +1899,11 @@ async function(){
 
         await loadMyProfile();
 
+
     }catch(error){
+
+        console.error(error);
+
 
         showMessage(
             "profileMessage",
@@ -1803,14 +1915,16 @@ async function(){
 
 
 
-/* ================= PHOTO PREVIEW ================= */
+/* ================= PREVIEW PHOTO ================= */
 
 window.previewProfilePhoto =
 async function(){
 
     const file =
         document
-        .getElementById("profilePhoto")
+        .getElementById(
+            "profilePhoto"
+        )
         .files[0];
 
 
@@ -1822,7 +1936,9 @@ async function(){
     try{
 
         const photo =
-            await compressImage(file);
+            await compressImage(
+                file
+            );
 
 
         document
@@ -1831,6 +1947,7 @@ async function(){
             )
             .src =
             photo;
+
 
     }catch(error){
 
@@ -1849,6 +1966,12 @@ async function loadUsers(){
     if(!currentUser){
         return;
     }
+
+
+    const container =
+        document.getElementById(
+            "usersContainer"
+        );
 
 
     try{
@@ -1880,11 +2003,14 @@ async function loadUsers(){
 
                     allUsers.push({
 
-                        id:item.id,
+                        id:
+                            item.id,
 
                         ...data
+
                     });
                 }
+
             }
         );
 
@@ -1893,16 +2019,15 @@ async function loadUsers(){
             allUsers
         );
 
+
     }catch(error){
 
-        console.error(error);
+        console.error(
+            error
+        );
 
-        document
-            .getElementById(
-                "usersContainer"
-            )
-            .innerHTML =
 
+        container.innerHTML =
             `<div class="alert error">
                 ${escapeHtml(
                     error.message
@@ -1913,13 +2038,12 @@ async function loadUsers(){
 
 
 
-/* ================= USERS ================= */
+/* ================= RENDER USERS ================= */
 
 function renderUsers(users){
 
     const container =
-        document
-        .getElementById(
+        document.getElementById(
             "usersContainer"
         );
 
@@ -1927,21 +2051,36 @@ function renderUsers(users){
     if(!users.length){
 
         container.innerHTML =
-            "<p>No other users found.</p>";
+            `<p>
+                No other users found.
+            </p>`;
 
         return;
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML =
+        "";
 
 
     users.forEach(
         user => {
 
+            const photo =
+                user.photo ||
+                "data:image/svg+xml;charset=UTF-8," +
+                encodeURIComponent(
+                    "<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>" +
+                    "<rect width='100%' height='100%' fill='#ddd'/>" +
+                    "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='30'>👤</text>" +
+                    "</svg>"
+                );
+
+
             const div =
-                document
-                .createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             div.className =
@@ -1952,10 +2091,7 @@ function renderUsers(users){
 
                 `<img
                     class="user-photo"
-                    src="${
-                        user.photo ||
-                        defaultPhoto()
-                    }"
+                    src="${photo}"
                 >
 
                 <div class="user-info">
@@ -1987,17 +2123,13 @@ function renderUsers(users){
                 <div>
 
                     <button
-                        onclick="viewUserProfile(
-                            '${user.uid}'
-                        )"
+                        onclick="viewUserProfile('${user.uid}')"
                     >
                         View
                     </button>
 
                     <button
-                        onclick="openChatByUid(
-                            '${user.uid}'
-                        )"
+                        onclick="openChatByUid('${user.uid}')"
                     >
                         Chat
                     </button>
@@ -2008,18 +2140,19 @@ function renderUsers(users){
             container.appendChild(
                 div
             );
+
         }
     );
 }
 
 
 
-/* ================= SEARCH ================= */
+/* ================= SEARCH USERS ================= */
 
 window.searchUsers =
 function(){
 
-    const value =
+    const search =
         document
         .getElementById(
             "searchUsers"
@@ -2029,7 +2162,7 @@ function(){
         .trim();
 
 
-    if(!value){
+    if(!search){
 
         renderUsers(
             allUsers
@@ -2060,8 +2193,13 @@ function(){
 
 
                 return (
-                    name.includes(value) ||
-                    username.includes(value)
+                    name.includes(
+                        search
+                    )
+                    ||
+                    username.includes(
+                        search
+                    )
                 );
             }
         );
@@ -2074,7 +2212,7 @@ function(){
 
 
 
-/* ================= VIEW USER ================= */
+/* ================= VIEW PROFILE ================= */
 
 window.viewUserProfile =
 function(uid){
@@ -2091,6 +2229,17 @@ function(uid){
     }
 
 
+    const photo =
+        user.photo ||
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+            "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
+            "<rect width='100%' height='100%' fill='#ddd'/>" +
+            "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
+            "</svg>"
+        );
+
+
     document
         .getElementById(
             "viewProfileContent"
@@ -2099,10 +2248,7 @@ function(uid){
 
         `<img
             class="profile-photo"
-            src="${
-                user.photo ||
-                defaultPhoto()
-            }"
+            src="${photo}"
         >
 
         <h2 style="text-align:center">
@@ -2129,7 +2275,9 @@ function(uid){
 
         <div class="card">
 
-            <h3>About</h3>
+            <h3>
+                About
+            </h3>
 
             <p>
                 ${escapeHtml(
@@ -2141,11 +2289,9 @@ function(uid){
         </div>
 
         <button
-            onclick="openChatByUid(
-                '${user.uid}'
-            )"
+            onclick="openChatByUid('${user.uid}')"
         >
-            💬 Message
+            💬 Send Message
         </button>`;
 
 
@@ -2154,11 +2300,6 @@ function(uid){
     );
 };
 
-
-
-/* ==================================================
-   PRIVATE CHAT
-================================================== */
 
 
 /* ================= OPEN CHAT ================= */
@@ -2178,11 +2319,62 @@ function(uid){
     }
 
 
+    openChat(
+        user
+    );
+};
+
+
+function openChat(user){
+
     currentChatUser =
         user;
 
 
-    showChatHeader();
+    document
+        .getElementById(
+            "chatHeader"
+        )
+        .innerHTML =
+
+        `<div class="chat-header">
+
+            <img
+                src="${
+                    user.photo ||
+                    "data:image/svg+xml;charset=UTF-8," +
+                    encodeURIComponent(
+                        "<svg xmlns='http://www.w3.org/2000/svg' width='45' height='45'>" +
+                        "<rect width='100%' height='100%' fill='#ddd'/>" +
+                        "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='25'>👤</text>" +
+                        "</svg>"
+                    )
+                }"
+            >
+
+            <div>
+
+                <strong>
+                    ${escapeHtml(
+                        user.name ||
+                        "User"
+                    )}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${
+                        user.online
+                        ? "🟢 Online"
+                        : "⚫ Offline"
+                    }
+                </small>
+
+            </div>
+
+        </div>`;
+
 
     showPage(
         "privateChatPage"
@@ -2195,70 +2387,15 @@ function(uid){
     setTimeout(
         () => {
 
-            const input =
-                document
+            document
                 .getElementById(
                     "privateMessageInput"
-                );
-
-
-            if(input){
-                input.focus();
-            }
+                )
+                .focus();
 
         },
         100
     );
-};
-
-
-
-/* ================= CHAT HEADER ================= */
-
-function showChatHeader(){
-
-    if(!currentChatUser){
-        return;
-    }
-
-
-    document
-        .getElementById(
-            "chatHeader"
-        )
-        .innerHTML =
-
-        `<div class="chat-top">
-
-            <img
-                src="${
-                    currentChatUser.photo ||
-                    defaultPhoto()
-                }"
-            >
-
-            <div class="chat-top-info">
-
-                <strong>
-                    ${escapeHtml(
-                        currentChatUser.name ||
-                        "User"
-                    )}
-                </strong>
-
-                <br>
-
-                <small>
-                    ${
-                        currentChatUser.online
-                        ? "🟢 Online"
-                        : "⚫ Offline"
-                    }
-                </small>
-
-            </div>
-
-        </div>`;
 }
 
 
@@ -2272,7 +2409,9 @@ function(){
         null;
 
 
-    if(unsubscribeMessages){
+    if(
+        unsubscribeMessages
+    ){
 
         unsubscribeMessages();
 
@@ -2288,7 +2427,7 @@ function(){
 
 
 
-/* ================= LISTEN CHAT ================= */
+/* ================= LISTEN PRIVATE MESSAGES ================= */
 
 function listenPrivateMessages(){
 
@@ -2296,29 +2435,20 @@ function listenPrivateMessages(){
         !currentUser ||
         !currentChatUser
     ){
+
         return;
     }
 
 
-    if(unsubscribeMessages){
+    if(
+        unsubscribeMessages
+    ){
 
         unsubscribeMessages();
 
         unsubscribeMessages =
             null;
     }
-
-
-    /*
-       IMPORTANT:
-
-       We listen only to messages
-       where current user is a participant.
-
-       Then we check BOTH sender and receiver
-       so messages from another conversation
-       cannot enter this chat.
-    */
 
 
     const q =
@@ -2340,7 +2470,8 @@ function listenPrivateMessages(){
             q,
             snapshot => {
 
-                const messages = [];
+                const messages =
+                    [];
 
 
                 snapshot.forEach(
@@ -2350,7 +2481,7 @@ function listenPrivateMessages(){
                             item.data();
 
 
-                        const messageBetweenUsers =
+                        const isThisConversation =
 
                             (
                                 data.sender ===
@@ -2376,16 +2507,19 @@ function listenPrivateMessages(){
 
 
                         if(
-                            messageBetweenUsers
+                            isThisConversation
                         ){
 
                             messages.push({
 
-                                id:item.id,
+                                id:
+                                    item.id,
 
                                 ...data
+
                             });
                         }
+
                     }
                 );
 
@@ -2394,8 +2528,7 @@ function listenPrivateMessages(){
                     (a,b) =>
                     getTime(
                         a.createdAt
-                    )
-                    -
+                    ) -
                     getTime(
                         b.createdAt
                     )
@@ -2416,6 +2549,7 @@ function listenPrivateMessages(){
             error => {
 
                 console.error(
+                    "Message listener error:",
                     error
                 );
 
@@ -2437,15 +2571,14 @@ function listenPrivateMessages(){
 
 
 
-/* ================= RENDER CHAT ================= */
+/* ================= RENDER MESSAGES ================= */
 
 function renderPrivateMessages(
     messages
 ){
 
     const box =
-        document
-        .getElementById(
+        document.getElementById(
             "privateChatBox"
         );
 
@@ -2453,23 +2586,22 @@ function renderPrivateMessages(
     if(!messages.length){
 
         box.innerHTML =
-
             `<div
                 style="
                     text-align:center;
-                    color:#777;
-                    padding:30px;
+                    color:#777
                 "
             >
-                No messages yet.<br>
-                Start a conversation.
+                No messages yet.
+                Start the conversation.
             </div>`;
 
         return;
     }
 
 
-    box.innerHTML = "";
+    box.innerHTML =
+        "";
 
 
     messages.forEach(
@@ -2480,53 +2612,48 @@ function renderPrivateMessages(
                 currentUser.uid;
 
 
-            const row =
-                document
-                .createElement("div");
-
-
-            row.className =
-                "message-row " +
-                (
-                    mine
-                    ? "mine"
-                    : "theirs"
+            const div =
+                document.createElement(
+                    "div"
                 );
 
 
-            const bubble =
-                document
-                .createElement("div");
+            div.className =
+                "message " +
+                (
+                    mine
+                    ? "me"
+                    : "other"
+                );
 
 
-            bubble.className =
-                "message";
-
-
-            let status = "";
+            let status =
+                "";
 
 
             if(mine){
 
                 if(
-                    message.read === true
+                    message.read ===
+                    true
                 ){
 
                     status =
                         `<span
-                            class="tick read"
+                            class="message-status"
                             title="Read"
                         >
                             ✓✓
                         </span>`;
 
                 }else if(
-                    message.delivered === true
+                    message.delivered ===
+                    true
                 ){
 
                     status =
                         `<span
-                            class="tick"
+                            class="message-status"
                             title="Delivered"
                         >
                             ✓✓
@@ -2536,7 +2663,7 @@ function renderPrivateMessages(
 
                     status =
                         `<span
-                            class="tick"
+                            class="message-status"
                             title="Sent"
                         >
                             ✓
@@ -2545,55 +2672,49 @@ function renderPrivateMessages(
             }
 
 
-            bubble.innerHTML =
+            div.innerHTML =
 
-                `<div class="message-text">
+                `<div>
                     ${escapeHtml(
                         message.text ||
                         ""
                     )}
                 </div>
 
-                <div class="message-footer">
+                <div class="message-time">
 
-                    <span>
-                        ${formatDate(
-                            message.createdAt
-                        )}
-                    </span>
+                    ${formatDate(
+                        message.createdAt
+                    )}
 
                     ${status}
 
                     ${
                         mine
-
                         ?
-
                         `<button
-                            class="delete-btn"
-                            onclick="deleteMessage(
-                                '${message.id}'
-                            )"
+                            style="
+                                width:auto;
+                                padding:3px 7px;
+                                margin-left:5px;
+                                background:#c62828;
+                                font-size:10px;
+                            "
+                            onclick="deleteMessage('${message.id}')"
                         >
                             Delete
                         </button>`
-
                         :
-
                         ""
                     }
 
                 </div>`;
 
 
-            row.appendChild(
-                bubble
-            );
-
-
             box.appendChild(
-                row
+                div
             );
+
         }
     );
 
@@ -2604,7 +2725,7 @@ function renderPrivateMessages(
 
 
 
-/* ================= READ ================= */
+/* ================= MARK READ ================= */
 
 async function markMessagesAsRead(
     messages
@@ -2615,7 +2736,8 @@ async function markMessagesAsRead(
     }
 
 
-    const jobs = [];
+    const updates =
+        [];
 
 
     for(
@@ -2631,14 +2753,18 @@ async function markMessagesAsRead(
             &&
 
             (
-                message.delivered !== true
+                message.delivered !==
+                true
+
                 ||
-                message.read !== true
+
+                message.read !==
+                true
             )
 
         ){
 
-            jobs.push(
+            updates.push(
 
                 updateDoc(
                     doc(
@@ -2647,8 +2773,13 @@ async function markMessagesAsRead(
                         message.id
                     ),
                     {
-                        delivered:true,
-                        read:true
+
+                        delivered:
+                            true,
+
+                        read:
+                            true
+
                     }
                 )
 
@@ -2657,18 +2788,20 @@ async function markMessagesAsRead(
     }
 
 
-    if(jobs.length){
+    if(
+        updates.length
+    ){
 
         try{
 
             await Promise.all(
-                jobs
+                updates
             );
 
         }catch(error){
 
             console.error(
-                "Read update error:",
+                "Read receipt error:",
                 error
             );
         }
@@ -2677,7 +2810,7 @@ async function markMessagesAsRead(
 
 
 
-/* ================= SEND ================= */
+/* ================= SEND MESSAGE ================= */
 
 window.sendPrivateMessage =
 async function(){
@@ -2688,7 +2821,7 @@ async function(){
     ){
 
         alert(
-            "Select a user first."
+            "Please select a user first."
         );
 
         return;
@@ -2696,8 +2829,7 @@ async function(){
 
 
     const input =
-        document
-        .getElementById(
+        document.getElementById(
             "privateMessageInput"
         );
 
@@ -2718,6 +2850,7 @@ async function(){
             currentUser.uid,
 
             currentChatUser.uid
+
         ];
 
 
@@ -2750,18 +2883,20 @@ async function(){
 
                 createdAt:
                     serverTimestamp()
+
             }
         );
 
 
-        input.value = "";
+        input.value =
+            "";
 
         input.focus();
+
 
     }catch(error){
 
         console.error(
-            "Send error:",
             error
         );
 
@@ -2775,14 +2910,17 @@ async function(){
 
 
 
-/* ================= ENTER ================= */
+/* ================= ENTER TO SEND ================= */
 
 window.handleChatKey =
 function(event){
 
     if(
-        event.key === "Enter"
+        event.key ===
+        "Enter"
+
         &&
+
         !event.shiftKey
     ){
 
@@ -2794,7 +2932,7 @@ function(event){
 
 
 
-/* ================= DELETE ================= */
+/* ================= DELETE MESSAGE ================= */
 
 window.deleteMessage =
 async function(messageId){
@@ -2804,13 +2942,12 @@ async function(messageId){
     }
 
 
-    const ok =
-        confirm(
+    if(
+        !confirm(
             "Delete this message?"
-        );
+        )
+    ){
 
-
-    if(!ok){
         return;
     }
 
@@ -2835,9 +2972,7 @@ async function(messageId){
 
 
 
-/* ==================================================
-   CONVERSATIONS
-================================================== */
+/* ================= CONVERSATIONS ================= */
 
 function listenConversations(){
 
@@ -2846,7 +2981,9 @@ function listenConversations(){
     }
 
 
-    if(unsubscribeConversations){
+    if(
+        unsubscribeConversations
+    ){
 
         unsubscribeConversations();
 
@@ -2887,11 +3024,9 @@ function listenConversations(){
 
                         if(
                             !data.sender ||
-                            !data.receiver ||
-                            !Array.isArray(
-                                data.participants
-                            )
+                            !data.receiver
                         ){
+
                             return;
                         }
 
@@ -2938,15 +3073,18 @@ function listenConversations(){
                                 otherUid,
                                 {
 
-                                    id:item.id,
+                                    id:
+                                        item.id,
 
                                     ...data,
 
                                     otherUid:
                                         otherUid
+
                                 }
                             );
                         }
+
                     }
                 );
 
@@ -2990,16 +3128,16 @@ function renderConversations(
 ){
 
     const container =
-        document
-        .getElementById(
+        document.getElementById(
             "conversationsContainer"
         );
 
 
-    if(!conversations.length){
+    if(
+        !conversations.length
+    ){
 
         container.innerHTML =
-
             `<p>
                 No conversations yet.
                 Go to Discover and select a user.
@@ -3009,14 +3147,19 @@ function renderConversations(
     }
 
 
+    container.innerHTML =
+        "";
+
+
     conversations.sort(
         (a,b) =>
-        getTime(b.createdAt) -
-        getTime(a.createdAt)
+        getTime(
+            b.createdAt
+        ) -
+        getTime(
+            a.createdAt
+        )
     );
-
-
-    container.innerHTML = "";
 
 
     conversations.forEach(
@@ -3035,6 +3178,21 @@ function renderConversations(
             }
 
 
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "user-card";
+
+
+            const photo =
+                user.photo ||
+                "";
+
+
             const unread =
 
                 conversation.receiver ===
@@ -3042,53 +3200,32 @@ function renderConversations(
 
                 &&
 
-                conversation.read !== true;
-
-
-            const div =
-                document
-                .createElement("div");
-
-
-            div.className =
-                "conversation";
-
-
-            div.onclick =
-                () => {
-
-                    openChatByUid(
-                        user.uid
-                    );
-                };
+                conversation.read !==
+                true;
 
 
             div.innerHTML =
 
                 `<img
                     class="user-photo"
-                    src="${
-                        user.photo ||
-                        defaultPhoto()
-                    }"
+                    src="${photo}"
                 >
 
-                <div
-                    class="
-                        conversation-info
-                        ${
-                            unread
-                            ? "unread"
-                            : ""
-                        }
-                    "
-                >
+                <div class="user-info">
 
                     <h3>
+
                         ${escapeHtml(
                             user.name ||
                             "User"
                         )}
+
+                        ${
+                            unread
+                            ? " 🔵"
+                            : ""
+                        }
+
                     </h3>
 
                     <p>
@@ -3106,20 +3243,18 @@ function renderConversations(
 
                 </div>
 
-                ${
-                    unread
-                    ?
-                    `<div
-                        class="unread-dot"
-                    ></div>`
-                    :
-                    ""
-                }`;
+                <button
+                    style="width:auto"
+                    onclick="openChatByUid('${user.uid}')"
+                >
+                    Open
+                </button>`;
 
 
             container.appendChild(
                 div
             );
+
         }
     );
 }
@@ -3134,7 +3269,9 @@ function(){
     document
         .body
         .classList
-        .toggle("dark");
+        .toggle(
+            "dark"
+        );
 
 
     localStorage.setItem(
@@ -3142,11 +3279,14 @@ function(){
         document
             .body
             .classList
-            .contains("dark")
+            .contains(
+                "dark"
+            )
             ? "1"
             : "0"
     );
 };
+
 
 
 if(
@@ -3158,7 +3298,9 @@ if(
     document
         .body
         .classList
-        .add("dark");
+        .add(
+            "dark"
+        );
 }
 
 </script>
