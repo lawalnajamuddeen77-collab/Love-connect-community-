@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Love Connect Community</title>
+<title>DMS Chat</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -15,161 +14,192 @@
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#222;
+    background:#fff5fa;
+    color:#333;
 }
 
 body.dark{
-    background:#121212;
+    background:#171219;
     color:#eee;
 }
 
-/* ================= HEADER ================= */
-
-header{
-    background:#075e54;
-    color:white;
-    padding:16px;
-    text-align:center;
-}
-
-header h1{
-    margin:0;
-    font-size:22px;
-}
-
-header small{
-    display:block;
-    margin-top:5px;
-}
-
-
-/* ================= CONTAINER ================= */
-
-.container{
-    width:100%;
-    max-width:900px;
-    margin:auto;
-    padding:15px;
-}
-
-
-/* ================= CARD ================= */
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-
-.dark .card{
-    background:#1e1e1e;
-}
-
-
-/* ================= INPUTS ================= */
-
-input,
-textarea,
 button{
-    width:100%;
-    padding:12px;
-    margin:7px 0;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:15px;
-}
-
-textarea{
-    resize:none;
-}
-
-button{
-    background:#075e54;
-    color:white;
+    cursor:pointer;
     border:none;
-    cursor:pointer;
-    font-weight:bold;
 }
 
-button:hover{
-    opacity:.9;
-}
-
-.secondary{
-    background:#777;
-}
-
-.danger{
-    background:#c62828;
-}
-
-.link{
-    color:#075e54;
-    cursor:pointer;
-    text-align:center;
-    margin-top:10px;
-}
-
-.dark .link{
-    color:#4dd0c0;
+input,textarea{
+    font-family:inherit;
 }
 
 .hidden{
     display:none!important;
 }
 
-
-/* ================= NAV ================= */
-
-nav{
-    background:white;
-    display:flex;
-    overflow-x:auto;
-    border-bottom:1px solid #ddd;
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#ff1493,#ff69b4);
+    color:white;
+    padding:16px;
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
+    box-shadow:0 3px 12px rgba(255,20,147,.25);
 }
 
-.dark nav{
-    background:#1b1b1b;
-    border-color:#333;
+.header-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-nav button{
-    min-width:100px;
-    margin:0;
-    border-radius:0;
-    background:transparent;
-    color:#075e54;
+.logo{
+    font-size:21px;
+    font-weight:bold;
 }
 
-.dark nav button{
-    color:#4dd0c0;
+.header button{
+    background:rgba(255,255,255,.2);
+    color:white;
+    padding:9px 12px;
+    border-radius:20px;
 }
 
+/* PAGES */
+.page{
+    display:none;
+    padding:15px;
+    padding-bottom:90px;
+}
 
-/* ================= PROFILE ================= */
-
-.profile-photo{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
+.page.active{
     display:block;
-    margin:10px auto;
-    background:#ddd;
 }
 
+/* AUTH */
+.auth-container{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#ffe1ef,#fff);
+}
+
+.auth-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:25px;
+    border-radius:22px;
+    box-shadow:0 10px 35px rgba(255,20,147,.15);
+}
+
+.auth-logo{
+    text-align:center;
+    color:#ff1493;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.auth-subtitle{
+    text-align:center;
+    color:#888;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    margin-bottom:6px;
+    color:#777;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ffd0e5;
+    border-radius:12px;
+    outline:none;
+    background:#fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#ff1493;
+}
+
+.primary-btn{
+    width:100%;
+    background:linear-gradient(135deg,#ff1493,#ff69b4);
+    color:white;
+    padding:13px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.secondary-btn{
+    width:100%;
+    background:#ffe1ef;
+    color:#ff1493;
+    padding:12px;
+    border-radius:12px;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.auth-link{
+    text-align:center;
+    margin-top:15px;
+    color:#ff1493;
+    cursor:pointer;
+}
+
+/* CARDS */
+.card{
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    margin-bottom:12px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+body.dark .card,
+body.dark .auth-box{
+    background:#241c24;
+    color:#eee;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select{
+    background:#302630;
+    color:#fff;
+    border-color:#5a4052;
+}
+
+/* SEARCH */
+.search-box{
+    width:100%;
+    padding:13px;
+    border:1px solid #ffd0e5;
+    border-radius:15px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+/* USERS */
 .user-card{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:12px;
-    border-bottom:1px solid #ddd;
 }
 
 .user-photo{
@@ -177,687 +207,991 @@ nav button{
     height:55px;
     border-radius:50%;
     object-fit:cover;
-    background:#ddd;
+    border:3px solid #ff69b4;
 }
 
 .user-info{
     flex:1;
 }
 
-.user-info h3{
-    margin:0 0 5px;
+.user-name{
+    font-weight:bold;
 }
 
-.user-info p{
-    margin:0;
-    color:#777;
+.user-bio{
+    font-size:13px;
+    color:#888;
+    margin-top:4px;
 }
 
-.dark .user-info p{
-    color:#aaa;
+.small-btn{
+    background:#ffe1ef;
+    color:#ff1493;
+    padding:9px 12px;
+    border-radius:10px;
+    font-weight:bold;
 }
 
+.chat-btn{
+    background:#ff1493;
+    color:white;
+}
 
-/* ================= CHAT ================= */
+/* STATUS */
+.status-section{
+    margin-bottom:20px;
+}
+
+.status-list{
+    display:flex;
+    overflow-x:auto;
+    gap:15px;
+    padding:5px 2px 12px;
+}
+
+.status-item{
+    min-width:72px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.status-ring{
+    width:64px;
+    height:64px;
+    margin:auto;
+    padding:3px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ff1493,#ff69b4,#ffb6d9);
+}
+
+.status-ring img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.add-status{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:#ffe1ef;
+    color:#ff1493;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    margin:auto;
+    border:3px solid #ff69b4;
+}
+
+.status-name{
+    margin-top:5px;
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* CHAT */
+.chat-page{
+    padding:0;
+    padding-bottom:70px;
+}
 
 .chat-header{
+    background:linear-gradient(135deg,#ff1493,#ff69b4);
+    color:white;
+    padding:12px;
     display:flex;
     align-items:center;
     gap:10px;
-    background:#075e54;
-    color:white;
-    padding:10px;
-    border-radius:10px 10px 0 0;
 }
 
 .chat-header img{
-    width:45px;
-    height:45px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     object-fit:cover;
+    border:2px solid white;
 }
 
-.chat-box{
-    height:430px;
-    overflow-y:auto;
+.chat-header-info{
+    flex:1;
+}
+
+.back-btn{
+    background:transparent;
+    color:white;
+    font-size:24px;
+}
+
+.messages{
     padding:15px;
-    background:#e5ddd5;
+    min-height:calc(100vh - 145px);
+    background:#fff7fb;
 }
 
-.dark .chat-box{
-    background:#202020;
+body.dark .messages{
+    background:#171219;
+}
+
+.message-row{
+    display:flex;
+    margin-bottom:8px;
+}
+
+.message-row.me{
+    justify-content:flex-end;
 }
 
 .message{
-    max-width:75%;
-    padding:9px 12px;
-    margin:7px 0;
-    border-radius:10px;
-    word-wrap:break-word;
-}
-
-.message.me{
-    margin-left:auto;
-    background:#dcf8c6;
-}
-
-.message.other{
-    margin-right:auto;
+    max-width:78%;
+    padding:10px 12px;
+    border-radius:15px;
     background:white;
+    box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 
-.dark .message.other{
-    background:#333;
+.message-row.me .message{
+    background:#ff1493;
+    color:white;
+    border-bottom-right-radius:4px;
+}
+
+.message-row:not(.me) .message{
+    border-bottom-left-radius:4px;
 }
 
 .message-time{
     font-size:10px;
-    color:#777;
+    opacity:.7;
     margin-top:4px;
     text-align:right;
 }
 
 .message-status{
-    font-size:12px;
     margin-left:4px;
 }
 
-.chat-input{
-    display:flex;
-    gap:5px;
-    padding:8px;
+.chat-input-area{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
     background:white;
-}
-
-.dark .chat-input{
-    background:#1e1e1e;
-}
-
-.chat-input input{
-    flex:1;
-    margin:0;
-}
-
-.chat-input button{
-    width:80px;
-    margin:0;
-}
-
-
-/* ================= ALERT ================= */
-
-.alert{
     padding:10px;
-    border-radius:8px;
-    margin:10px 0;
-    background:#fff3cd;
-    color:#664d03;
+    display:flex;
+    gap:8px;
+    border-top:1px solid #eee;
+    z-index:30;
 }
 
-.error{
-    background:#f8d7da;
-    color:#842029;
+body.dark .chat-input-area{
+    background:#241c24;
+    border-color:#402f3b;
 }
 
-.success{
-    background:#d1e7dd;
-    color:#0f5132;
+.chat-input{
+    flex:1;
+    border:1px solid #ffd0e5;
+    border-radius:20px;
+    padding:11px 15px;
+    outline:none;
 }
 
+.send-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#ff1493;
+    color:white;
+    font-size:18px;
+}
 
-/* ================= LOADING ================= */
+/* CONVERSATIONS */
+.conversation{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    background:white;
+    border-radius:15px;
+    margin-bottom:10px;
+}
 
+body.dark .conversation{
+    background:#241c24;
+}
+
+.conversation-info{
+    flex:1;
+}
+
+.last-message{
+    color:#888;
+    font-size:13px;
+    margin-top:4px;
+}
+
+/* PROFILE */
+.profile{
+    text-align:center;
+}
+
+.profile-large{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #ff69b4;
+}
+
+.profile-name{
+    font-size:23px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:65px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    box-shadow:0 -3px 15px rgba(0,0,0,.08);
+    z-index:25;
+}
+
+body.dark .bottom-nav{
+    background:#241c24;
+}
+
+.nav-btn{
+    background:transparent;
+    color:#888;
+    font-size:11px;
+    text-align:center;
+}
+
+.nav-btn span{
+    display:block;
+    font-size:21px;
+    margin-bottom:2px;
+}
+
+.nav-btn.active{
+    color:#ff1493;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:100%;
+    max-width:500px;
+    max-height:92vh;
+    overflow:auto;
+    border-radius:20px;
+    padding:15px;
+}
+
+body.dark .modal-box{
+    background:#241c24;
+    color:white;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.close-btn{
+    background:#ffe1ef;
+    color:#ff1493;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    font-size:20px;
+}
+
+/* STATUS VIEWER */
+.status-view{
+    text-align:center;
+}
+
+.status-media{
+    width:100%;
+    max-height:65vh;
+    object-fit:contain;
+    border-radius:12px;
+    background:#111;
+}
+
+.status-text{
+    background:#ffe1ef;
+    color:#333;
+    padding:15px;
+    border-radius:12px;
+    margin-top:10px;
+    font-size:17px;
+    text-align:center;
+    word-break:break-word;
+}
+
+.status-progress{
+    display:flex;
+    gap:4px;
+    margin-bottom:12px;
+}
+
+.status-progress-bar{
+    flex:1;
+    height:4px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.status-progress-bar.active{
+    background:#ff1493;
+}
+
+/* STATUS CREATION */
+.preview-image{
+    max-width:100%;
+    max-height:250px;
+    display:block;
+    margin:10px auto;
+    border-radius:12px;
+}
+
+/* REPLY PREVIEW */
+.reply-preview{
+    display:none;
+    background:#ffe1ef;
+    color:#ff1493;
+    padding:8px 12px;
+    border-radius:10px;
+    margin-bottom:5px;
+    font-size:12px;
+}
+
+.reply-preview.show{
+    display:block;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    color:#999;
+    padding:35px 10px;
+}
+
+/* LOADING */
 .loading{
     text-align:center;
+    color:#ff1493;
     padding:20px;
-    color:#777;
 }
 
-
-/* ================= FOOTER ================= */
-
-footer{
-    background:#075e54;
-    color:white;
-    text-align:center;
-    padding:20px 10px;
-    margin-top:25px;
-    line-height:1.8;
+/* ONLINE */
+.online-dot{
+    width:9px;
+    height:9px;
+    background:#22c55e;
+    border-radius:50%;
+    display:inline-block;
 }
 
-footer .creator{
-    font-size:15px;
-    font-weight:bold;
+/* SCROLLBAR */
+::-webkit-scrollbar{
+    width:4px;
+    height:4px;
 }
 
-footer .contact{
-    font-size:13px;
+::-webkit-scrollbar-thumb{
+    background:#ff69b4;
+    border-radius:10px;
 }
-
-footer .copyright{
-    font-size:12px;
-    opacity:.9;
-}
-
-.dark footer{
-    background:#0b3d38;
-}
-
 </style>
 </head>
 
-
 <body>
 
+<!-- AUTH -->
+<div id="authScreen" class="auth-container">
 
-<!-- ================= HEADER ================= -->
+    <div class="auth-box">
 
-<header>
-
-    <h1>🌍 Love Connect Community</h1>
-
-    <small>
-        Connect • Communicate • Community
-    </small>
-
-</header>
-
-
-
-<!-- ================= AUTH ================= -->
-
-<div id="authPage" class="container">
-
-
-    <!-- LOGIN -->
-
-    <div id="loginBox" class="card">
-
-        <h2>🔐 Login</h2>
-
-        <div id="loginMessage"></div>
-
-        <input
-            type="email"
-            id="loginEmail"
-            placeholder="Email address"
-        >
-
-        <input
-            type="password"
-            id="loginPassword"
-            placeholder="Password"
-        >
-
-        <button onclick="loginUser()">
-            Login
-        </button>
-
-        <div
-            class="link"
-            onclick="showRegister()"
-        >
-            Create new account
+        <div class="auth-logo">
+            DMS Chat 💗
         </div>
 
-        <div
-            class="link"
-            onclick="resetPassword()"
-        >
-            Forgot password?
+        <div class="auth-subtitle">
+            Connect • Communicate • Chat
         </div>
 
-    </div>
+        <!-- LOGIN -->
+        <div id="loginForm">
 
-
-
-    <!-- REGISTER -->
-
-    <div
-        id="registerBox"
-        class="card hidden"
-    >
-
-        <h2>📝 Create Account</h2>
-
-        <div id="registerMessage"></div>
-
-        <input
-            type="text"
-            id="registerName"
-            placeholder="Full name"
-        >
-
-        <input
-            type="text"
-            id="registerUsername"
-            placeholder="Username"
-        >
-
-        <input
-            type="email"
-            id="registerEmail"
-            placeholder="Email address"
-        >
-
-        <input
-            type="password"
-            id="registerPassword"
-            placeholder="Password"
-        >
-
-        <textarea
-            id="registerBio"
-            placeholder="Short bio"
-            rows="3"
-        ></textarea>
-
-        <input
-            type="file"
-            id="registerPhoto"
-            accept="image/*"
-        >
-
-        <button onclick="registerUser()">
-            Register
-        </button>
-
-        <div
-            class="link"
-            onclick="showLogin()"
-        >
-            Already have an account? Login
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- ================= APP ================= -->
-
-<div
-    id="appPage"
-    class="hidden"
->
-
-
-    <!-- NAV -->
-
-    <nav>
-
-        <button
-            onclick="showPage('homePage')"
-        >
-            🏠 Home
-        </button>
-
-        <button
-            onclick="showPage('discoverPage')"
-        >
-            🔎 Discover
-        </button>
-
-        <button
-            onclick="showPage('messagesPage')"
-        >
-            💬 Messages
-        </button>
-
-        <button
-            onclick="showPage('profilePage')"
-        >
-            👤 Profile
-        </button>
-
-        <button
-            onclick="toggleDarkMode()"
-        >
-            🌙 Dark
-        </button>
-
-        <button
-            onclick="logoutUser()"
-        >
-            🚪 Logout
-        </button>
-
-    </nav>
-
-
-
-    <div class="container">
-
-
-        <!-- ================= HOME ================= -->
-
-        <section id="homePage">
-
-            <div class="card">
-
-                <h2>
-                    🌍 Welcome to Love Connect
-                </h2>
-
-                <p>
-                    Welcome to Love Connect Community.
-                    Connect and communicate with other
-                    community members.
-                </p>
-
-                <div id="homeUser"></div>
-
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter email"
+                >
             </div>
 
-        </section>
-
-
-
-        <!-- ================= DISCOVER ================= -->
-
-        <section
-            id="discoverPage"
-            class="hidden"
-        >
-
-            <div class="card">
-
-                <h2>
-                    🔎 Discover Users
-                </h2>
-
+            <div class="form-group">
+                <label>Password</label>
                 <input
-                    type="text"
-                    id="searchUsers"
-                    placeholder="Search users..."
-                    oninput="searchUsers()"
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
                 >
+            </div>
 
+            <button
+                class="primary-btn"
+                onclick="loginUser()">
+                Login
+            </button>
+
+            <div
+                class="auth-link"
+                onclick="showRegister()">
+                Create New Account
             </div>
 
             <div
-                id="usersContainer"
-                class="card"
-            >
-
-                <div class="loading">
-                    Loading users...
-                </div>
-
+                class="auth-link"
+                onclick="resetPassword()">
+                Forgot Password?
             </div>
 
-        </section>
+        </div>
 
 
+        <!-- REGISTER -->
+        <div id="registerForm" class="hidden">
 
-        <!-- ================= VIEW PROFILE ================= -->
-
-        <section
-            id="viewProfilePage"
-            class="hidden"
-        >
-
-            <div class="card">
-
-                <button
-                    class="secondary"
-                    onclick="showPage('discoverPage')"
-                >
-                    ← Back
-                </button>
-
-                <div
-                    id="viewProfileContent"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= MESSAGES ================= -->
-
-        <section
-            id="messagesPage"
-            class="hidden"
-        >
-
-            <div class="card">
-
-                <h2>
-                    💬 Conversations
-                </h2>
-
-                <div
-                    id="conversationsContainer"
-                >
-
-                    <div class="loading">
-                        Loading conversations...
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= PRIVATE CHAT ================= -->
-
-        <section
-            id="privateChatPage"
-            class="hidden"
-        >
-
-            <div class="card">
-
-                <button
-                    class="secondary"
-                    onclick="closeChat()"
-                >
-                    ← Back to Messages
-                </button>
-
-                <div id="chatHeader"></div>
-
-                <div
-                    id="privateChatBox"
-                    class="chat-box"
-                ></div>
-
-                <div class="chat-input">
-
-                    <input
-                        type="text"
-                        id="privateMessageInput"
-                        placeholder="Type a message..."
-                        onkeydown="handleChatKey(event)"
-                    >
-
-                    <button
-                        onclick="sendPrivateMessage()"
-                    >
-                        Send
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= PROFILE ================= -->
-
-        <section
-            id="profilePage"
-            class="hidden"
-        >
-
-            <div class="card">
-
-                <h2>
-                    👤 My Profile
-                </h2>
-
-                <div
-                    id="profileMessage"
-                ></div>
-
-                <img
-                    id="profilePhotoPreview"
-                    class="profile-photo"
-                    src=""
-                >
-
-                <input
-                    type="file"
-                    id="profilePhoto"
-                    accept="image/*"
-                    onchange="previewProfilePhoto()"
-                >
-
+            <div class="form-group">
+                <label>Full Name</label>
                 <input
                     type="text"
-                    id="profileName"
-                    placeholder="Full name"
+                    id="registerName"
+                    placeholder="Your name"
                 >
+            </div>
 
+            <div class="form-group">
+                <label>Email</label>
                 <input
-                    type="text"
-                    id="profileUsername"
-                    placeholder="Username"
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email"
                 >
+            </div>
 
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Minimum 6 characters"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Bio</label>
                 <textarea
-                    id="profileBio"
-                    placeholder="Bio"
-                    rows="4"
-                ></textarea>
-
-                <button
-                    onclick="saveProfile()"
-                >
-                    💾 Save Profile
-                </button>
-
+                    id="registerBio"
+                    placeholder="Tell people about yourself"
+                    rows="3"></textarea>
             </div>
 
-        </section>
+            <button
+                class="primary-btn"
+                onclick="registerUser()">
+                Create Account
+            </button>
 
+            <div
+                class="auth-link"
+                onclick="showLogin()">
+                Already have an account? Login
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="header-row">
+
+            <div class="logo">
+                DMS Chat 💗
+            </div>
+
+            <button onclick="toggleDarkMode()">
+                🌙
+            </button>
+
+        </div>
 
     </div>
 
+
+    <!-- HOME -->
+    <div id="homePage" class="page active">
+
+        <div class="status-section">
+
+            <h3>Statuses</h3>
+
+            <div
+                id="statusesContainer"
+                class="status-list">
+            </div>
+
+        </div>
+
+
+        <h3>Discover People</h3>
+
+        <input
+            class="search-box"
+            id="homeSearch"
+            placeholder="Search people..."
+            oninput="searchUsers()"
+        >
+
+        <div id="homeUsers"></div>
+
+    </div>
+
+
+    <!-- DISCOVER -->
+    <div id="discoverPage" class="page">
+
+        <h2>Discover</h2>
+
+        <input
+            class="search-box"
+            id="discoverSearch"
+            placeholder="Search users..."
+            oninput="searchUsers()"
+        >
+
+        <div id="discoverUsers"></div>
+
+    </div>
+
+
+    <!-- CONVERSATIONS -->
+    <div id="messagesPage" class="page">
+
+        <h2>Messages</h2>
+
+        <div id="conversations">
+            <div class="loading">
+                Loading conversations...
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PROFILE -->
+    <div id="profilePage" class="page">
+
+        <div class="profile card">
+
+            <img
+                id="profilePhoto"
+                class="profile-large"
+                src="https://via.placeholder.com/150/ffd6e8/ff1493?text=👤"
+            >
+
+            <div
+                id="profileName"
+                class="profile-name">
+                User
+            </div>
+
+            <p id="profileEmail"></p>
+
+            <p id="profileBio"></p>
+
+            <button
+                class="primary-btn"
+                onclick="openEditProfile()">
+                ✏️ Edit Profile
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="logoutUser()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT -->
+    <div id="chatPage" class="page chat-page">
+
+        <div class="chat-header">
+
+            <button
+                class="back-btn"
+                onclick="closeChat()">
+                ←
+            </button>
+
+            <img
+                id="chatPhoto"
+                src="https://via.placeholder.com/64/ffd6e8/ff1493?text=👤"
+            >
+
+            <div class="chat-header-info">
+
+                <div id="chatName">
+                    User
+                </div>
+
+                <small id="chatStatus">
+                    Chat
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="messagesContainer"
+            class="messages">
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+    <div
+        id="bottomNav"
+        class="bottom-nav">
+
+        <button
+            class="nav-btn active"
+            onclick="showPage('homePage',this)">
+            <span>🏠</span>
+            Home
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showPage('discoverPage',this)">
+            <span>🔍</span>
+            Discover
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showPage('messagesPage',this)">
+            <span>💬</span>
+            Messages
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showPage('profilePage',this)">
+            <span>👤</span>
+            Profile
+        </button>
+
+    </div>
 
 </div>
 
 
+<!-- CHAT INPUT -->
+<div
+    id="chatInputArea"
+    class="chat-input-area hidden">
 
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="creator">
-        Created by Engineer Najamuddeen Lawal Danmusa
+    <div
+        id="replyPreview"
+        class="reply-preview">
     </div>
 
-    <div class="contact">
-        Email/Contact:
-        nlawaldms123@gmail.com
-        | 07089306672
+    <input
+        id="messageInput"
+        class="chat-input"
+        placeholder="Type a message..."
+        onkeydown="handleMessageKey(event)"
+    >
+
+    <button
+        class="send-btn"
+        onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
+
+
+<!-- CREATE STATUS MODAL -->
+<div
+    id="createStatusModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Create Status</h3>
+
+            <button
+                class="close-btn"
+                onclick="closeCreateStatus()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <textarea
+                id="statusText"
+                rows="4"
+                placeholder="Write a status..."></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Photo (optional)</label>
+
+            <input
+                type="file"
+                id="statusImage"
+                accept="image/*"
+                onchange="previewStatusImage(event)"
+            >
+
+        </div>
+
+        <img
+            id="statusPreview"
+            class="preview-image hidden"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="createStatus()">
+            Post Status
+        </button>
+
     </div>
 
-    <div class="copyright">
-        © 2027 All Rights Reserved
+</div>
+
+
+<!-- VIEW STATUS MODAL -->
+<div
+    id="viewStatusModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3 id="viewStatusName">
+                Status
+            </h3>
+
+            <button
+                class="close-btn"
+                onclick="closeViewStatus()">
+                ×
+            </button>
+
+        </div>
+
+        <div
+            id="statusViewContent"
+            class="status-view">
+        </div>
+
     </div>
 
-</footer>
+</div>
 
 
+<!-- EDIT PROFILE MODAL -->
+<div
+    id="editProfileModal"
+    class="modal">
 
-<!-- ================= FIREBASE ================= -->
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>Edit Profile</h3>
+
+            <button
+                class="close-btn"
+                onclick="closeEditProfile()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                id="editName"
+                type="text"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Bio</label>
+
+            <textarea
+                id="editBio"
+                rows="4"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Profile Photo</label>
+
+            <input
+                id="editPhoto"
+                type="file"
+                accept="image/*"
+                onchange="previewProfileImage(event)"
+            >
+
+        </div>
+
+        <img
+            id="editPhotoPreview"
+            class="preview-image hidden"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="saveProfile()">
+            Save Changes
+        </button>
+
+    </div>
+
+</div>
+
 
 <script type="module">
 
 import {
     initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
     sendPasswordResetEmail,
-    updateProfile
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
     collection,
     doc,
-    setDoc,
     getDoc,
     getDocs,
+    setDoc,
     addDoc,
     updateDoc,
     deleteDoc,
     query,
     where,
-    onSnapshot,
-    serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    orderBy,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-
-/* ================= FIREBASE CONFIG ================= */
+/* FIREBASE */
 
 const firebaseConfig = {
 
     apiKey:
-    "AIzaSyDs3GiBIWM-SXmgh67E19CmkLbrD80E-6o",
+        "AIzaSyDs3GiBIWM-SXmgh67E19CmkLbrD80E-6o",
 
     authDomain:
-    "love-connect-application.firebaseapp.com",
+        "love-connect-application.firebaseapp.com",
 
     projectId:
-    "love-connect-application",
+        "love-connect-application",
 
     storageBucket:
-    "love-connect-application.firebasestorage.app",
+        "love-connect-application.firebasestorage.app",
 
     messagingSenderId:
-    "173097166265",
+        "173097166265",
 
     appId:
-    "1:173097166265:web:2436178e371354ac660268",
+        "1:173097166265:web:2436178e371354ac660268",
 
     measurementId:
-    "G-GVWTM6ZT45"
+        "G-GVWTM6ZT45"
 };
 
 
-
-/* ================= INITIALIZE ================= */
-
 const app =
-    initializeApp(
-        firebaseConfig
-    );
+    initializeApp(firebaseConfig);
 
 const auth =
     getAuth(app);
@@ -866,352 +1200,211 @@ const db =
     getFirestore(app);
 
 
-
-/* ================= VARIABLES ================= */
+/* GLOBAL VARIABLES */
 
 let currentUser = null;
+let currentProfile = null;
 
 let allUsers = [];
 
-let currentChatUser = null;
-
+let activeChatUser = null;
 let unsubscribeMessages = null;
-
 let unsubscribeConversations = null;
 
+let pendingStatusReply = null;
 
 
-/* ================= HELPERS ================= */
+/* STATUS VIEWER */
 
-function escapeHtml(value){
+let statusGroups = [];
 
-    if(
-        value === null ||
-        value === undefined
-    ){
+let currentStatusUserIndex = 0;
 
-        return "";
-    }
+let currentStatusIndex = 0;
 
-    return String(value)
+
+/* HELPERS */
+
+window.escapeHtml = function(text){
+
+    if(!text) return "";
+
+    return String(text)
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-}
+};
 
 
-function getTime(timestamp){
+function formatTime(timestamp){
 
-    if(!timestamp){
-        return 0;
-    }
+    if(!timestamp) return "";
 
-    if(
-        typeof timestamp.toMillis ===
-        "function"
-    ){
-
-        return timestamp.toMillis();
-    }
-
-    return (
-        new Date(timestamp).getTime()
-        || 0
-    );
+    return new Date(timestamp)
+        .toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit"
+        });
 }
 
 
 function formatDate(timestamp){
 
-    const time =
-        getTime(timestamp);
+    if(!timestamp) return "";
 
-    if(!time){
-        return "";
-    }
-
-    return new Date(time)
-        .toLocaleString();
+    return new Date(timestamp)
+        .toLocaleDateString();
 }
 
 
-function showMessage(
-    elementId,
-    text,
-    type="success"
-){
+/* IMAGE COMPRESSION */
 
-    const element =
-        document.getElementById(
-            elementId
-        );
+function compressImage(file,maxSize=500,quality=.7){
 
-    if(!element){
-        return;
-    }
+    return new Promise((resolve,reject)=>{
 
-    element.innerHTML =
-        `<div class="alert ${type}">
-            ${escapeHtml(text)}
-        </div>`;
-}
+        const reader =
+            new FileReader();
 
+        reader.onload = function(e){
 
+            const img =
+                new Image();
 
-/* ================= AUTH UI ================= */
+            img.onload = function(){
 
-window.showRegister =
-function(){
+                let width =
+                    img.width;
 
-    document
-        .getElementById("loginBox")
-        .classList.add("hidden");
-
-    document
-        .getElementById("registerBox")
-        .classList.remove("hidden");
-};
+                let height =
+                    img.height;
 
 
-window.showLogin =
-function(){
-
-    document
-        .getElementById("registerBox")
-        .classList.add("hidden");
-
-    document
-        .getElementById("loginBox")
-        .classList.remove("hidden");
-};
-
-
-
-/* ================= IMAGE COMPRESS ================= */
-
-function compressImage(file){
-
-    return new Promise(
-        (resolve,reject)=>{
-
-            if(!file){
-
-                resolve("");
-
-                return;
-            }
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-            function(event){
-
-                const img =
-                    new Image();
-
-
-                img.onload =
-                function(){
-
-                    const canvas =
-                        document.createElement(
-                            "canvas"
-                        );
-
-
-                    const maxSize = 500;
-
-                    let width =
-                        img.width;
-
-                    let height =
-                        img.height;
-
+                if(width > maxSize ||
+                   height > maxSize){
 
                     if(width > height){
 
-                        if(width > maxSize){
+                        height =
+                            height *
+                            maxSize /
+                            width;
 
-                            height =
-                                height *
-                                maxSize /
-                                width;
-
-                            width =
-                                maxSize;
-                        }
+                        width =
+                            maxSize;
 
                     }else{
 
-                        if(height > maxSize){
+                        width =
+                            width *
+                            maxSize /
+                            height;
 
-                            width =
-                                width *
-                                maxSize /
-                                height;
-
-                            height =
-                                maxSize;
-                        }
+                        height =
+                            maxSize;
                     }
+                }
 
 
-                    canvas.width =
-                        width;
+                const canvas =
+                    document.createElement("canvas");
 
-                    canvas.height =
-                        height;
+                canvas.width =
+                    width;
 
-
-                    const ctx =
-                        canvas.getContext(
-                            "2d"
-                        );
+                canvas.height =
+                    height;
 
 
-                    ctx.drawImage(
-                        img,
-                        0,
-                        0,
-                        width,
-                        height
-                    );
+                const ctx =
+                    canvas.getContext("2d");
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
 
 
-                    const result =
-                        canvas.toDataURL(
-                            "image/jpeg",
-                            0.65
-                        );
-
-
-                    if(
-                        result.length >
-                        500000
-                    ){
-
-                        reject(
-                            new Error(
-                                "Image is too large. Please choose a smaller photo."
-                            )
-                        );
-
-                        return;
-                    }
-
-
-                    resolve(result);
-                };
-
-
-                img.onerror =
-                function(){
-
-                    reject(
-                        new Error(
-                            "Could not load image."
-                        )
-                    );
-                };
-
-
-                img.src =
-                    event.target.result;
-            };
-
-
-            reader.onerror =
-            function(){
-
-                reject(
-                    new Error(
-                        "Could not read image."
+                resolve(
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        quality
                     )
                 );
             };
 
+            img.onerror = reject;
 
-            reader.readAsDataURL(file);
+            img.src =
+                e.target.result;
+        };
 
-        }
-    );
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+    });
 }
 
 
+/* AUTH */
 
-/* ================= REGISTER ================= */
+window.showRegister = function(){
 
-window.registerUser =
-async function(){
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
+};
+
+
+window.showLogin = function(){
+
+    document
+        .getElementById("registerForm")
+        .classList.add("hidden");
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
+};
+
+
+window.registerUser = async function(){
 
     const name =
         document
-        .getElementById(
-            "registerName"
-        )
-        .value
-        .trim();
-
-
-    const username =
-        document
-        .getElementById(
-            "registerUsername"
-        )
-        .value
-        .trim();
-
+        .getElementById("registerName")
+        .value.trim();
 
     const email =
         document
-        .getElementById(
-            "registerEmail"
-        )
-        .value
-        .trim();
-
+        .getElementById("registerEmail")
+        .value.trim();
 
     const password =
         document
-        .getElementById(
-            "registerPassword"
-        )
+        .getElementById("registerPassword")
         .value;
-
 
     const bio =
         document
-        .getElementById(
-            "registerBio"
-        )
-        .value
-        .trim();
+        .getElementById("registerBio")
+        .value.trim();
 
 
-    const photoFile =
-        document
-        .getElementById(
-            "registerPhoto"
-        )
-        .files[0];
+    if(!name ||
+       !email ||
+       !password){
 
-
-    if(
-        !name ||
-        !username ||
-        !email ||
-        !password
-    ){
-
-        showMessage(
-            "registerMessage",
-            "Please fill all required fields.",
-            "error"
-        );
+        alert("Please fill all required fields.");
 
         return;
     }
@@ -1219,11 +1412,7 @@ async function(){
 
     if(password.length < 6){
 
-        showMessage(
-            "registerMessage",
-            "Password must contain at least 6 characters.",
-            "error"
-        );
+        alert("Password must be at least 6 characters.");
 
         return;
     }
@@ -1231,13 +1420,7 @@ async function(){
 
     try{
 
-        showMessage(
-            "registerMessage",
-            "Creating account..."
-        );
-
-
-        const userCredential =
+        const result =
             await createUserWithEmailAndPassword(
                 auth,
                 email,
@@ -1245,119 +1428,50 @@ async function(){
             );
 
 
-        const user =
-            userCredential.user;
-
-
-        let photo = "";
-
-
-        if(photoFile){
-
-            photo =
-                await compressImage(
-                    photoFile
-                );
-        }
-
-
-        await updateProfile(
-            user,
-            {
-                displayName:name
-            }
-        );
-
-
         await setDoc(
             doc(
                 db,
                 "users",
-                user.uid
+                result.user.uid
             ),
             {
-
-                uid:
-                    user.uid,
-
-                name:
-                    name,
-
-                username:
-                    username,
-
-                email:
-                    email,
-
-                bio:
-                    bio,
-
-                photo:
-                    photo,
-
-                online:
-                    true,
-
-                createdAt:
-                    serverTimestamp(),
-
-                updatedAt:
-                    serverTimestamp()
-
+                uid:result.user.uid,
+                name:name,
+                email:email,
+                bio:bio,
+                photoURL:"",
+                createdAt:Date.now(),
+                online:true,
+                lastSeen:Date.now()
             }
         );
 
 
-        showMessage(
-            "registerMessage",
-            "Account created successfully."
-        );
-
+        alert("Account created successfully.");
 
     }catch(error){
 
-        console.error(error);
-
-
-        showMessage(
-            "registerMessage",
-            error.message,
-            "error"
-        );
+        alert(error.message);
     }
 };
 
 
-
-/* ================= LOGIN ================= */
-
-window.loginUser =
-async function(){
+window.loginUser = async function(){
 
     const email =
         document
-        .getElementById(
-            "loginEmail"
-        )
-        .value
-        .trim();
-
+        .getElementById("loginEmail")
+        .value.trim();
 
     const password =
         document
-        .getElementById(
-            "loginPassword"
-        )
+        .getElementById("loginPassword")
         .value;
 
 
     if(!email || !password){
 
-        showMessage(
-            "loginMessage",
-            "Enter email and password.",
-            "error"
-        );
+        alert("Enter email and password.");
 
         return;
     }
@@ -1373,38 +1487,22 @@ async function(){
 
     }catch(error){
 
-        console.error(error);
-
-
-        showMessage(
-            "loginMessage",
-            error.message,
-            "error"
-        );
+        alert(error.message);
     }
 };
 
 
-
-/* ================= PASSWORD RESET ================= */
-
-window.resetPassword =
-async function(){
+window.resetPassword = async function(){
 
     const email =
         document
-        .getElementById(
-            "loginEmail"
-        )
-        .value
-        .trim();
+        .getElementById("loginEmail")
+        .value.trim();
 
 
     if(!email){
 
-        alert(
-            "Enter your email address first."
-        );
+        alert("Enter your email first.");
 
         return;
     }
@@ -1417,26 +1515,18 @@ async function(){
             email
         );
 
-
         alert(
-            "Password reset email has been sent."
+            "Password reset email sent."
         );
-
 
     }catch(error){
 
-        alert(
-            error.message
-        );
+        alert(error.message);
     }
 };
 
 
-
-/* ================= LOGOUT ================= */
-
-window.logoutUser =
-async function(){
+window.logoutUser = async function(){
 
     try{
 
@@ -1449,7 +1539,8 @@ async function(){
                     currentUser.uid
                 ),
                 {
-                    online:false
+                    online:false,
+                    lastSeen:Date.now()
                 }
             );
         }
@@ -1464,8 +1555,7 @@ async function(){
 };
 
 
-
-/* ================= AUTH STATE ================= */
+/* AUTH STATE */
 
 onAuthStateChanged(
     auth,
@@ -1473,359 +1563,232 @@ onAuthStateChanged(
 
         if(user){
 
-            currentUser =
-                user;
+            currentUser = user;
 
-
-            document
-                .getElementById(
-                    "authPage"
-                )
-                .classList.add(
-                    "hidden"
-                );
-
+            await loadCurrentProfile();
 
             document
-                .getElementById(
-                    "appPage"
-                )
-                .classList.remove(
-                    "hidden"
+                .getElementById("authScreen")
+                .classList.add("hidden");
+
+            document
+                .getElementById("app")
+                .classList.remove("hidden");
+
+            document
+                .getElementById("bottomNav")
+                .classList.remove("hidden");
+
+            document
+                .getElementById("chatInputArea")
+                .classList.add("hidden");
+
+
+            try{
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    ),
+                    {
+                        online:true,
+                        lastSeen:Date.now()
+                    }
                 );
 
+            }catch(error){
 
-            await setOnlineStatus();
+                console.log(error);
+            }
 
-            await loadMyProfile();
 
             await loadUsers();
 
-            listenConversations();
+            await renderStatuses();
 
-            showPage(
-                "homePage"
-            );
+            await renderConversations();
 
+            renderProfile();
 
         }else{
 
-            currentUser =
-                null;
-
+            currentUser = null;
 
             document
-                .getElementById(
-                    "authPage"
-                )
-                .classList.remove(
-                    "hidden"
-                );
-
+                .getElementById("authScreen")
+                .classList.remove("hidden");
 
             document
-                .getElementById(
-                    "appPage"
-                )
-                .classList.add(
-                    "hidden"
-                );
+                .getElementById("app")
+                .classList.add("hidden");
 
-
-            if(
-                unsubscribeMessages
-            ){
-
-                unsubscribeMessages();
-
-                unsubscribeMessages =
-                    null;
-            }
-
-
-            if(
-                unsubscribeConversations
-            ){
-
-                unsubscribeConversations();
-
-                unsubscribeConversations =
-                    null;
-            }
+            document
+                .getElementById("chatInputArea")
+                .classList.add("hidden");
         }
     }
 );
 
 
+/* PROFILE */
 
-/* ================= ONLINE STATUS ================= */
+async function loadCurrentProfile(){
 
-async function setOnlineStatus(){
-
-    if(!currentUser){
-        return;
-    }
-
-
-    try{
-
-        await setDoc(
+    const snap =
+        await getDoc(
             doc(
                 db,
                 "users",
                 currentUser.uid
-            ),
-            {
-                online:true
-            },
-            {
-                merge:true
-            }
+            )
         );
 
-    }catch(error){
 
-        console.log(
-            "Status error:",
-            error
-        );
+    if(snap.exists()){
+
+        currentProfile =
+            snap.data();
+
+    }else{
+
+        currentProfile = {
+
+            uid:currentUser.uid,
+
+            name:
+                currentUser.email
+                ?.split("@")[0] ||
+                "User",
+
+            email:
+                currentUser.email,
+
+            bio:"",
+
+            photoURL:""
+        };
     }
 }
 
 
+function renderProfile(){
 
-/* ================= PAGE SYSTEM ================= */
-
-window.showPage =
-function(pageId){
-
-    const pages = [
-
-        "homePage",
-
-        "discoverPage",
-
-        "viewProfilePage",
-
-        "messagesPage",
-
-        "privateChatPage",
-
-        "profilePage"
-
-    ];
+    if(!currentProfile) return;
 
 
-    pages.forEach(
-        id => {
-
-            const element =
-                document.getElementById(
-                    id
-                );
+    document
+        .getElementById("profileName")
+        .textContent =
+        currentProfile.name ||
+        "User";
 
 
-            if(element){
-
-                element.classList.add(
-                    "hidden"
-                );
-            }
-
-        }
-    );
+    document
+        .getElementById("profileEmail")
+        .textContent =
+        currentProfile.email ||
+        currentUser.email;
 
 
-    const page =
-        document.getElementById(
-            pageId
-        );
+    document
+        .getElementById("profileBio")
+        .textContent =
+        currentProfile.bio ||
+        "No bio yet.";
 
 
-    if(page){
-
-        page.classList.remove(
-            "hidden"
-        );
-    }
-
-
-    if(
-        pageId ===
-        "discoverPage"
-    ){
-
-        loadUsers();
-    }
+    document
+        .getElementById("profilePhoto")
+        .src =
+        currentProfile.photoURL ||
+        "https://via.placeholder.com/150/ffd6e8/ff1493?text=👤";
+}
 
 
-    if(
-        pageId ===
-        "messagesPage"
-    ){
+window.openEditProfile = function(){
 
-        listenConversations();
-    }
+    document
+        .getElementById("editName")
+        .value =
+        currentProfile?.name || "";
+
+
+    document
+        .getElementById("editBio")
+        .value =
+        currentProfile?.bio || "";
+
+
+    document
+        .getElementById("editProfileModal")
+        .classList.add("show");
 };
 
 
+window.closeEditProfile = function(){
 
-/* ================= LOAD MY PROFILE ================= */
+    document
+        .getElementById("editProfileModal")
+        .classList.remove("show");
+};
 
-async function loadMyProfile(){
 
-    if(!currentUser){
-        return;
-    }
+let newProfilePhoto = "";
+
+
+window.previewProfileImage = async function(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
 
 
     try{
 
-        const snapshot =
-            await getDoc(
-                doc(
-                    db,
-                    "users",
-                    currentUser.uid
-                )
+        newProfilePhoto =
+            await compressImage(
+                file,
+                500,
+                .7
             );
 
 
-        if(
-            !snapshot.exists()
-        ){
-
-            return;
-        }
-
-
-        const data =
-            snapshot.data();
-
-
-        document
-            .getElementById(
-                "profileName"
-            )
-            .value =
-            data.name || "";
-
-
-        document
-            .getElementById(
-                "profileUsername"
-            )
-            .value =
-            data.username || "";
-
-
-        document
-            .getElementById(
-                "profileBio"
-            )
-            .value =
-            data.bio || "";
-
-
-        document
-            .getElementById(
-                "profilePhotoPreview"
-            )
-            .src =
-            data.photo ||
-            "data:image/svg+xml;charset=UTF-8," +
-            encodeURIComponent(
-                "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
-                "<rect width='100%' height='100%' fill='#ddd'/>" +
-                "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
-                "</svg>"
+        const img =
+            document.getElementById(
+                "editPhotoPreview"
             );
 
+        img.src =
+            newProfilePhoto;
 
-        document
-            .getElementById(
-                "homeUser"
-            )
-            .innerHTML =
-            `<h3>
-                Welcome, ${
-                    escapeHtml(
-                        data.name ||
-                        currentUser.email
-                    )
-                }
-            </h3>
-
-            <p>
-                @${escapeHtml(
-                    data.username || ""
-                )}
-            </p>`;
-            
+        img.classList.remove("hidden");
 
     }catch(error){
 
-        console.error(error);
+        alert("Could not process image.");
     }
-}
+};
 
 
-
-/* ================= SAVE PROFILE ================= */
-
-window.saveProfile =
-async function(){
-
-    if(!currentUser){
-        return;
-    }
-
+window.saveProfile = async function(){
 
     const name =
         document
-        .getElementById(
-            "profileName"
-        )
-        .value
-        .trim();
-
-
-    const username =
-        document
-        .getElementById(
-            "profileUsername"
-        )
-        .value
-        .trim();
-
+        .getElementById("editName")
+        .value.trim();
 
     const bio =
         document
-        .getElementById(
-            "profileBio"
-        )
-        .value
-        .trim();
+        .getElementById("editBio")
+        .value.trim();
 
 
-    const photoFile =
-        document
-        .getElementById(
-            "profilePhoto"
-        )
-        .files[0];
+    if(!name){
 
-
-    if(
-        !name ||
-        !username
-    ){
-
-        showMessage(
-            "profileMessage",
-            "Name and username are required.",
-            "error"
-        );
+        alert("Name is required.");
 
         return;
     }
@@ -1833,634 +1796,435 @@ async function(){
 
     try{
 
-        let photo =
-            document
-            .getElementById(
-                "profilePhotoPreview"
-            )
-            .src;
+        const data = {
+
+            name:name,
+
+            bio:bio
+        };
 
 
-        if(photoFile){
+        if(newProfilePhoto){
 
-            photo =
-                await compressImage(
-                    photoFile
-                );
+            data.photoURL =
+                newProfilePhoto;
         }
 
 
-        await setDoc(
+        await updateDoc(
             doc(
                 db,
                 "users",
                 currentUser.uid
             ),
-            {
-
-                name:
-                    name,
-
-                username:
-                    username,
-
-                bio:
-                    bio,
-
-                photo:
-                    photo,
-
-                updatedAt:
-                    serverTimestamp()
-
-            },
-            {
-                merge:true
-            }
+            data
         );
 
 
-        await updateProfile(
-            currentUser,
-            {
-                displayName:
-                    name
-            }
-        );
+        await loadCurrentProfile();
 
-
-        showMessage(
-            "profileMessage",
-            "Profile updated successfully."
-        );
-
+        renderProfile();
 
         await loadUsers();
 
-        await loadMyProfile();
+        await renderStatuses();
 
+        closeEditProfile();
+
+        newProfilePhoto = "";
+
+        alert("Profile updated.");
+
+    }catch(error){
+
+        alert(error.message);
+    }
+};
+
+
+/* USERS */
+
+async function loadUsers(){
+
+    try{
+
+        const snap =
+            await getDocs(
+                collection(db,"users")
+            );
+
+
+        allUsers =
+            snap.docs
+            .map(d => ({
+                id:d.id,
+                ...d.data()
+            }))
+            .filter(
+                u => u.uid !== currentUser.uid
+            );
+
+
+        renderUsers(allUsers);
 
     }catch(error){
 
         console.error(error);
 
-
-        showMessage(
-            "profileMessage",
-            error.message,
-            "error"
-        );
-    }
-};
-
-
-
-/* ================= PREVIEW PHOTO ================= */
-
-window.previewProfilePhoto =
-async function(){
-
-    const file =
         document
-        .getElementById(
-            "profilePhoto"
-        )
-        .files[0];
-
-
-    if(!file){
-        return;
-    }
-
-
-    try{
-
-        const photo =
-            await compressImage(
-                file
-            );
-
-
-        document
-            .getElementById(
-                "profilePhotoPreview"
-            )
-            .src =
-            photo;
-
-
-    }catch(error){
-
-        alert(
-            error.message
-        );
-    }
-};
-
-
-
-/* ================= LOAD USERS ================= */
-
-async function loadUsers(){
-
-    if(!currentUser){
-        return;
-    }
-
-
-    const container =
-        document.getElementById(
-            "usersContainer"
-        );
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "users"
-                )
-            );
-
-
-        allUsers = [];
-
-
-        snapshot.forEach(
-            item => {
-
-                const data =
-                    item.data();
-
-
-                if(
-                    data.uid &&
-                    data.uid !==
-                    currentUser.uid
-                ){
-
-                    allUsers.push({
-
-                        id:
-                            item.id,
-
-                        ...data
-
-                    });
-                }
-
-            }
-        );
-
-
-        renderUsers(
-            allUsers
-        );
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        container.innerHTML =
-            `<div class="alert error">
-                ${escapeHtml(
-                    error.message
-                )}
-            </div>`;
+            .getElementById("homeUsers")
+            .innerHTML =
+            `<div class="empty">
+                Unable to load users.
+             </div>`;
     }
 }
 
 
-
-/* ================= RENDER USERS ================= */
-
 function renderUsers(users){
 
-    const container =
+    const home =
         document.getElementById(
-            "usersContainer"
+            "homeUsers"
+        );
+
+    const discover =
+        document.getElementById(
+            "discoverUsers"
         );
 
 
     if(!users.length){
 
-        container.innerHTML =
-            `<p>
-                No other users found.
-            </p>`;
+        home.innerHTML =
+            `<div class="empty">
+                No users found.
+             </div>`;
+
+        discover.innerHTML =
+            `<div class="empty">
+                No users found.
+             </div>`;
 
         return;
     }
 
 
-    container.innerHTML =
-        "";
-
-
-    users.forEach(
-        user => {
+    const html =
+        users.map(user => {
 
             const photo =
-                user.photo ||
-                "data:image/svg+xml;charset=UTF-8," +
-                encodeURIComponent(
-                    "<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>" +
-                    "<rect width='100%' height='100%' fill='#ddd'/>" +
-                    "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='30'>👤</text>" +
-                    "</svg>"
-                );
+                user.photoURL ||
+                "https://via.placeholder.com/64/ffd6e8/ff1493?text=👤";
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+            return `
+
+                <div class="card user-card">
+
+                    <img
+                        class="user-photo"
+                        src="${photo}"
+                    >
+
+                    <div class="user-info">
+
+                        <div class="user-name">
+                            ${escapeHtml(
+                                user.name ||
+                                "User"
+                            )}
+                        </div>
+
+                        <div class="user-bio">
+                            ${escapeHtml(
+                                user.bio ||
+                                "Available to chat"
+                            )}
+                        </div>
+
+                    </div>
 
 
-            div.className =
-                "user-card";
+                    <button
+                        class="small-btn chat-btn"
+                        onclick="openChatByUid(
+                            '${user.uid}'
+                        )">
 
+                        Chat
 
-            div.innerHTML =
-
-                `<img
-                    class="user-photo"
-                    src="${photo}"
-                >
-
-                <div class="user-info">
-
-                    <h3>
-                        ${escapeHtml(
-                            user.name ||
-                            "User"
-                        )}
-                    </h3>
-
-                    <p>
-                        @${escapeHtml(
-                            user.username ||
-                            ""
-                        )}
-                    </p>
-
-                    <p>
-                        ${
-                            user.online
-                            ? "🟢 Online"
-                            : "⚫ Offline"
-                        }
-                    </p>
+                    </button>
 
                 </div>
+            `;
 
-                <div>
-
-                    <button
-                        onclick="viewUserProfile('${user.uid}')"
-                    >
-                        View
-                    </button>
-
-                    <button
-                        onclick="openChatByUid('${user.uid}')"
-                    >
-                        Chat
-                    </button>
-
-                </div>`;
+        }).join("");
 
 
-            container.appendChild(
-                div
-            );
+    home.innerHTML =
+        html;
 
-        }
-    );
+    discover.innerHTML =
+        html;
 }
 
 
+window.searchUsers = function(){
 
-/* ================= SEARCH USERS ================= */
-
-window.searchUsers =
-function(){
-
-    const search =
-        document
-        .getElementById(
-            "searchUsers"
+    const value =
+        (
+            document
+            .getElementById("homeSearch")
+            ?.value ||
+            document
+            .getElementById("discoverSearch")
+            ?.value ||
+            ""
         )
-        .value
         .toLowerCase()
         .trim();
 
 
-    if(!search){
+    if(!value){
 
-        renderUsers(
-            allUsers
-        );
+        renderUsers(allUsers);
 
         return;
     }
 
 
     const filtered =
-        allUsers.filter(
-            user => {
+        allUsers.filter(user =>
 
-                const name =
-                    (
-                        user.name ||
-                        ""
-                    )
-                    .toLowerCase();
+            (user.name || "")
+            .toLowerCase()
+            .includes(value)
 
+            ||
 
-                const username =
-                    (
-                        user.username ||
-                        ""
-                    )
-                    .toLowerCase();
+            (user.email || "")
+            .toLowerCase()
+            .includes(value)
 
+            ||
 
-                return (
-                    name.includes(
-                        search
-                    )
-                    ||
-                    username.includes(
-                        search
-                    )
-                );
-            }
+            (user.bio || "")
+            .toLowerCase()
+            .includes(value)
         );
 
 
-    renderUsers(
-        filtered
-    );
+    renderUsers(filtered);
 };
 
 
+/* PAGE NAVIGATION */
 
-/* ================= VIEW PROFILE ================= */
+window.showPage = function(pageId,button){
 
-window.viewUserProfile =
-function(uid){
-
-    const user =
-        allUsers.find(
-            item =>
-            item.uid === uid
-        );
-
-
-    if(!user){
-        return;
-    }
-
-
-    const photo =
-        user.photo ||
-        "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(
-            "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>" +
-            "<rect width='100%' height='100%' fill='#ddd'/>" +
-            "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='50'>👤</text>" +
-            "</svg>"
+    document
+        .querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.remove("active")
         );
 
 
     document
-        .getElementById(
-            "viewProfileContent"
-        )
-        .innerHTML =
-
-        `<img
-            class="profile-photo"
-            src="${photo}"
-        >
-
-        <h2 style="text-align:center">
-            ${escapeHtml(
-                user.name ||
-                "User"
-            )}
-        </h2>
-
-        <p style="text-align:center">
-            @${escapeHtml(
-                user.username ||
-                ""
-            )}
-        </p>
-
-        <p style="text-align:center">
-            ${
-                user.online
-                ? "🟢 Online"
-                : "⚫ Offline"
-            }
-        </p>
-
-        <div class="card">
-
-            <h3>
-                About
-            </h3>
-
-            <p>
-                ${escapeHtml(
-                    user.bio ||
-                    "No bio available."
-                )}
-            </p>
-
-        </div>
-
-        <button
-            onclick="openChatByUid('${user.uid}')"
-        >
-            💬 Send Message
-        </button>`;
+        .getElementById(pageId)
+        .classList.add("active");
 
 
-    showPage(
-        "viewProfilePage"
-    );
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    if(button){
+
+        button.classList.add("active");
+    }
+
+
+    document
+        .getElementById("chatInputArea")
+        .classList.add("hidden");
+
+
+    if(pageId === "messagesPage"){
+
+        renderConversations();
+    }
 };
 
 
+/* CHAT */
 
-/* ================= OPEN CHAT ================= */
-
-window.openChatByUid =
-function(uid){
+window.openChatByUid = async function(uid){
 
     const user =
         allUsers.find(
-            item =>
-            item.uid === uid
+            u => u.uid === uid
         );
 
 
     if(!user){
-        return;
-    }
 
-
-    openChat(
-        user
-    );
-};
-
-
-function openChat(user){
-
-    currentChatUser =
-        user;
-
-
-    document
-        .getElementById(
-            "chatHeader"
-        )
-        .innerHTML =
-
-        `<div class="chat-header">
-
-            <img
-                src="${
-                    user.photo ||
-                    "data:image/svg+xml;charset=UTF-8," +
-                    encodeURIComponent(
-                        "<svg xmlns='http://www.w3.org/2000/svg' width='45' height='45'>" +
-                        "<rect width='100%' height='100%' fill='#ddd'/>" +
-                        "<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='25'>👤</text>" +
-                        "</svg>"
-                    )
-                }"
-            >
-
-            <div>
-
-                <strong>
-                    ${escapeHtml(
-                        user.name ||
-                        "User"
-                    )}
-                </strong>
-
-                <br>
-
-                <small>
-                    ${
-                        user.online
-                        ? "🟢 Online"
-                        : "⚫ Offline"
-                    }
-                </small>
-
-            </div>
-
-        </div>`;
-
-
-    showPage(
-        "privateChatPage"
-    );
-
-
-    listenPrivateMessages();
-
-
-    setTimeout(
-        () => {
-
-            document
-                .getElementById(
-                    "privateMessageInput"
+        const snap =
+            await getDoc(
+                doc(
+                    db,
+                    "users",
+                    uid
                 )
-                .focus();
+            );
 
-        },
-        100
-    );
+
+        if(!snap.exists()){
+
+            alert("User not found.");
+
+            return;
+        }
+
+
+        activeChatUser = {
+            uid:uid,
+            ...snap.data()
+        };
+
+    }else{
+
+        activeChatUser =
+            user;
+    }
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.remove("active")
+        );
+
+
+    document
+        .getElementById("chatPage")
+        .classList.add("active");
+
+
+    document
+        .getElementById("bottomNav")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("chatInputArea")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("chatName")
+        .textContent =
+        activeChatUser.name ||
+        "User";
+
+
+    document
+        .getElementById("chatPhoto")
+        .src =
+        activeChatUser.photoURL ||
+        "https://via.placeholder.com/64/ffd6e8/ff1493?text=👤";
+
+
+    document
+        .getElementById("chatStatus")
+        .innerHTML =
+        activeChatUser.online
+        ?
+        '<span class="online-dot"></span> Online'
+        :
+        "Offline";
+
+
+    document
+        .getElementById("messagesContainer")
+        .innerHTML =
+        '<div class="loading">Loading messages...</div>';
+
+
+    subscribeToMessages();
+};
+
+
+window.closeChat = function(){
+
+    activeChatUser = null;
+
+
+    if(unsubscribeMessages){
+
+        unsubscribeMessages();
+
+        unsubscribeMessages = null;
+    }
+
+
+    document
+        .getElementById("chatPage")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("bottomNav")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("chatInputArea")
+        .classList.add("hidden");
+
+
+    showPage("messagesPage");
+
+    renderConversations();
+};
+
+
+/* MESSAGES */
+
+function getParticipants(uid1,uid2){
+
+    return [
+        uid1,
+        uid2
+    ].sort();
 }
 
 
+function subscribeToMessages(){
 
-/* ================= CLOSE CHAT ================= */
-
-window.closeChat =
-function(){
-
-    currentChatUser =
-        null;
-
-
-    if(
-        unsubscribeMessages
-    ){
+    if(unsubscribeMessages){
 
         unsubscribeMessages();
-
-        unsubscribeMessages =
-            null;
     }
 
 
-    showPage(
-        "messagesPage"
-    );
-};
-
-
-
-/* ================= LISTEN PRIVATE MESSAGES ================= */
-
-function listenPrivateMessages(){
-
-    if(
-        !currentUser ||
-        !currentChatUser
-    ){
-
-        return;
-    }
-
-
-    if(
-        unsubscribeMessages
-    ){
-
-        unsubscribeMessages();
-
-        unsubscribeMessages =
-            null;
-    }
+    const participants =
+        getParticipants(
+            currentUser.uid,
+            activeChatUser.uid
+        );
 
 
     const q =
         query(
-            collection(
-                db,
-                "messages"
-            ),
+            collection(db,"messages"),
             where(
                 "participants",
-                "array-contains",
-                currentUser.uid
+                "==",
+                participants
             )
         );
 
@@ -2470,359 +2234,179 @@ function listenPrivateMessages(){
             q,
             snapshot => {
 
-                const messages =
-                    [];
-
-
-                snapshot.forEach(
-                    item => {
-
-                        const data =
-                            item.data();
-
-
-                        const isThisConversation =
-
-                            (
-                                data.sender ===
-                                currentUser.uid
-
-                                &&
-
-                                data.receiver ===
-                                currentChatUser.uid
-                            )
-
-                            ||
-
-                            (
-                                data.sender ===
-                                currentChatUser.uid
-
-                                &&
-
-                                data.receiver ===
-                                currentUser.uid
-                            );
-
-
-                        if(
-                            isThisConversation
-                        ){
-
-                            messages.push({
-
-                                id:
-                                    item.id,
-
-                                ...data
-
-                            });
-                        }
-
-                    }
-                );
+                let messages =
+                    snapshot.docs
+                    .map(d => ({
+                        id:d.id,
+                        ...d.data()
+                    }));
 
 
                 messages.sort(
                     (a,b) =>
-                    getTime(
-                        a.createdAt
-                    ) -
-                    getTime(
-                        b.createdAt
-                    )
+                        (a.createdAt || 0) -
+                        (b.createdAt || 0)
                 );
 
 
-                renderPrivateMessages(
-                    messages
-                );
-
-
-                markMessagesAsRead(
-                    messages
-                );
+                renderMessages(messages);
 
             },
-
             error => {
 
-                console.error(
-                    "Message listener error:",
-                    error
-                );
-
+                console.error(error);
 
                 document
                     .getElementById(
-                        "privateChatBox"
+                        "messagesContainer"
                     )
                     .innerHTML =
-
-                    `<div class="alert error">
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </div>`;
+                    `<div class="empty">
+                        Unable to load messages.
+                     </div>`;
             }
         );
 }
 
 
+function renderMessages(messages){
 
-/* ================= RENDER MESSAGES ================= */
-
-function renderPrivateMessages(
-    messages
-){
-
-    const box =
+    const container =
         document.getElementById(
-            "privateChatBox"
+            "messagesContainer"
         );
 
 
     if(!messages.length){
 
-        box.innerHTML =
-            `<div
-                style="
-                    text-align:center;
-                    color:#777
-                "
-            >
-                No messages yet.
-                Start the conversation.
-            </div>`;
+        container.innerHTML =
+            `<div class="empty">
+                No messages yet.<br>
+                Start the conversation 💗
+             </div>`;
 
         return;
     }
 
 
-    box.innerHTML =
-        "";
+    container.innerHTML =
+        messages.map(message => {
 
-
-    messages.forEach(
-        message => {
-
-            const mine =
+            const me =
                 message.sender ===
                 currentUser.uid;
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
+            let status = "";
 
 
-            div.className =
-                "message " +
-                (
-                    mine
-                    ? "me"
-                    : "other"
-                );
+            if(me){
 
-
-            let status =
-                "";
-
-
-            if(mine){
-
-                if(
-                    message.read ===
-                    true
-                ){
+                if(message.read){
 
                     status =
-                        `<span
-                            class="message-status"
-                            title="Read"
-                        >
-                            ✓✓
-                        </span>`;
+                        '<span class="message-status" style="color:#8be9fd">✓✓ Seen</span>';
 
-                }else if(
-                    message.delivered ===
-                    true
-                ){
+                }else if(message.delivered){
 
                     status =
-                        `<span
-                            class="message-status"
-                            title="Delivered"
-                        >
-                            ✓✓
-                        </span>`;
+                        '<span class="message-status">✓✓</span>';
 
                 }else{
 
                     status =
-                        `<span
-                            class="message-status"
-                            title="Sent"
-                        >
-                            ✓
-                        </span>`;
+                        '<span class="message-status">✓</span>';
                 }
             }
 
 
-            div.innerHTML =
+            let replyHTML = "";
 
-                `<div>
-                    ${escapeHtml(
-                        message.text ||
-                        ""
-                    )}
+
+            if(message.statusReply){
+
+                replyHTML = `
+
+                    <div style="
+                        background:rgba(255,255,255,.18);
+                        padding:7px;
+                        border-radius:8px;
+                        margin-bottom:5px;
+                        font-size:11px;
+                    ">
+
+                        📸 Reply to Status
+
+                    </div>
+                `;
+            }
+
+
+            return `
+
+                <div class="message-row ${me ? "me" : ""}">
+
+                    <div
+                        class="message"
+                        oncontextmenu="
+                            event.preventDefault();
+                            deleteMessage(
+                                '${message.id}'
+                            )
+                        "
+                    >
+
+                        ${replyHTML}
+
+                        ${
+                            message.text
+                            ?
+                            `<div>
+                                ${escapeHtml(
+                                    message.text
+                                )}
+                             </div>`
+                            :
+                            ""
+                        }
+
+                        <div class="message-time">
+
+                            ${formatTime(
+                                message.createdAt
+                            )}
+
+                            ${status}
+
+                        </div>
+
+                    </div>
+
                 </div>
+            `;
 
-                <div class="message-time">
-
-                    ${formatDate(
-                        message.createdAt
-                    )}
-
-                    ${status}
-
-                    ${
-                        mine
-                        ?
-                        `<button
-                            style="
-                                width:auto;
-                                padding:3px 7px;
-                                margin-left:5px;
-                                background:#c62828;
-                                font-size:10px;
-                            "
-                            onclick="deleteMessage('${message.id}')"
-                        >
-                            Delete
-                        </button>`
-                        :
-                        ""
-                    }
-
-                </div>`;
+        }).join("");
 
 
-            box.appendChild(
-                div
-            );
-
-        }
-    );
-
-
-    box.scrollTop =
-        box.scrollHeight;
+    container.scrollTop =
+        container.scrollHeight;
 }
 
 
+window.handleMessageKey = function(event){
 
-/* ================= MARK READ ================= */
+    if(event.key === "Enter"){
 
-async function markMessagesAsRead(
-    messages
-){
+        event.preventDefault();
 
-    if(!currentUser){
-        return;
+        sendMessage();
     }
+};
 
 
-    const updates =
-        [];
+window.sendMessage = async function(){
 
-
-    for(
-        const message
-        of messages
-    ){
-
-        if(
-
-            message.receiver ===
-            currentUser.uid
-
-            &&
-
-            (
-                message.delivered !==
-                true
-
-                ||
-
-                message.read !==
-                true
-            )
-
-        ){
-
-            updates.push(
-
-                updateDoc(
-                    doc(
-                        db,
-                        "messages",
-                        message.id
-                    ),
-                    {
-
-                        delivered:
-                            true,
-
-                        read:
-                            true
-
-                    }
-                )
-
-            );
-        }
-    }
-
-
-    if(
-        updates.length
-    ){
-
-        try{
-
-            await Promise.all(
-                updates
-            );
-
-        }catch(error){
-
-            console.error(
-                "Read receipt error:",
-                error
-            );
-        }
-    }
-}
-
-
-
-/* ================= SEND MESSAGE ================= */
-
-window.sendPrivateMessage =
-async function(){
-
-    if(
-        !currentUser ||
-        !currentChatUser
-    ){
-
-        alert(
-            "Please select a user first."
-        );
+    if(!activeChatUser){
 
         return;
     }
@@ -2830,7 +2414,7 @@ async function(){
 
     const input =
         document.getElementById(
-            "privateMessageInput"
+            "messageInput"
         );
 
 
@@ -2838,115 +2422,80 @@ async function(){
         input.value.trim();
 
 
-    if(!text){
+    if(!text &&
+       !pendingStatusReply){
+
         return;
     }
 
 
     try{
 
-        const participants = [
+        const participants =
+            getParticipants(
+                currentUser.uid,
+                activeChatUser.uid
+            );
 
-            currentUser.uid,
 
-            currentChatUser.uid
+        const messageData = {
 
-        ];
+            sender:
+                currentUser.uid,
+
+            receiver:
+                activeChatUser.uid,
+
+            participants:
+                participants,
+
+            text:
+                text,
+
+            createdAt:
+                Date.now(),
+
+            delivered:
+                false,
+
+            read:
+                false
+        };
+
+
+        if(pendingStatusReply){
+
+            messageData.statusReply =
+                pendingStatusReply;
+        }
 
 
         await addDoc(
-
-            collection(
-                db,
-                "messages"
-            ),
-
-            {
-
-                sender:
-                    currentUser.uid,
-
-                receiver:
-                    currentChatUser.uid,
-
-                participants:
-                    participants,
-
-                text:
-                    text,
-
-                delivered:
-                    false,
-
-                read:
-                    false,
-
-                createdAt:
-                    serverTimestamp()
-
-            }
+            collection(db,"messages"),
+            messageData
         );
 
 
-        input.value =
-            "";
+        input.value = "";
 
-        input.focus();
+        pendingStatusReply = null;
 
+        hideReplyPreview();
 
     }catch(error){
 
-        console.error(
-            error
-        );
-
-
-        alert(
-            "Failed to send message: " +
-            error.message
-        );
+        alert(error.message);
     }
 };
 
 
+/* DELETE MESSAGE */
 
-/* ================= ENTER TO SEND ================= */
+window.deleteMessage = async function(id){
 
-window.handleChatKey =
-function(event){
-
-    if(
-        event.key ===
-        "Enter"
-
-        &&
-
-        !event.shiftKey
-    ){
-
-        event.preventDefault();
-
-        sendPrivateMessage();
-    }
-};
-
-
-
-/* ================= DELETE MESSAGE ================= */
-
-window.deleteMessage =
-async function(messageId){
-
-    if(!currentUser){
-        return;
-    }
-
-
-    if(
-        !confirm(
-            "Delete this message?"
-        )
-    ){
+    if(!confirm(
+        "Delete this message?"
+    )){
 
         return;
     }
@@ -2954,354 +2503,1376 @@ async function(messageId){
 
     try{
 
-        await deleteDoc(
+        const ref =
             doc(
                 db,
                 "messages",
-                messageId
-            )
-        );
+                id
+            );
+
+
+        const snap =
+            await getDoc(ref);
+
+
+        if(!snap.exists()){
+
+            return;
+        }
+
+
+        if(
+            snap.data().sender !==
+            currentUser.uid
+        ){
+
+            alert(
+                "You can only delete your own message."
+            );
+
+            return;
+        }
+
+
+        await deleteDoc(ref);
 
     }catch(error){
 
-        alert(
-            error.message
-        );
+        alert(error.message);
     }
 };
 
 
+/* CONVERSATIONS */
 
-/* ================= CONVERSATIONS ================= */
-
-function listenConversations(){
-
-    if(!currentUser){
-        return;
-    }
-
-
-    if(
-        unsubscribeConversations
-    ){
-
-        unsubscribeConversations();
-
-        unsubscribeConversations =
-            null;
-    }
-
-
-    const q =
-        query(
-            collection(
-                db,
-                "messages"
-            ),
-            where(
-                "participants",
-                "array-contains",
-                currentUser.uid
-            )
-        );
-
-
-    unsubscribeConversations =
-        onSnapshot(
-            q,
-            snapshot => {
-
-                const map =
-                    new Map();
-
-
-                snapshot.forEach(
-                    item => {
-
-                        const data =
-                            item.data();
-
-
-                        if(
-                            !data.sender ||
-                            !data.receiver
-                        ){
-
-                            return;
-                        }
-
-
-                        const otherUid =
-
-                            data.sender ===
-                            currentUser.uid
-
-                            ?
-
-                            data.receiver
-
-                            :
-
-                            data.sender;
-
-
-                        const old =
-                            map.get(
-                                otherUid
-                            );
-
-
-                        if(
-
-                            !old
-
-                            ||
-
-                            getTime(
-                                data.createdAt
-                            )
-
-                            >
-
-                            getTime(
-                                old.createdAt
-                            )
-
-                        ){
-
-                            map.set(
-                                otherUid,
-                                {
-
-                                    id:
-                                        item.id,
-
-                                    ...data,
-
-                                    otherUid:
-                                        otherUid
-
-                                }
-                            );
-                        }
-
-                    }
-                );
-
-
-                renderConversations(
-                    Array.from(
-                        map.values()
-                    )
-                );
-
-            },
-
-            error => {
-
-                console.error(
-                    error
-                );
-
-
-                document
-                    .getElementById(
-                        "conversationsContainer"
-                    )
-                    .innerHTML =
-
-                    `<div class="alert error">
-                        ${escapeHtml(
-                            error.message
-                        )}
-                    </div>`;
-            }
-        );
-}
-
-
-
-/* ================= RENDER CONVERSATIONS ================= */
-
-function renderConversations(
-    conversations
-){
+async function renderConversations(){
 
     const container =
         document.getElementById(
-            "conversationsContainer"
+            "conversations"
         );
 
 
-    if(
-        !conversations.length
-    ){
-
-        container.innerHTML =
-            `<p>
-                No conversations yet.
-                Go to Discover and select a user.
-            </p>`;
+    if(!currentUser){
 
         return;
     }
 
 
-    container.innerHTML =
-        "";
+    try{
+
+        const q =
+            query(
+                collection(db,"messages"),
+                where(
+                    "participants",
+                    "array-contains",
+                    currentUser.uid
+                )
+            );
 
 
-    conversations.sort(
-        (a,b) =>
-        getTime(
-            b.createdAt
-        ) -
-        getTime(
-            a.createdAt
-        )
-    );
+        const snap =
+            await getDocs(q);
 
 
-    conversations.forEach(
-        conversation => {
+        const messages =
+            snap.docs.map(d => ({
+                id:d.id,
+                ...d.data()
+            }));
 
-            const user =
+
+        const latest = {};
+
+
+        messages.forEach(message => {
+
+            const other =
+                message.sender ===
+                currentUser.uid
+                ?
+                message.receiver
+                :
+                message.sender;
+
+
+            if(
+                !latest[other] ||
+                (
+                    message.createdAt || 0
+                ) >
+                (
+                    latest[other].createdAt || 0
+                )
+            ){
+
+                latest[other] =
+                    message;
+            }
+        });
+
+
+        const entries =
+            Object.entries(latest)
+            .sort(
+                (a,b) =>
+                    (b[1].createdAt || 0) -
+                    (a[1].createdAt || 0)
+            );
+
+
+        if(!entries.length){
+
+            container.innerHTML =
+                `<div class="empty">
+                    No conversations yet.<br>
+                    Find someone to chat with 💗
+                 </div>`;
+
+            return;
+        }
+
+
+        let html = "";
+
+
+        for(
+            const [uid,message]
+            of entries
+        ){
+
+            let user =
                 allUsers.find(
-                    item =>
-                    item.uid ===
-                    conversation.otherUid
+                    u => u.uid === uid
                 );
 
 
             if(!user){
-                return;
+
+                const userSnap =
+                    await getDoc(
+                        doc(
+                            db,
+                            "users",
+                            uid
+                        )
+                    );
+
+
+                if(userSnap.exists()){
+
+                    user = userSnap.data();
+                }
             }
 
 
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "user-card";
+            if(!user) continue;
 
 
             const photo =
-                user.photo ||
-                "";
+                user.photoURL ||
+                "https://via.placeholder.com/64/ffd6e8/ff1493?text=👤";
 
 
-            const unread =
+            html += `
 
-                conversation.receiver ===
-                currentUser.uid
-
-                &&
-
-                conversation.read !==
-                true;
-
-
-            div.innerHTML =
-
-                `<img
-                    class="user-photo"
-                    src="${photo}"
+                <div
+                    class="conversation"
+                    onclick="
+                        openChatByUid(
+                            '${uid}'
+                        )
+                    "
                 >
 
-                <div class="user-info">
+                    <img
+                        class="user-photo"
+                        src="${photo}"
+                    >
 
-                    <h3>
+                    <div class="conversation-info">
 
-                        ${escapeHtml(
-                            user.name ||
-                            "User"
-                        )}
+                        <div class="user-name">
 
-                        ${
-                            unread
-                            ? " 🔵"
-                            : ""
-                        }
+                            ${escapeHtml(
+                                user.name ||
+                                "User"
+                            )}
 
-                    </h3>
+                        </div>
 
-                    <p>
-                        ${escapeHtml(
-                            conversation.text ||
-                            ""
-                        )}
-                    </p>
+                        <div class="last-message">
+
+                            ${
+                                message.statusReply
+                                ?
+                                "📸 Reply to Status"
+                                :
+                                escapeHtml(
+                                    message.text ||
+                                    ""
+                                )
+                            }
+
+                        </div>
+
+                    </div>
 
                     <small>
                         ${formatDate(
-                            conversation.createdAt
+                            message.createdAt
                         )}
                     </small>
 
                 </div>
-
-                <button
-                    style="width:auto"
-                    onclick="openChatByUid('${user.uid}')"
-                >
-                    Open
-                </button>`;
+            `;
+        }
 
 
-            container.appendChild(
-                div
+        container.innerHTML =
+            html ||
+            `<div class="empty">
+                No conversations yet.
+             </div>`;
+
+    }catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            `<div class="empty">
+                Unable to load conversations.
+             </div>`;
+    }
+}
+
+
+/* STATUS */
+
+window.openCreateStatus = function(){
+
+    document
+        .getElementById("statusText")
+        .value = "";
+
+    document
+        .getElementById("statusImage")
+        .value = "";
+
+    document
+        .getElementById("statusPreview")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("createStatusModal")
+        .classList.add("show");
+};
+
+
+window.closeCreateStatus = function(){
+
+    document
+        .getElementById("createStatusModal")
+        .classList.remove("show");
+};
+
+
+window.previewStatusImage = async function(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file) return;
+
+
+    try{
+
+        const image =
+            await compressImage(
+                file,
+                500,
+                .7
             );
 
+
+        const preview =
+            document.getElementById(
+                "statusPreview"
+            );
+
+
+        preview.src =
+            image;
+
+        preview.classList.remove(
+            "hidden"
+        );
+
+    }catch(error){
+
+        alert("Could not process image.");
+    }
+};
+
+
+window.createStatus = async function(){
+
+    const text =
+        document
+        .getElementById("statusText")
+        .value.trim();
+
+
+    const file =
+        document
+        .getElementById("statusImage")
+        .files[0];
+
+
+    if(!text && !file){
+
+        alert(
+            "Write something or select a photo."
+        );
+
+        return;
+    }
+
+
+    try{
+
+        let mediaURL = "";
+
+
+        if(file){
+
+            mediaURL =
+                await compressImage(
+                    file,
+                    500,
+                    .7
+                );
         }
+
+
+        const userPhoto =
+            currentProfile?.photoURL || "";
+
+
+        await addDoc(
+            collection(db,"statuses"),
+            {
+
+                uid:
+                    currentUser.uid,
+
+                name:
+                    currentProfile?.name ||
+                    "User",
+
+                text:
+                    text,
+
+                mediaURL:
+                    mediaURL,
+
+                profilePhoto:
+                    userPhoto,
+
+                createdAt:
+                    Date.now(),
+
+                expiresAt:
+                    Date.now() +
+                    (24 * 60 * 60 * 1000),
+
+                views:[]
+            }
+        );
+
+
+        closeCreateStatus();
+
+        await renderStatuses();
+
+        alert("Status posted successfully.");
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Could not create status: " +
+            error.message
+        );
+    }
+};
+
+
+/*
+==========================================
+STATUS GROUPING
+==========================================
+*/
+
+async function getStatusGroups(){
+
+    const snap =
+        await getDocs(
+            collection(db,"statuses")
+        );
+
+
+    let statuses =
+        snap.docs.map(d => ({
+            id:d.id,
+            ...d.data()
+        }));
+
+
+    const now =
+        Date.now();
+
+
+    // Remove expired statuses
+    statuses =
+        statuses.filter(status =>
+            !status.expiresAt ||
+            status.expiresAt > now
+        );
+
+
+    const groups = {};
+
+
+    statuses.forEach(status => {
+
+        if(!groups[status.uid]){
+
+            groups[status.uid] = [];
+        }
+
+
+        groups[status.uid].push(status);
+    });
+
+
+    // IMPORTANT:
+    // Status 1 -> Status 2 -> Status 3
+    Object.keys(groups).forEach(uid => {
+
+        groups[uid].sort(
+            (a,b) =>
+                (a.createdAt || 0) -
+                (b.createdAt || 0)
+        );
+    });
+
+
+    statusGroups =
+        Object.keys(groups)
+        .map(uid => ({
+
+            uid:uid,
+
+            statuses:
+                groups[uid]
+
+        }));
+
+
+    // Newest active user status first
+    statusGroups.sort(
+        (a,b) => {
+
+            const aLatest =
+                Math.max(
+                    ...a.statuses.map(
+                        s => s.createdAt || 0
+                    )
+                );
+
+            const bLatest =
+                Math.max(
+                    ...b.statuses.map(
+                        s => s.createdAt || 0
+                    )
+                );
+
+            return bLatest - aLatest;
+        }
+    );
+
+
+    return statusGroups;
+}
+
+
+/* RENDER STATUS CIRCLES */
+
+async function renderStatuses(){
+
+    const container =
+        document.getElementById(
+            "statusesContainer"
+        );
+
+
+    try{
+
+        await getStatusGroups();
+
+
+        let html = `
+
+            <div
+                class="status-item"
+                onclick="openCreateStatus()"
+            >
+
+                <div class="add-status">
+                    +
+                </div>
+
+                <div class="status-name">
+                    My Status
+                </div>
+
+            </div>
+        `;
+
+
+        statusGroups.forEach(group => {
+
+            const latest =
+                group.statuses[
+                    group.statuses.length - 1
+                ];
+
+
+            let user = null;
+
+
+            if(
+                group.uid ===
+                currentUser.uid
+            ){
+
+                user =
+                    currentProfile;
+
+            }else{
+
+                user =
+                    allUsers.find(
+                        u => u.uid === group.uid
+                    );
+            }
+
+
+            const name =
+                latest.name ||
+                user?.name ||
+                "User";
+
+
+            const photo =
+                latest.mediaURL ||
+                user?.photoURL ||
+                "https://via.placeholder.com/64/ffd6e8/ff1493?text=👤";
+
+
+            html += `
+
+                <div
+                    class="status-item"
+                    onclick="
+                        openStatusViewer(
+                            '${group.uid}'
+                        )
+                    "
+                >
+
+                    <div class="status-ring">
+
+                        <img
+                            src="${photo}"
+                        >
+
+                    </div>
+
+                    <div class="status-name">
+
+                        ${escapeHtml(name)}
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+
+        container.innerHTML =
+            html;
+
+    }catch(error){
+
+        console.error(
+            "Status loading error:",
+            error
+        );
+    }
+}
+
+
+/*
+==========================================
+OPEN STATUS VIEWER
+==========================================
+*/
+
+window.openStatusViewer = function(uid){
+
+    const groupIndex =
+        statusGroups.findIndex(
+            group =>
+                group.uid === uid
+        );
+
+
+    if(groupIndex === -1){
+
+        return;
+    }
+
+
+    currentStatusUserIndex =
+        groupIndex;
+
+
+    currentStatusIndex =
+        0;
+
+
+    openCurrentStatus();
+};
+
+
+/*
+==========================================
+STATUS VIEW
+==========================================
+*/
+
+function openCurrentStatus(){
+
+    const group =
+        statusGroups[
+            currentStatusUserIndex
+        ];
+
+
+    if(!group){
+
+        closeViewStatus();
+
+        return;
+    }
+
+
+    const statuses =
+        group.statuses;
+
+
+    if(!statuses.length){
+
+        closeViewStatus();
+
+        return;
+    }
+
+
+    /*
+    If status index is beyond
+    current user's statuses,
+    automatically go to next user.
+    */
+
+    if(
+        currentStatusIndex >=
+        statuses.length
+    ){
+
+        currentStatusUserIndex++;
+
+        currentStatusIndex = 0;
+
+
+        if(
+            currentStatusUserIndex >=
+            statusGroups.length
+        ){
+
+            closeViewStatus();
+
+            return;
+        }
+
+
+        openCurrentStatus();
+
+        return;
+    }
+
+
+    const status =
+        statuses[
+            currentStatusIndex
+        ];
+
+
+    let user = null;
+
+
+    if(
+        status.uid ===
+        currentUser.uid
+    ){
+
+        user =
+            currentProfile;
+
+    }else{
+
+        user =
+            allUsers.find(
+                u => u.uid === status.uid
+            );
+    }
+
+
+    const name =
+        status.name ||
+        user?.name ||
+        "User";
+
+
+    document
+        .getElementById(
+            "viewStatusName"
+        )
+        .textContent =
+        name;
+
+
+    /*
+    PROGRESS BARS
+
+    Example:
+
+    Status 1 / 3
+    [████] [    ] [    ]
+
+    Status 2 / 3
+    [████] [████] [    ]
+
+    Status 3 / 3
+    [████] [████] [████]
+    */
+
+    let progressHTML = `
+
+        <div class="status-progress">
+    `;
+
+
+    statuses.forEach(
+        (s,index) => {
+
+            progressHTML += `
+
+                <div
+                    class="
+                        status-progress-bar
+                        ${
+                            index <=
+                            currentStatusIndex
+                            ?
+                            "active"
+                            :
+                            ""
+                        }
+                    ">
+                </div>
+            `;
+        }
+    );
+
+
+    progressHTML += `
+        </div>
+    `;
+
+
+    let html =
+        progressHTML;
+
+
+    /*
+    MEDIA
+    */
+
+    if(status.mediaURL){
+
+        html += `
+
+            <img
+                class="status-media"
+                src="${status.mediaURL}"
+            >
+        `;
+    }
+
+
+    /*
+    TEXT
+    */
+
+    if(status.text){
+
+        html += `
+
+            <div class="status-text">
+
+                ${escapeHtml(
+                    status.text
+                )}
+
+            </div>
+        `;
+    }
+
+
+    /*
+    STATUS NUMBER
+    */
+
+    html += `
+
+        <div style="
+            margin-top:10px;
+            color:#999;
+            font-size:12px;
+        ">
+
+            Status
+            ${currentStatusIndex + 1}
+            /
+            ${statuses.length}
+
+        </div>
+    `;
+
+
+    /*
+    BUTTONS
+    */
+
+    html += `
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:8px;
+            margin-top:15px;
+        ">
+
+            <button
+                class="small-btn"
+                onclick="previousStatus()">
+
+                ◀ Previous
+
+            </button>
+
+
+            ${
+                status.uid !==
+                currentUser.uid
+                ?
+                `
+                <button
+                    class="small-btn chat-btn"
+                    onclick="
+                        replyToStatus(
+                            '${status.id}',
+                            '${status.uid}'
+                        )
+                    ">
+
+                    💬 Reply
+
+                </button>
+                `
+                :
+                `
+                <button
+                    class="small-btn"
+                    onclick="
+                        deleteStatus(
+                            '${status.id}'
+                        )
+                    ">
+
+                    🗑 Delete
+
+                </button>
+                `
+            }
+
+
+            <button
+                class="small-btn"
+                onclick="nextStatus()">
+
+                Next ▶
+
+            </button>
+
+        </div>
+    `;
+
+
+    document
+        .getElementById(
+            "statusViewContent"
+        )
+        .innerHTML =
+        html;
+
+
+    document
+        .getElementById(
+            "viewStatusModal"
+        )
+        .classList.add("show");
+}
+
+
+/*
+==========================================
+NEXT STATUS
+==========================================
+*/
+
+window.nextStatus = function(){
+
+    const group =
+        statusGroups[
+            currentStatusUserIndex
+        ];
+
+
+    if(!group){
+
+        closeViewStatus();
+
+        return;
+    }
+
+
+    /*
+    SAME USER:
+
+    1 -> 2 -> 3
+    */
+
+    if(
+        currentStatusIndex <
+        group.statuses.length - 1
+    ){
+
+        currentStatusIndex++;
+
+        openCurrentStatus();
+
+        return;
+    }
+
+
+    /*
+    LAST STATUS OF THIS USER
+
+    Move to next user
+    */
+
+    currentStatusUserIndex++;
+
+    currentStatusIndex = 0;
+
+
+    /*
+    NEXT USER
+    */
+
+    if(
+        currentStatusUserIndex <
+        statusGroups.length
+    ){
+
+        openCurrentStatus();
+
+    }else{
+
+        /*
+        No more users
+        */
+
+        closeViewStatus();
+    }
+};
+
+
+/*
+==========================================
+PREVIOUS STATUS
+==========================================
+*/
+
+window.previousStatus = function(){
+
+    /*
+    Previous status of same user
+    */
+
+    if(currentStatusIndex > 0){
+
+        currentStatusIndex--;
+
+        openCurrentStatus();
+
+        return;
+    }
+
+
+    /*
+    First status of current user
+
+    Go to previous user's
+    LAST status.
+    */
+
+    if(currentStatusUserIndex > 0){
+
+        currentStatusUserIndex--;
+
+        const previousGroup =
+            statusGroups[
+                currentStatusUserIndex
+            ];
+
+
+        currentStatusIndex =
+            previousGroup.statuses.length - 1;
+
+
+        openCurrentStatus();
+
+    }else{
+
+        /*
+        Already at first status
+        */
+
+        closeViewStatus();
+    }
+};
+
+
+/*
+==========================================
+CLOSE STATUS
+==========================================
+*/
+
+window.closeViewStatus = function(){
+
+    document
+        .getElementById(
+            "viewStatusModal"
+        )
+        .classList.remove("show");
+};
+
+
+/*
+==========================================
+DELETE STATUS
+==========================================
+*/
+
+window.deleteStatus = async function(id){
+
+    if(!confirm(
+        "Delete this status?"
+    )){
+
+        return;
+    }
+
+
+    try{
+
+        const ref =
+            doc(
+                db,
+                "statuses",
+                id
+            );
+
+
+        const snap =
+            await getDoc(ref);
+
+
+        if(!snap.exists()){
+
+            return;
+        }
+
+
+        if(
+            snap.data().uid !==
+            currentUser.uid
+        ){
+
+            alert(
+                "You can only delete your own status."
+            );
+
+            return;
+        }
+
+
+        await deleteDoc(ref);
+
+        closeViewStatus();
+
+        await renderStatuses();
+
+    }catch(error){
+
+        alert(error.message);
+    }
+};
+
+
+/*
+==========================================
+REPLY TO STATUS
+==========================================
+*/
+
+window.replyToStatus = async function(
+    statusId,
+    uid
+){
+
+    try{
+
+        const snap =
+            await getDoc(
+                doc(
+                    db,
+                    "statuses",
+                    statusId
+                )
+            );
+
+
+        if(!snap.exists()){
+
+            alert(
+                "Status no longer exists."
+            );
+
+            return;
+        }
+
+
+        const status =
+            snap.data();
+
+
+        if(
+            status.expiresAt &&
+            status.expiresAt <= Date.now()
+        ){
+
+            alert(
+                "This status has expired."
+            );
+
+            return;
+        }
+
+
+        const user =
+            allUsers.find(
+                u => u.uid === uid
+            );
+
+
+        if(!user){
+
+            alert("User not found.");
+
+            return;
+        }
+
+
+        pendingStatusReply = {
+
+            statusId:
+                statusId,
+
+            text:
+                status.text ||
+                "",
+
+            mediaURL:
+                status.mediaURL ||
+                "",
+
+            name:
+                status.name ||
+                user.name ||
+                "Status"
+        };
+
+
+        closeViewStatus();
+
+        await openChatByUid(uid);
+
+        showReplyPreview();
+
+    }catch(error){
+
+        alert(error.message);
+    }
+};
+
+
+function showReplyPreview(){
+
+    const preview =
+        document.getElementById(
+            "replyPreview"
+        );
+
+
+    if(!pendingStatusReply){
+
+        preview.classList.remove(
+            "show"
+        );
+
+        return;
+    }
+
+
+    preview.innerHTML = `
+
+        📸 Replying to
+        <b>
+            ${escapeHtml(
+                pendingStatusReply.name
+            )}
+        </b>
+
+        ${
+            pendingStatusReply.text
+            ?
+            ` — ${escapeHtml(
+                pendingStatusReply.text
+            )}`
+            :
+            ""
+        }
+
+    `;
+
+
+    preview.classList.add(
+        "show"
     );
 }
 
 
-
-/* ================= DARK MODE ================= */
-
-window.toggleDarkMode =
-function(){
+function hideReplyPreview(){
 
     document
-        .body
-        .classList
-        .toggle(
-            "dark"
+        .getElementById(
+            "replyPreview"
+        )
+        .classList.remove(
+            "show"
         );
+}
+
+
+/* DARK MODE */
+
+window.toggleDarkMode = function(){
+
+    document.body
+        .classList.toggle("dark");
 
 
     localStorage.setItem(
-        "loveConnectDark",
-        document
-            .body
-            .classList
-            .contains(
-                "dark"
-            )
+        "dmsDarkMode",
+        document.body
+            .classList.contains("dark")
             ? "1"
             : "0"
     );
 };
 
 
-
 if(
     localStorage.getItem(
-        "loveConnectDark"
+        "dmsDarkMode"
     ) === "1"
 ){
 
-    document
-        .body
-        .classList
-        .add(
-            "dark"
-        );
+    document.body
+        .classList.add("dark");
 }
+
+
+/* CLEAN EXPIRED STATUS CLIENT SIDE */
+
+setInterval(
+    async () => {
+
+        if(currentUser){
+
+            try{
+
+                await renderStatuses();
+
+            }catch(error){
+
+                console.log(error);
+            }
+        }
+
+    },
+    5 * 60 * 1000
+);
 
 </script>
 
